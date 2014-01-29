@@ -1,0 +1,139 @@
+
+
+
+Tasks:
+
+add all unit pictures					V
+	create all animation objects		V										
+create children unit : 					V
+	soldier 							V
+		add pictures					V
+		add animations					V
+			death						V
+			attack						V
+			walk						V
+	archer								V
+		add pictures					V
+		add animations					V
+			death						V
+			attack						V
+			walk						V
+		add projectile					V
+		override attack					V
+	knight								V
+		add pictures					V
+		add animations					V
+			death						V
+			attack						V
+			walk						V
+		add impervious to projectiles	V
+	mage								V
+		add pictures					V
+		add animations					V
+			death						V
+			attack						V
+			walk						V
+		override attack					V
+	demoman								V
+		add pictures					X
+		add animations					X
+			death						X
+			attack						X
+			walk						X
+		add mine option					X
+		override attack					V
+change gameplay:						V
+	add spells							V
+		add lightning					V
+			add light effect			X
+		add meteor						X
+		add raining arrows				V
+	add spell menu button				V
+	add spell menu						V
+	add spell buttons					V
+	add targeting a unit				V
+	add targeting country				V
+	add hovering countries				V
+	add skill menu button				V
+	come up with skill tree				X
+	add skills							X
+	add skill menus						X
+	add skill buttons					X
+	add skill modifier to resolve		X
+	add money symbol					V
+	add lifebars						V
+	add player class					V
+	add money							V
+	add next turn button				V
+	add attack country button			V
+	add resolve button					V
+	add buy troups button				V
+	add return to action 0				V
+	add deleting thread					V
+set units on right y					
+turn screen								V
+add smoke								X
+	add image							X
+	add scrolling						X
+change collision						V
+	100 iterations						V
+	break when encounter null unit		V
+	lock unit being modified			~
+	add ranged units check				V
+	add projectile collision			V
+	add projectile motion				V
+	add body rect for each unit			X
+	add range rect for each unit		X
+change animation						V
+	add animation speed					V
+add attack								V
+	add life							V
+		add action 3 dead				V
+			add deleting queue			V
+			add thread locking 			~
+	add action 1						V
+		stop moving when attacking		V
+		remove life when attacking		V	
+	add delay							V
+add spawning							V
+add winning state						
+add towers								
+add mines								
+add temp money to mine					
+add castles								
+add drawing loop for castles			
+add arrow over selected unit			
+add gui									
+	add widget							V						
+	add button widget					V
+	add mouse position and clic check	V
+	add gui blitting loop				V
+	add gui initialization				V
+	add stop threads when quitting		
+	add money label						
+	add income label					
+	add troup label						
+	add arrow country attacked			
+	add unit buttons					V
+	add pause button					X
+	add menu buttons					V
+		add option menu					V
+		add play 						V
+		add quit						V
+		add help						X
+		add buy hats					X
+	add menu							V
+	add map								V
+		game map						V
+			add region buttons			V
+			add country class			V
+			create countries			V
+	add level scrolling					
+	add minimap							
+add ai									
+	add spawning loop					
+	add attacking countries				
+	add turn loop						
+add music								
+add sound								
+add smart resource managment			
