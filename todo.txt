@@ -34,7 +34,7 @@ create children unit : 					V
 			attack						V
 			walk						V
 		override attack					V
-	demoman								V
+	demoman								X
 		add pictures					X
 		add animations					X
 			death						X
@@ -49,12 +49,12 @@ change gameplay:						V
 		add meteor						X
 		add raining arrows				V
 	add spell menu button				V
-	add spell menu						V
-	add spell buttons					V
-	add targeting a unit				V
+	add spell menu						
+	add spell buttons					
+	add targeting a unit				
 	add targeting country				V
 	add hovering countries				V
-	add skill menu button				V
+	add skill menu button				X
 	come up with skill tree				X
 	add skills							X
 	add skill menus						X
@@ -70,7 +70,7 @@ change gameplay:						V
 	add buy troups button				V
 	add return to action 0				V
 	add deleting thread					V
-set units on right y					
+set units on right y					V
 turn screen								V
 add smoke								X
 	add image							X
@@ -82,15 +82,15 @@ change collision						V
 	add ranged units check				V
 	add projectile collision			V
 	add projectile motion				V
-	add body rect for each unit			X
-	add range rect for each unit		X
+	add body rect for each unit			V
+	add range rect for each unit		V
 change animation						V
 	add animation speed					V
 add attack								V
 	add life							V
 		add action 3 dead				V
 			add deleting queue			V
-			add thread locking 			~
+			add thread locking 			~~
 	add action 1						V
 		stop moving when attacking		V
 		remove life when attacking		V	
@@ -100,8 +100,8 @@ add winning state
 add towers								
 add mines								
 add temp money to mine					
-add castles								
-add drawing loop for castles			
+add castles								V
+add drawing loop for castles			V
 add arrow over selected unit			
 add gui									
 	add widget							V						
@@ -113,7 +113,9 @@ add gui
 	add money label						
 	add income label					
 	add troup label						
-	add arrow country attacked			
+	add arrow country attacked		
+	add spells buttons
+	add combat menu buttons	
 	add unit buttons					V
 	add pause button					X
 	add menu buttons					V
@@ -128,12 +130,30 @@ add gui
 			add region buttons			V
 			add country class			V
 			create countries			V
-	add level scrolling					
+	add level scrolling					V
 	add minimap							
 add ai									
+	fix collision						V
+	lower size							V
+	display rects for debut
+	fix archer projectile
+	augment projectile speed
+	augment castle health
+	lower health						
+	increase number						
+	move enemy spawn
+	check if everything works
+		spawn enemy units
 	add spawning loop					
 	add attacking countries				
 	add turn loop						
+add switching between activities		
+	menu to map							
+	map to combat						
+	combat back to map with result		
+	map back to menu					
+	combat back to menu					
+		implement savegame					
 add music								
 add sound								
-add smart resource managment			
+add smart resource managment			V

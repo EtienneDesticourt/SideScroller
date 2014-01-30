@@ -136,11 +136,15 @@ public class CombatResourceManager extends ResourceManager{
 		anim = new Animation(18,28,2);
 		this.addAnimation(3, 2, anim);
 		//System.out.println("Token 19");
-		
+
+		//projectiles
+		images[66] = BitmapFactory.decodeResource(res,R.drawable.projectile_arrow,op);
+		images[67] = BitmapFactory.decodeResource(res,R.drawable.projectile_magic,op);
 		//Castle
-		images[66] = BitmapFactory.decodeResource(res,R.drawable.castle,op);
-		images[67] = BitmapFactory.decodeResource(res,R.drawable.castle_broken,op);
-		
+		images[68] = BitmapFactory.decodeResource(res,R.drawable.castle,op);
+		images[69] = BitmapFactory.decodeResource(res,R.drawable.castle_broken,op);
+//		images[66] = Bitmap.createScaledBitmap(images[66],images[66].getWidth()/2,images[66].getHeight()/2,false);
+//		images[67] = Bitmap.createScaledBitmap(images[67],images[67].getWidth()/2,images[67].getHeight()/2,false);
 		
 		
 		int w,h;
@@ -148,7 +152,7 @@ public class CombatResourceManager extends ResourceManager{
 			if (images[i]!=null){
 				h = images[i].getHeight();
 				w = images[i].getWidth();
-				images[i] = Bitmap.createScaledBitmap(images[i],w/2,h/2,false);
+				images[i] = Bitmap.createScaledBitmap(images[i],w/4,h/4,false);
 			}
 		}
 		

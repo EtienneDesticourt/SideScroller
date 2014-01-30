@@ -1,5 +1,6 @@
 package com.example.painintheass.Graphics;
 
+import com.example.painintheass.GameLogic.Projectile;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.GameLogic.Unit;
 import com.example.painintheass.UI.CombatUIManager;
@@ -176,10 +177,10 @@ public class CombatView extends View{
         		if (currUnit.getType()==4){//Deals with castles
         			int i;
         			if (percent>0.5){
-        				i = 66;
+        				i = 68;
         			}
         			else{
-        				i = 67;
+        				i = 69;
         			}
     				c.drawBitmap(MyRM.getImage(i),currUnit.getX()-dX,currUnit.getY()+currUnit.getyMod(),null);
         			continue;
@@ -192,8 +193,19 @@ public class CombatView extends View{
         		c.drawBitmap(MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame()),currUnit.getX()-dX,currUnit.getY()+currUnit.getyMod(),null);
         	}
         }
-		
-		
+		//PROJECTILES
+        Projectile currProj;
+        for (int teamIndex=0;teamIndex<2;teamIndex++){
+        	for (int i=0;i<1000;i++){
+        		currProj = MyTeams[teamIndex].getProjectile(i);
+        		if (currProj == null){
+        			break;
+        		}
+        		c.drawBitmap(MyRM.getImage(currProj.getImage()),currProj.getX()-dX,currProj.getY(),null);
+        	}
+        }
+        
+        
 		//GUI	
 		Widget[] state = MyUIM.getCurrentState();
 		Widget currWidget;

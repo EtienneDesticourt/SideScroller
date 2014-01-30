@@ -17,6 +17,7 @@ public class Projectile {
 		this.y = y;
 		this.image = newImage;
 		this.setDamage(damage);
+		this.side = side;
 		myRect = new Rect();
 		myRect.left = x;
 		myRect.right = x+width;
@@ -58,6 +59,9 @@ public class Projectile {
 	
 	
 	public void step(){
+//		System.out.println("x"+x);
+//		System.out.println("Side"+side);
+//		System.out.println("Speed"+speed);
 		x += side*speed;
 		myRect.offsetTo(x,y);
 	}

@@ -73,6 +73,7 @@ public class Unit {
 		attackRect.offsetTo(x, y);
 	}
 	
+	
 	public void attack(){
 		Target.hit(damage,false);
 		if (Target.getAction()==3){
@@ -82,11 +83,20 @@ public class Unit {
 	
 	public void hit(int damage,boolean ranged){
 		this.life -= damage;
-		if (this.life < 0){
+		if (this.life < 0 && action != 3){
 			die();
 		}
 	}
+	
+	public void setAttackRange(int range){
+		this.attackRange = range;
+		this.attackRect.right = this.attackRect.left+range;
+	}
 
+	public Unit getTarget(){
+		return Target;
+	}
+	
 	public int getDamage(){
 		return damage;
 	}
@@ -180,7 +190,7 @@ public class Unit {
 		return  attackSpeed;
 	}
 
-	public boolean isInUse() {
+	public boolean isLocked() {
 		return inUse;
 	}
 

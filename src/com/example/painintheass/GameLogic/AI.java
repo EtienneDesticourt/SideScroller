@@ -36,15 +36,15 @@ public class AI {
 		        			Unit[] myUnits = MyTeams[teamIndex].getUnits();
 		        			int side = MyTeams[teamIndex].getMovementSide();		        			
 			    			for (int i =0; i<100;i++){//MyTeams[teamIndex].getUnitsNumber();i++){
-
 		    					current = new Date().getTime();
 			    				if (myUnits[i]==null){
 			    					break;
 			    				}
+			    				myUnits[i].lock();
 			    				if (myUnits[i].getType()==4){ //castle doesn't move or attack
+				    				myUnits[i].unlock();
 			    					continue;
 			    				}
-			    				myUnits[i].lock();
 			    				
 			    				int action = myUnits[i].getAction();
 			    				//MOVE UNIT
@@ -110,8 +110,6 @@ public class AI {
 	        	Unit[] UnitsTeam1 = MyTeams[1].getUnits();
 	        	Projectile[] myProjectiles0 = MyTeams[0].getMyProjectiles();
 	        	Projectile[] myProjectiles1 = MyTeams[1].getMyProjectiles();
-	        	int type0;
-	        	int type1;
 	        	while (gameIsRunning){
 		        	while (calcCollisions){
 		        		Unit currUnit;
@@ -120,22 +118,35 @@ public class AI {
 		    				if (currUnit==null){
 		    					break;
 		    				}
+
 		    				currUnit.lock();
+		    				if (currUnit.getAction()==3){
+			    				currUnit.unlock();
+		    					continue;
+		    				}
 		    				for (int j=0; j<100;j++){//MyTeams[1].getUnitsNumber();j++){
 		    					
 		    					if (UnitsTeam1[j]==null ){
 		    						break;
 		    					}
 		    					UnitsTeam1[j].lock();
+		    					if (UnitsTeam1[j].getAction()==3){
+			    					UnitsTeam1[j].unlock();
+		    						continue;
+		    					}
 		    					
 		    					if (Rect.intersects(currUnit.getAttackRect(), UnitsTeam1[j].getBodyRect())){
-		    						currUnit.setAction(1);
-		    						currUnit.setTarget(UnitsTeam1[j]);		    						
+		    						if (currUnit.getType()!=4){
+			    						currUnit.setAction(1);
+			    						currUnit.setTarget(UnitsTeam1[j]);	
+		    						}
 		    					}
 		    					
 		    					if (Rect.intersects(UnitsTeam1[j].getAttackRect(), currUnit.getBodyRect())){
-		    						UnitsTeam1[j].setAction(1);
-		    						UnitsTeam1[j].setTarget(currUnit);		    						
+		    						if (UnitsTeam1[j].getType()!=4){
+			    						UnitsTeam1[j].setAction(1);
+			    						UnitsTeam1[j].setTarget(currUnit);
+		    						}
 		    					}		 
 		    					
 		    					UnitsTeam1[j].unlock();
@@ -148,17 +159,23 @@ public class AI {
 		    					break;
 		    				}
 		    				for (int j=0;j<100;j++){
-		    					
-		    					if (myProjectiles0[i]!=null){
-		    						if (Rect.intersects(UnitsTeam1[j].getBodyRect(), myProjectiles0[i].getMyRect() )){
-		    							UnitsTeam1[j].hit(myProjectiles0[0].getDamage(), true);
-		    						}
+		    					if (UnitsTeam1[j]==null && UnitsTeam0[j]==null){ break;}
+		    					if (UnitsTeam1[j]!=null){
+			    					if (myProjectiles0[i]!=null){
+			    						if (Rect.intersects(UnitsTeam1[j].getBodyRect(), myProjectiles0[i].getMyRect() )){
+			    							UnitsTeam1[j].hit(myProjectiles0[i].getDamage(), true);
+			    							MyTeams[0].delProjectile(i);
+			    						}
+			    					}
 		    					}
-		    					if (myProjectiles1[i]!=null){
-		    						if(Rect.intersects(UnitsTeam0[j].getBodyRect(), myProjectiles1[i].getMyRect() )){
-		    							UnitsTeam0[j].hit(myProjectiles1[i].getDamage(), true);
-		    						}
-		    						
+		    					if (UnitsTeam0[j]!=null){
+			    					if (myProjectiles1[i]!=null){
+			    						if(Rect.intersects(UnitsTeam0[j].getBodyRect(), myProjectiles1[i].getMyRect() )){
+			    							UnitsTeam0[j].hit(myProjectiles1[i].getDamage(), true);
+			    							MyTeams[1].delProjectile(i);
+			    						}
+			    						
+			    					}
 		    					}
 		    				}
 		    			}
@@ -190,18 +207,77 @@ public class AI {
 		new Thread(new Runnable() {
 	        public void run() {
 	        	while (gameIsRunning){
-
+	        		
 	        		for (int i=0;i<2;i++){
 	        			Unit[] delQueue = MyTeams[i].getDelQueue();
+	        			Unit[] UnitsTeam = MyTeams[i].getUnits();
+	        			
 	        			for (int j=0;j<100;j++){
-	        				MyTeams[i].removeUnit(delQueue[i].getId());
+	        				if (delQueue[j]==null){
+								break;
+							}
+	        				for (int k=0;k<100;k++){
+	        					
+	        					if (delQueue[j]==UnitsTeam[k]){
+	        						while (delQueue[j].isLocked()){ //WHILE BEING USED BY OTHER THREAD
+	        							try {
+	        								Thread.sleep(10);
+	        							} catch (InterruptedException e) {
+	        								e.printStackTrace();
+	        							}
+	        						}
+	        						//ELSE DELETE
+	        						MyTeams[i].removeUnit(k);
+	        						break;
+	        					}
+	        				}
 	        			}
+	        			MyTeams[i].setNumberToDelete(0);
+	        			
 	        		}
 	        	}
 	        }
 		
 		}).start();	
 	}
+	
+//	public void deleteProjectiles(){
+//		new Thread(new Runnable() {
+//	        public void run() {
+//	        	while (gameIsRunning){
+//	        		
+//	        		for (int i=0;i<2;i++){
+//	        			Unit[] delQueue = MyTeams[i].getDelQueue();
+//	        			Unit[] UnitsTeam = MyTeams[i].getUnits();
+//	        			
+//	        			for (int j=0;j<100;j++){
+//	        				if (delQueue[j]==null){
+//								break;
+//							}
+//	        				for (int k=0;k<100;k++){
+//	        					
+//	        					if (delQueue[j]==UnitsTeam[k]){
+//	        						while (delQueue[j].isLocked()){ //WHILE BEING USED BY OTHER THREAD
+//	        							try {
+//	        								Thread.sleep(10);
+//	        							} catch (InterruptedException e) {
+//	        								e.printStackTrace();
+//	        							}
+//	        						}
+//	        						//ELSE DELETE
+//	        						MyTeams[i].removeUnit(k);
+//	        						break;
+//	        					}
+//	        				}
+//	        			}
+//	        			MyTeams[i].setNumberToDelete(0);
+//	        			
+//	        		}
+//	        	}
+//	        }
+//		
+//		}).start();	
+//	}
 	
 	
 	

@@ -95,7 +95,9 @@ public class Team {
 	
 	
 	
-	
+	public void setNumberToDelete(int num){
+		numberToDelete = num;
+	}
 	
 	public int getMovementSide(){
 		return movementSide;
@@ -121,6 +123,10 @@ public class Team {
 		return myUnits[index];
 	}
 	
+	public Projectile getProjectile(int index){
+		return myProjectiles[index];
+	}
+	
 	public Unit[] getUnits() {
 		return myUnits;
 	}
@@ -136,10 +142,16 @@ public class Team {
 		numberOfProjectiles ++;
 	}
 	
+	public void delProjectile(int index){
+		myProjectiles[index] = myProjectiles[numberOfProjectiles-1];
+		myProjectiles[numberOfProjectiles-1] = null;
+		numberOfProjectiles --;
+	}
 	
 	
 	public void removeUnit(int unitIndex){
 		myUnits[unitIndex] = myUnits[numberOfUnits-1];
+		myUnits[unitIndex].setId(unitIndex);
 		myUnits[numberOfUnits-1] = null;
 		numberOfUnits --;
 	}
