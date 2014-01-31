@@ -49,7 +49,7 @@ public class Camera {
 	public void pan(float speed, int width, int side){
 		float lastSpeed = this.speed;
 		this.speed = speed;
-		System.out.println(speed);
+		//System.out.println(speed);
 		this.dx = speed/100;
 		this.ddx = -0.05;
 		this.side = side;

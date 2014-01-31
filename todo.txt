@@ -97,7 +97,7 @@ add attack								V
 	add delay							V
 add spawning							V
 add winning state						
-add towers								
+add towers								X
 add mines								
 add temp money to mine					
 add castles								V
@@ -115,7 +115,7 @@ add gui
 	add troup label						
 	add arrow country attacked		
 	add spells buttons
-	add combat menu buttons	
+	add combat menu buttons				V
 	add unit buttons					V
 	add pause button					X
 	add menu buttons					V
@@ -135,8 +135,13 @@ add gui
 add ai									
 	fix collision						V
 	lower size							V
-	display rects for debut
-	fix archer projectile
+	display rects for debug				V
+	fix archer projectile				V
+	find size ofalphazone in each pic/4 V
+	add difX to customview				V
+	leave difY in customview			V
+	change paint style to stroke		V
+	calculate correct rect size			V
 	augment projectile speed
 	augment castle health
 	lower health						

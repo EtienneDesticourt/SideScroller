@@ -64,8 +64,10 @@ public class AI {
 		    					int temp = myUnits[i].getCurrFrame();
 		    					Animation currAnim;
 		    					lastTime =  myUnits[i].getLastAnimUpdate();
+		    					
 		    					currAnim = myRM.getAnimation(myUnits[i].getType(), action);
-		    					if ((current-lastTime)>currAnim.getSpeed()){
+		    					System.out.println(myUnits[i].getType()+" "+action);
+		    					if ((current-lastTime)>currAnim.getSpeed()){ //crashes on 0 0
 		    						if (temp+1>currAnim.getLength()-1){
 			    						myUnits[i].setCurrFrame(0);
 			    					}
@@ -100,7 +102,7 @@ public class AI {
 	        	}
 	        }
 	    }).start();	
-		System.out.println("Done starting");
+		//System.out.println("Done starting");
 	}
 	
 	public void checkCollision(){

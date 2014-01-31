@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -80,7 +81,7 @@ public class CombatView extends View{
 	protected class MyGestureDetector extends SimpleOnGestureListener {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			System.out.println(velocityX);
+			//System.out.println(velocityX);
 			int side;
 			if (velocityX > 0){
 				side = 1;
@@ -133,7 +134,8 @@ public class CombatView extends View{
 	
 	
 	@Override
-	protected void onDraw(Canvas c){		
+	protected void onDraw(Canvas c){
+		Rect newRect;
 		if (!fullyInitialized){
 			return;
 		}
@@ -170,8 +172,9 @@ public class CombatView extends View{
         		percent = currUnit.getLife()/ (float) currUnit.getMaxLife();
         		length = (int) (percent*255);
         		MyPaint.setARGB(255,200, length,0);
+        		MyPaint.setStyle(Paint.Style.STROKE);
         		length =(int) (percent*100);
-        		c.drawRect(currUnit.getX()-dX,currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length,currUnit.getY()+currUnit.getyMod(),MyPaint);
+        		c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
         		
         		//System.out.println(currUnit.getX());
         		if (currUnit.getType()==4){//Deals with castles
@@ -182,7 +185,9 @@ public class CombatView extends View{
         			else{
         				i = 69;
         			}
-    				c.drawBitmap(MyRM.getImage(i),currUnit.getX()-dX,currUnit.getY()+currUnit.getyMod(),null);
+    				c.drawBitmap(MyRM.getImage(i),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+    				newRect = currUnit.getBodyRect();
+    				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         			continue;
         		}
         		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
@@ -190,7 +195,10 @@ public class CombatView extends View{
 //        		currAnim.setBounds(currUnit.getBodyRect());
 //        		currAnim.draw(c);
         		//c.draw
-        		c.drawBitmap(MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame()),currUnit.getX()-dX,currUnit.getY()+currUnit.getyMod(),null);
+        		c.drawBitmap(MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame()),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+
+				newRect = currUnit.getBodyRect();
+				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         	}
         }
 		//PROJECTILES
@@ -202,6 +210,9 @@ public class CombatView extends View{
         			break;
         		}
         		c.drawBitmap(MyRM.getImage(currProj.getImage()),currProj.getX()-dX,currProj.getY(),null);
+        		newRect = currProj.getMyRect();
+        		
+        		c.drawRect(newRect.left-dX,newRect.top,newRect.right-dX,newRect.bottom, MyPaint);
         	}
         }
         

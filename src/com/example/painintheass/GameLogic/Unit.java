@@ -5,6 +5,14 @@ import java.util.Date;
 
 import android.graphics.Rect;
 
+
+/*mdpi stats --> /4
+archer 140,10, 90, 215  
+knight 70, 0, 115, 295 
+mage 45 50, 85, 230
+castle 30 0 200 235
+*/
+
 public class Unit {
 	private Team myTeam;
 	boolean isMoving;
@@ -12,6 +20,7 @@ public class Unit {
 	private int x;
 	private int y;
 	private int yMod=0;
+	private int xMod=0;
 	private int width;
 	private int height;
 	private int speed;
@@ -35,9 +44,8 @@ public class Unit {
 	
 	public Unit(Team unitsTeam){
 		this.unlock();
-		System.out.println("I'm a new unit.");
+		//System.out.println("I'm a new unit.");
 		myTeam = unitsTeam;
-		myTeam.addUnit(this);
 		isMoving = false;
 		currFrame = 0;
 		maxFrame = 4;
@@ -65,6 +73,10 @@ public class Unit {
 		setLastAttack(new Date().getTime());
 		setLastAnimUpdate(new Date().getTime());
 		
+	}
+	
+	public void init(){ //only adds to ai processing after subclass has finished init
+		myTeam.addUnit(this); //to avoid ai crash for anim type 0 action 0
 	}
 	
 	public void step(int side){
@@ -115,8 +127,36 @@ public class Unit {
 		return this.x;
 	}
 	
+	public void setY(int newY){
+		this.y = newY;
+		int height = bodyRect.top-bodyRect.bottom;
+		bodyRect.top = y+height;
+		setAttackRectFromBRect();
+	}
 	public int getY(){
 		return this.y;
+	}
+	
+	public void setBodyRect(Rect newRect){
+		this.bodyRect = newRect;
+	}
+	
+	public void setBodyRect(int left, int top, int width, int height){
+		bodyRect.bottom = top+height;
+		bodyRect.left = left;
+		bodyRect.top = top;
+		bodyRect.right = left+width;
+		x = left;
+		y = top;
+		setAttackRectFromBRect();
+		
+	}
+	
+	public void setAttackRectFromBRect(){
+		attackRect.top = bodyRect.top;
+		attackRect.left = bodyRect.left;
+		attackRect.bottom = bodyRect.bottom;
+		attackRect.right = bodyRect.left+attackRange;
 	}
 
 	public Rect getBodyRect(){
@@ -232,6 +272,14 @@ public class Unit {
 
 	public void setyMod(int yMod) {
 		this.yMod = yMod;		
+	}
+
+	public int getxMod() {
+		return xMod;
+	}
+
+	public void setxMod(int xMod) {
+		this.xMod = xMod;
 	}
 
 	

@@ -49,7 +49,7 @@ public class CombatActivity extends Activity {
 		Button knight = new Button(left,up,bwidth,bheight,6,6,6,6) {
 			public void onClick(UIManager myUIM){
 				myUIM.getMyPlayerTeam().spawnKnight();
-				System.out.println("Spawned knight hopefully.");
+				//System.out.println("Spawned knight hopefully.");
 			}
 		};
 		
