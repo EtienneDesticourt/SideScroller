@@ -1,5 +1,7 @@
 package com.example.painintheass.Graphics;
 
+import com.example.painintheass.CombatActivity;
+import com.example.painintheass.MapActivity;
 import com.example.painintheass.GameLogic.Projectile;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.GameLogic.Unit;
@@ -7,7 +9,9 @@ import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.Widget;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -31,10 +35,12 @@ public class CombatView extends View{
 	private Paint MyPaint;
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;// Gesture detection
+	private boolean gameEnded;
 
 	public CombatView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		gameEnded = false;
 		MyCamera = new Camera(10);
 		MyRM = new CombatResourceManager(context);
 		MyRM.load();
@@ -77,6 +83,23 @@ public class CombatView extends View{
 	public CombatResourceManager getMyRM(){
 		return MyRM;
 	}
+	
+	public void endGame(boolean state){
+		gameEnded = true;
+		CombatActivity dad = ((CombatActivity)getContext());
+		MyUIM.getMyAI().quit();
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("result",state);
+		dad.setResult(dad.RESULT_OK,returnIntent);
+		if (state==true){
+			//display win
+		}
+		else{
+			//display loss
+		}
+        dad.finish();
+	}
+	
 	
 	protected class MyGestureDetector extends SimpleOnGestureListener {
 		@Override
@@ -136,7 +159,7 @@ public class CombatView extends View{
 	@Override
 	protected void onDraw(Canvas c){
 		Rect newRect;
-		if (!fullyInitialized){
+		if (!fullyInitialized || gameEnded){
 			return;
 		}
 		
@@ -174,10 +197,23 @@ public class CombatView extends View{
         		MyPaint.setARGB(255,200, length,0);
         		MyPaint.setStyle(Paint.Style.STROKE);
         		length =(int) (percent*100);
-        		c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
+        		//c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
         		
         		//System.out.println(currUnit.getX());
         		if (currUnit.getType()==4){//Deals with castles
+        			if (currUnit.getAction() == 3){ //Victory check
+        				boolean state;
+        				if (currUnit.getMyTeam().getId()==0){
+        					state=true;
+        					c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
+        				}
+        				else{
+        					state=false;
+        					c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
+        				}
+        				
+        				endGame(state);
+        			}
         			int i;
         			if (percent>0.5){
         				i = 68;
@@ -187,7 +223,7 @@ public class CombatView extends View{
         			}
     				c.drawBitmap(MyRM.getImage(i),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
     				newRect = currUnit.getBodyRect();
-    				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+    				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         			continue;
         		}
         		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
@@ -198,7 +234,7 @@ public class CombatView extends View{
         		c.drawBitmap(MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame()),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
 
 				newRect = currUnit.getBodyRect();
-				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         	}
         }
 		//PROJECTILES
@@ -212,7 +248,7 @@ public class CombatView extends View{
         		c.drawBitmap(MyRM.getImage(currProj.getImage()),currProj.getX()-dX,currProj.getY(),null);
         		newRect = currProj.getMyRect();
         		
-        		c.drawRect(newRect.left-dX,newRect.top,newRect.right-dX,newRect.bottom, MyPaint);
+        		//c.drawRect(newRect.left-dX,newRect.top,newRect.right-dX,newRect.bottom, MyPaint);
         	}
         }
         

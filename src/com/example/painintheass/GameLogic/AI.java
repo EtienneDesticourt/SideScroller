@@ -19,11 +19,37 @@ public class AI {
 	public AI(Team[] MyTeams, ResourceManager newRM){
 		this.MyTeams = MyTeams;
 		myRM = newRM;
+		spawnUnits();
 		updateUnits();
 		checkCollision();
 	}
 	
-	
+	public void spawnUnits(){
+		new Thread(new Runnable() {
+	        public void run() {
+	        	long lastSpawn= new Date().getTime();;
+	        	long current;
+	        	int r;
+	        	while (gameIsRunning){
+	        		current = new Date().getTime();
+	        		if ((current-lastSpawn)>MyTeams[1].getSpawnSpeed()){
+	        			r = (int)(Math.random() * ((2) + 1));
+	        			if (r==0){MyTeams[1].spawnKnight();}
+	        			else if (r==1){MyTeams[1].spawnArcher();}
+	        			else{MyTeams[1].spawnMage();}
+	        			lastSpawn = current;
+	        		}
+		        	try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}	        		
+	        	}
+	        }
+	        		
+	    }).start();	
+		//System.out.println("Done starting");
+	}
 	
 	public void updateUnits(){
 		new Thread(new Runnable() {
@@ -66,7 +92,7 @@ public class AI {
 		    					lastTime =  myUnits[i].getLastAnimUpdate();
 		    					
 		    					currAnim = myRM.getAnimation(myUnits[i].getType(), action);
-		    					System.out.println(myUnits[i].getType()+" "+action);
+		    					//System.out.println(myUnits[i].getType()+" "+action);
 		    					if ((current-lastTime)>currAnim.getSpeed()){ //crashes on 0 0
 		    						if (temp+1>currAnim.getLength()-1){
 			    						myUnits[i].setCurrFrame(0);

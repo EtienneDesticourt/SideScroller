@@ -12,11 +12,13 @@ import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.UIManager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 public class CombatActivity extends Activity {
-	
+	private int type = 2;
+	private boolean victoryState;
 	
 	private void initGUI(int width, int height, CombatUIManager myUIM){
 		int left,up;
@@ -71,16 +73,61 @@ public class CombatActivity extends Activity {
 			public void onClick(UIManager myUIM){
 			}
 		};
-		
+
 		Widget[] state = {menu,archer,knight,mage,spell};
 		myUIM.addState(state, true, 0);
+		
+		//MENU SUBMENU
+		left = (int) (0.02083*width);
+		up = (int) (0.215625*height);
+		bwidth = (int) (0.10416*width);
+		bheight = (int) (0.15625*height);
+		Button map = new Button(left,up,bwidth,bheight,73,73,73,73) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		up = (int) (0.390625*height);
+		Button options = new Button(left,up,bwidth,bheight,74,74,74,74) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		up = (int) (0.56875*height);
+		Button quit = new Button(left,up,bwidth,bheight,75,75,75,75) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		
+		
+		//SPELLS SUBMENU
+		left = (int) (0.86875*width);
+		up = (int) (0.215625*height);
+		bwidth = (int) (0.10416*width);
+		bheight = (int) (0.15625*height);
+		Button fire = new Button(left,up,bwidth,bheight,70,70,70,70) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		left = (int) (0.85625*width);
+		up = (int) (0.390625*height);
+		Button meteor = new Button(left,up,bwidth,bheight,71,71,71,71) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		left = (int) (0.87083*width);
+		up = (int) (0.56875*height);
+		Button stars = new Button(left,up,bwidth,bheight,72,72,72,72) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		
 	}
 	@Override
 	public void onWindowFocusChanged (boolean hasFocus)
 	{
-		
 	}
-	
+	public boolean onActivityResult(){
+		return victoryState;		
+	}
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -113,5 +160,17 @@ public class CombatActivity extends Activity {
 
 		friendlyTeam.spawnCastle();
 		enemyTeam.spawnCastle();
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public boolean isVictoryState() {
+		return victoryState;
+	}
+	public void setVictoryState(boolean victoryState) {
+		this.victoryState = victoryState;
 	}
 }

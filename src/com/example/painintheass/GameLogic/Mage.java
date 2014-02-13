@@ -18,14 +18,16 @@ public class Mage extends Unit{
 		super.setxMod(xMod);		
 		super.setyMod(yMod);
 		super.setAttackRange(200);
-		super.setAttackSpeed(1000);
+		super.setAttackSpeed(700);
 		super.init();
 	}
 
 
 	public void attack(){
 		int side = super.getMyTeam().getMovementSide();
-		super.getMyTeam().addProjectile(new Projectile(67,1,side,getX()+50,getY()+40+yMod,17,8, super.getDamage()));
+		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+50,getY()+40+yMod,17,8, super.getDamage()));
+		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+10,getY()+40+yMod,17,8, super.getDamage()));
+		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+30,getY()+40+yMod,17,8, super.getDamage()));
 		if (super.getTarget().getAction()==3){
 			super.setAction(0);
 		}

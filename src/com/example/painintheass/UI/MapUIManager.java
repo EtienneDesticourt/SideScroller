@@ -1,5 +1,7 @@
 package com.example.painintheass.UI;
 
+import android.app.Activity;
+
 import com.example.painintheass.GameLogic.Country;
 
 public class MapUIManager extends UIManager{
@@ -16,6 +18,10 @@ public class MapUIManager extends UIManager{
 		super();
 	}
 
+	public MapUIManager(Activity A){
+		super(A);
+	}
+	
 	public void setSelected(int index){
 		this.Selected = World[index];
 		this.selectedIndex = index;
@@ -71,7 +77,7 @@ public class MapUIManager extends UIManager{
 	public void setDefending(Country defending) {
 		Defending = defending;
 	}
-	
+
 	public void unclickAll(){
 		for (int i=0;i<6;i++){
 			World[i].unclickButton();

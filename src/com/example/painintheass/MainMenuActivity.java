@@ -6,12 +6,13 @@ import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.Widget;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 public class MainMenuActivity extends Activity{
 
-	
+	private int type = 0;
 	public void initMenu(int width, int height, UIManager myUIM){
 		
 
@@ -19,12 +20,13 @@ public class MainMenuActivity extends Activity{
 		int up;
 		int buttonWidth = (int) (0.4*width);  
 		int buttonHeight = (int) (0.11*height);
-				
+
 		//PLAY BUTTON
 		up = (int) (0.03*height);
 		Button playButton = new Button(left,up,buttonWidth,buttonHeight) {
 			public void onClick(UIManager myUIM){
 				System.out.println("Pressed play.");
+				startActivity(myUIM.getIntent(1));
 			}
 		};
 		playButton.setBackgroundImage(1);
@@ -68,7 +70,7 @@ public class MainMenuActivity extends Activity{
 		int height = metrics.heightPixels;
 		
 		
-		UIManager myUIM = new UIManager();
+		UIManager myUIM = new UIManager(this);
 		
 		initMenu(width,height,myUIM);
 		
@@ -79,6 +81,18 @@ public class MainMenuActivity extends Activity{
 		
 		
 		
+	}
+
+
+
+	public int getType() {
+		return type;
+	}
+
+
+
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

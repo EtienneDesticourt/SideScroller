@@ -75,6 +75,12 @@ public class Unit {
 		
 	}
 	
+	public void applySkillModifier(float health,float speed, float damage){
+		this.life *= health;
+		this.speed *= speed;
+		this.damage *= damage;
+	}
+	
 	public void init(){ //only adds to ai processing after subclass has finished init
 		myTeam.addUnit(this); //to avoid ai crash for anim type 0 action 0
 	}

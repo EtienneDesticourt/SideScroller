@@ -1,5 +1,11 @@
 package com.example.painintheass.UI;
 
+import android.app.Activity;
+import android.content.Intent;
+
+import com.example.painintheass.MapActivity;
+import com.example.painintheass.CombatActivity;
+import com.example.painintheass.MainMenuActivity;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.GameLogic.Team;
 
@@ -11,6 +17,7 @@ public class UIManager {
 	private int stateNumber;
 	private int currentState;
 	private int lastState;
+	private Activity MyActivity;
 	private boolean on;
 	
 	public UIManager(){
@@ -21,6 +28,11 @@ public class UIManager {
 		currentState = 0;
 		lastState = 0;
 		setOn(true);
+	}
+	
+	public UIManager(Activity A){
+		this();
+		this.setMyActivity(A);
 	}
 	
 	public void addState(Widget[] state, boolean isAGameState, int backgroundIndex){
@@ -107,8 +119,34 @@ public class UIManager {
 	public void updateLabels(){
 		
 	}
-	
 
+	public Activity getMyActivity() {
+		return MyActivity;
+	}
+	
+	public Intent getIntent(int type){
+		Intent myIntent;
+		if (type==0){
+			myIntent = new Intent(MyActivity, MainMenuActivity.class);
+		}
+		else if (type==1){
+			myIntent = new Intent(MyActivity, MapActivity.class);			
+		}
+		else{
+			myIntent = new Intent(MyActivity, CombatActivity.class);
+		}
+		return myIntent;
+	}
+
+	public void setMyActivity(Activity myActivity) {
+		MyActivity = myActivity;
+	}
+
+	public void setAttacking(Country enemyCountry) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 }

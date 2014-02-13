@@ -17,9 +17,11 @@ public class Castle extends Unit{
 		super.setType(4);
 		super.setAction(4); //action 4: Being a castle :D
 		super.setMaxLife(1000);
-		super.setLife(1000);
+		super.setLife(100000);
 		super.init();
 	}
+	
+	
 	
 	
 

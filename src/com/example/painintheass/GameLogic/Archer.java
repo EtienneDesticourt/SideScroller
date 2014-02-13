@@ -18,7 +18,7 @@ public class Archer extends Unit{
 		super.setxMod(xMod);		
 		super.setyMod(yMod);
 		super.setAttackRange(250);
-		super.setAttackSpeed(1000);
+		super.setAttackSpeed(1500);
 		super.init();
 	}
 	
@@ -27,7 +27,7 @@ public class Archer extends Unit{
 	
 	public void attack(){
 		int side = super.getMyTeam().getMovementSide();
-		super.getMyTeam().addProjectile(new Projectile(66,1,side,getX()+50,getY()+30+yMod,41,7,super.getDamage()));
+		super.getMyTeam().addProjectile(new Projectile(66,22,side,getX()+50+xMod,getY()+30+yMod,41,7,super.getDamage()));
 		if (super.getTarget().getAction()==3){
 			super.setAction(0);
 		}		

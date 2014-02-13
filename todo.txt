@@ -113,8 +113,8 @@ add gui
 	add money label						
 	add income label					
 	add troup label						
-	add arrow country attacked		
-	add spells buttons
+	add arrow country attacked			
+	add spells buttons					
 	add combat menu buttons				V
 	add unit buttons					V
 	add pause button					X
@@ -142,23 +142,85 @@ add ai
 	leave difY in customview			V
 	change paint style to stroke		V
 	calculate correct rect size			V
-	augment projectile speed
-	augment castle health
+	augment projectile speed			V
+	augment castle health				
 	lower health						
 	increase number						
-	move enemy spawn
-	check if everything works
-		spawn enemy units
+	move enemy spawn					
+	check if everything works			
+		spawn enemy units				
 	add spawning loop					
 	add attacking countries				
 	add turn loop						
 add switching between activities		
-	menu to map							
-	map to combat						
+	menu to map							V
+	map to combat						V
 	combat back to map with result		
 	map back to menu					
 	combat back to menu					
-		implement savegame					
+		implement savegame				
 add music								
 add sound								
 add smart resource managment			V
+
+
+
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
+MainMenuActivity 30m
+	Implement options button
+	StartOptionsActivity
+	Implement quit button
+OptionsActivity 2h
+	Add music bar
+	Add sound bar
+	Add OK button
+	Add Cancel button
+SkillsActivity 3h
+	Add bars for each skill
+		upgrade cost
+		upgrade mana
+		upgrade strength
+		upgrade time
+	Add effect for each skill			V
+		add multipliers in units		V
+MapActivity 1h
+    Add parameters to combat activity
+	Add country capture					V
+		Handle return from combat		V
+	Add save on activity exit
+	Add load on activity start
+	Implement resolve button
+	Add AI
+		Add enemy attack
+		Add funds handling
+CombatActivity 4h30
+	Add variables for each skill		V
+		Add them in team				V
+		Add them to the UI				X
+		Add desactivation effect		
+			to  units buttons
+	Add enemy ai						V
+		spawning tree					V
+	Move enemy castle
+	Fix units health
+	Fix units speed
+	Fix units damages
+	Add victory state					V
+		Add fireworks					X
+		Add victory message				V
+		Pass victory to map activity	V
+	Add GUI					
+		Add menu submenu				V
+			Add return to map
+			Add skill button
+			Add return to menu
+		Add spell submenu				V
+			Add fire spell
+			Add light spell
+			Add stars spell
+
+Total: 22h
+				

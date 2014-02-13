@@ -33,7 +33,14 @@ public class CombatResourceManager extends ResourceManager{
 		images[7] = BitmapFactory.decodeResource(res, R.drawable.combat_mage,op);
 		images[8] = BitmapFactory.decodeResource(res, R.drawable.menu_mainmenu,op);
 		images[9] = BitmapFactory.decodeResource(res, R.drawable.spells_spells,op);
-		
+		images[70] = BitmapFactory.decodeResource(res, R.drawable.spells_fire,op);
+		images[71] = BitmapFactory.decodeResource(res, R.drawable.spells_light,op);
+		images[72] = BitmapFactory.decodeResource(res, R.drawable.spells_stars,op);
+		images[73] = BitmapFactory.decodeResource(res, R.drawable.menu_map,op);
+		images[74] = BitmapFactory.decodeResource(res, R.drawable.menu_options,op);
+		images[75] = BitmapFactory.decodeResource(res, R.drawable.menu_quit,op);
+		images[76] = BitmapFactory.decodeResource(res, R.drawable.defeat,op);
+		images[77] = BitmapFactory.decodeResource(res, R.drawable.victory,op);
 		//Anims
 		
 //		AnimationDrawable anim;

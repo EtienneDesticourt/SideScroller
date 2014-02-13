@@ -10,11 +10,15 @@ import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 public class MapActivity extends Activity{
 
+	private int type = 1;
+	private int lastAttack=0;
+	private MapUIManager myUIM; 
 	//MUSIC IDEA: SOUND OF ANVIL BEING HIT AS DRUMS
 	
 	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
@@ -199,6 +203,8 @@ public class MapActivity extends Activity{
 			public void onClick(UIManager myUIM){
 				Country enemyCountry = myUIM.getSelected();
 				if (enemyCountry.isPlayerControlled()) return;
+				startActivity(myUIM.getIntent(2));
+				myUIM.setAttacking(enemyCountry);
 				//myUIM.setCurrentStateIndex(5); //Start battle 
 			}
 		};
@@ -239,6 +245,7 @@ public class MapActivity extends Activity{
 		Button attack2 = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
 				myUIM.setCurrentStateIndex(5);
+				//myUIM.setAttackingIndex()
 			}
 		};
 		attack2.setBackgroundImage(22);
@@ -259,6 +266,22 @@ public class MapActivity extends Activity{
 		myUIM.addState(mapState4,false,0);
 	}
 	
+	
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == 1) {
+			if(resultCode == RESULT_OK){
+				boolean result=data.getBooleanExtra("result",false);
+				myUIM.getAttacking().setPlayerControlled(result);				
+			}
+			if (resultCode == RESULT_CANCELED) {
+				//Write your code if there's no result
+			}
+		}
+	}
+	
+
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -268,7 +291,7 @@ public class MapActivity extends Activity{
 		int height = metrics.heightPixels;
 		
 		
-		MapUIManager myUIM = new MapUIManager();
+		myUIM = new MapUIManager(this);
 		
 		
 		setContentView(R.layout.activity_map);
@@ -280,6 +303,14 @@ public class MapActivity extends Activity{
 		
 		
 		
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

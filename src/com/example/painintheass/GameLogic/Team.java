@@ -20,14 +20,18 @@ public class Team {
 	private int spawnY;
 	private int movementSide;
 	private int id;
+
+	private int spawnSpeed;
 	private Unit[] myUnits;
 	private Unit[] delQueue;
 	private int numberToDelete=0;
 	private int numberOfUnits=0;
 	private int numberOfProjectiles=0;
 	private Projectile[] myProjectiles;
+	private float[] skills; //health,speed,damages
 	
 	public Team(){
+		setSpawnSpeed(5000);
 		id = NumberOfTeams;
 		NumberOfTeams ++;
 		myUnits = new Unit[100];
@@ -64,33 +68,39 @@ public class Team {
 		Unit temp = new Soldier(this);
 		int id = addUnit(temp);
 		temp.setId(id);
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 		
 	}
 	public void spawnArcher(){
 		Unit temp = new Archer(this);
 		int id = addUnit(temp);
 		temp.setId(id);
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	public void spawnMage(){
 		Unit temp = new Mage(this);
 		int id = addUnit(temp);
 		temp.setId(id);
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	public void spawnKnight(){
 		Unit temp = new Knight(this);
 		int id = addUnit(temp);
-		temp.setId(id);		
+		temp.setId(id);
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
 	}
 	public void spawnDemoman(){
 		Unit temp = new Demoman(this);
 		int id = addUnit(temp);
 		temp.setId(id);	
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	
 	public void spawnCastle(){
 		Unit temp = new Castle(this);
 		int id = addUnit(temp);
 		temp.setId(id);
+		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	
 	
@@ -168,7 +178,26 @@ public class Team {
 	public void setMyProjectiles(Projectile[] myProjectiles) {
 		this.myProjectiles = myProjectiles;
 	}
-	
+
+
+	public int getSpawnSpeed() {
+		return spawnSpeed;
+	}
+
+
+	public void setSpawnSpeed(int spawnSpeed) {
+		this.spawnSpeed = spawnSpeed;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 //	public void setUnits(Unit[] myUnits) {
 //		this.myUnits = myUnits;
