@@ -97,7 +97,7 @@ public class CombatView extends View{
 		else{
 			//display loss
 		}
-        dad.finish();
+        dad.finish(); //I KNOW I KNOW, IT'S WRONG
 	}
 	
 	

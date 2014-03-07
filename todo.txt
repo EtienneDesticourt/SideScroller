@@ -169,58 +169,67 @@ add smart resource managment			V
 ---------------------------------------------
 ---------------------------------------------
 
-MainMenuActivity 30m
-	Implement options button
-	StartOptionsActivity
-	Implement quit button
-OptionsActivity 2h
-	Add music bar
-	Add sound bar
-	Add OK button
-	Add Cancel button
-SkillsActivity 3h
-	Add bars for each skill
-		upgrade cost
-		upgrade mana
-		upgrade strength
-		upgrade time
+MainMenuActivity 30m					V
+	Implement options button			V
+	StartOptionsActivity				V
+	Implement quit button				V
+	
+OptionsActivity 2h						V
+	Create activity						V
+	Create View							V
+	Create ResourceManager				V
+	Create UIManager					V
+	Add music bar						V
+	Add sound bar						V
+	Add OK button						V
+	Add Cancel button					V
+	Set options globally				V
+	
+SkillsActivity 3h						/
+	Add bars for each skill				/
+		upgrade cost					/
+		upgrade mana					/
+		upgrade strength				/
+		upgrade time					/
 	Add effect for each skill			V
 		add multipliers in units		V
-MapActivity 1h
-    Add parameters to combat activity
+		
+MapActivity 1h							/
+    Add parameters to combat activity	/
+    Implement troups modifier			/
 	Add country capture					V
 		Handle return from combat		V
-	Add save on activity exit
-	Add load on activity start
-	Implement resolve button
-	Add AI
-		Add enemy attack
-		Add funds handling
-CombatActivity 4h30
+	Add save on activity exit			V
+	Add load on activity start			V
+	Implement resolve button			V
+	Add AI								/
+		Add enemy attack				/
+		Add funds handling				/
+		
+CombatActivity 4h30						/
 	Add variables for each skill		V
 		Add them in team				V
-		Add them to the UI				X
-		Add desactivation effect		
-			to  units buttons
+		Add desactivation effect		/
+			to  units buttons			/
 	Add enemy ai						V
 		spawning tree					V
-	Move enemy castle
-	Fix units health
-	Fix units speed
-	Fix units damages
+	Move enemy castle					/
+	Fix units health					/
+	Fix units speed						/
+	Fix units damages					/
 	Add victory state					V
-		Add fireworks					X
 		Add victory message				V
 		Pass victory to map activity	V
-	Add GUI					
+	Add GUI								/
 		Add menu submenu				V
-			Add return to map
-			Add skill button
-			Add return to menu
+			Add return to map			/
+			Add skill button			/
+			Add return to menu			/
 		Add spell submenu				V
-			Add fire spell
-			Add light spell
-			Add stars spell
+			Add fire spell				/
+			Add light spell				/
+			Add stars spell				/
 
+Left: 17h
 Total: 22h
 				

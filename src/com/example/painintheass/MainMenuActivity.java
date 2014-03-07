@@ -25,7 +25,6 @@ public class MainMenuActivity extends Activity{
 		up = (int) (0.03*height);
 		Button playButton = new Button(left,up,buttonWidth,buttonHeight) {
 			public void onClick(UIManager myUIM){
-				System.out.println("Pressed play.");
 				startActivity(myUIM.getIntent(1));
 			}
 		};
@@ -34,15 +33,21 @@ public class MainMenuActivity extends Activity{
 		up = (int) (0.23*height);
 		Button optionsButton = new Button(left,up,buttonWidth,buttonHeight) {
 			public void onClick(UIManager myUIM){	
-				System.out.println("Pressed options.");			
+				startActivity(myUIM.getIntent(3));		
 			}
 		};		
 		optionsButton.setBackgroundImage(2);
 		//QUIT BUTTON
 		up = (int) (0.42*height);
 		Button quitButton = new Button(left,up,buttonWidth,buttonHeight){
-			public void onClick(UIManager myUIM){	
-				System.out.println("Pressed quit.");			
+			public void onClick(UIManager myUIM){
+				//I know how the activity life cycle works
+				//I know this is unnecessary but I've already put the button in
+				//and I don't have time to rethink the UI right now
+				Intent startMain = new Intent(Intent.ACTION_MAIN);
+				startMain.addCategory(Intent.CATEGORY_HOME);
+				startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(startMain);	
 			}
 		};
 		quitButton.setBackgroundImage(3);

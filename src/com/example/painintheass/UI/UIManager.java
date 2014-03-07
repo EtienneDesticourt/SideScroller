@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.example.painintheass.MapActivity;
 import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MainMenuActivity;
+import com.example.painintheass.OptionsActivity;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.GameLogic.Team;
 
@@ -19,6 +20,11 @@ public class UIManager {
 	private int lastState;
 	private Activity MyActivity;
 	private boolean on;
+	private int musicVolume;
+	private int soundVolume;
+	private boolean update;
+	private boolean endActivity;
+	
 	
 	public UIManager(){
 		states = new Widget[20][];
@@ -132,8 +138,11 @@ public class UIManager {
 		else if (type==1){
 			myIntent = new Intent(MyActivity, MapActivity.class);			
 		}
-		else{
+		else if (type==2){
 			myIntent = new Intent(MyActivity, CombatActivity.class);
+		}
+		else{
+			myIntent = new Intent(MyActivity, OptionsActivity.class);
 		}
 		return myIntent;
 	}
@@ -147,6 +156,40 @@ public class UIManager {
 		
 	}
 	
+	public void setVolume(int volume, int bar){
+		
+	}
+	public int getMusicVolume() {
+		return musicVolume;
+	}
+
+	public void setMusicVolume(int musicVolume) {
+		this.musicVolume = musicVolume;
+	}
+
+	public int getSoundVolume() {
+		return soundVolume;
+	}
+
+	public void setSoundVolume(int soundVolume) {
+		this.soundVolume = soundVolume;
+	}
+
+	public boolean mustUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+
+	public boolean isEndActivity() {
+		return endActivity;
+	}
+
+	public void setEndActivity(boolean endActivity) {
+		this.endActivity = endActivity;
+	}
 	
 	
 }

@@ -1,5 +1,11 @@
 package com.example.painintheass;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.Graphics.MapView;
 import com.example.painintheass.UI.Label;
@@ -10,6 +16,7 @@ import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,10 +25,11 @@ public class MapActivity extends Activity{
 
 	private int type = 1;
 	private int lastAttack=0;
-	private MapUIManager myUIM; 
+	private MapUIManager myUIM;
+	private final String saveFileName = "SAVE";
 	//MUSIC IDEA: SOUND OF ANVIL BEING HIT AS DRUMS
 	
-	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
+ 	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
 		World[0] = new Country();
 		World[1] = new Country();
 		World[2] = new Country();
@@ -305,7 +313,77 @@ public class MapActivity extends Activity{
 		
 	}
 
-	public int getType() {
+	private String getSaveData(){
+		Country[] World = myUIM.getWorld();
+		String result = "";
+		for (int i=0;i<6;i++){
+			if (World[i].isPlayerControlled()){
+				result += "1 ";
+			}
+			else{
+				result += "0 ";
+			}
+			result += Integer.toString(World[i].getTroups())+" ";
+			result += Integer.toString(World[i].getIncome())+" ";
+			result += Integer.toString(World[i].getMoney())+" ";
+			result += "\n";
+			
+		}
+		return result;
+	}
+	
+	protected void onPause(){
+		File saveFile = new File(this.getFilesDir(), saveFileName);
+		String string = getSaveData();
+		
+		
+		
+		try {
+			  FileOutputStream outputStream = openFileOutput(saveFileName, Context.MODE_PRIVATE);
+			  outputStream.write(string.getBytes());
+			  outputStream.close();
+		} catch (Exception e) {
+			  e.printStackTrace();
+		}		
+	}
+	
+	public void loadData(String data){
+		String[] countryData = data.split("\n");
+		Country[] World = myUIM.getWorld();
+		
+		for (int i=0;i<6;i++){
+			String[] current = countryData[i].split(" ");
+			if (Integer.valueOf(current[0])==1){
+				World[i].setPlayerControlled(true);
+			}
+			else{
+				World[i].setPlayerControlled(false);				
+			}
+			World[i].setTroups(Integer.valueOf(current[1]));
+			World[i].setIncome(Integer.valueOf(current[2]));
+			World[i].setMoney(Integer.valueOf(current[3]));
+		}		
+	}
+	
+	protected void onResume(){
+		//Read file in Internal Storage
+		FileInputStream fis;
+		String content = "";
+		try {
+			fis = openFileInput(saveFileName);
+			byte[] input = new byte[fis.available()];
+			while (fis.read(input) != -1) {}
+			content += new String(input);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		loadData(content);
+	}
+	
+ 	public int getType() {
 		return type;
 	}
 
