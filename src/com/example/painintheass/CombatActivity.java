@@ -31,6 +31,13 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.15625*height);
 		Button menu = new Button(left,up,bwidth,bheight,8,8,8,8) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
+				if (myUIM.getCurrentStateIndex()!=1){
+					myUIM.setCurrentStateIndex(1);
+				}
+				else{
+					myUIM.setCurrentStateIndex(0);
+				}
 			}
 		};
 		
@@ -40,6 +47,7 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.15625*height);
 		Button archer = new Button(left,up,bwidth,bheight,5,5,5,5) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 				myUIM.getMyPlayerTeam().spawnArcher();
 			}
 		};
@@ -50,6 +58,7 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.18124*height);
 		Button knight = new Button(left,up,bwidth,bheight,6,6,6,6) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 				myUIM.getMyPlayerTeam().spawnKnight();
 				//System.out.println("Spawned knight hopefully.");
 			}
@@ -61,6 +70,7 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.1875*height);
 		Button mage = new Button(left,up,bwidth,bheight,7,7,7,7) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 				myUIM.getMyPlayerTeam().spawnMage();
 			}
 		};
@@ -71,6 +81,13 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.15625*height);
 		Button spell = new Button(left,up,bwidth,bheight,9,9,9,9) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
+				if (myUIM.getCurrentStateIndex()!=2){
+					myUIM.setCurrentStateIndex(2);
+				}
+				else{
+					myUIM.setCurrentStateIndex(0);
+				}
 			}
 		};
 
@@ -84,16 +101,20 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.15625*height);
 		Button map = new Button(left,up,bwidth,bheight,73,73,73,73) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
+				myUIM.setCurrentStateIndex(3);
 			}
 		};
 		up = (int) (0.390625*height);
 		Button options = new Button(left,up,bwidth,bheight,74,74,74,74) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 			}
 		};
 		up = (int) (0.56875*height);
 		Button quit = new Button(left,up,bwidth,bheight,75,75,75,75) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 			}
 		};
 		
@@ -105,18 +126,21 @@ public class CombatActivity extends Activity {
 		bheight = (int) (0.15625*height);
 		Button fire = new Button(left,up,bwidth,bheight,70,70,70,70) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 			}
 		};
 		left = (int) (0.85625*width);
 		up = (int) (0.390625*height);
 		Button meteor = new Button(left,up,bwidth,bheight,71,71,71,71) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 			}
 		};
 		left = (int) (0.87083*width);
 		up = (int) (0.56875*height);
 		Button stars = new Button(left,up,bwidth,bheight,72,72,72,72) {
 			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3){return;}
 			}
 		};
 		
@@ -141,9 +165,20 @@ public class CombatActivity extends Activity {
 		Player p = new Player(friendlyTeam);
 		Team[] myTeams = {friendlyTeam,enemyTeam};
 		
+		int skill1,skill2,skill3,skill4;
+
+		Bundle b = getIntent().getExtras();
+		int countryID = b.getInt("ID");
+		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
+		skill1 = globalVariable.getHealth(countryID);
+		skill2 = globalVariable.getSpeed(countryID);
+		skill3 = globalVariable.getDamage(countryID);
+		skill4 = globalVariable.getCost(countryID);
 		
 		CombatUIManager myUIM = new CombatUIManager(friendlyTeam,enemyTeam,p);
 
+		friendlyTeam.setSkills(skill1, skill2, skill3, skill4);
+		enemyTeam.setSkills(skill1, skill2, skill3, skill4);
 		
 		setContentView(R.layout.activity_combat);
 		CombatView myView = (CombatView) findViewById(R.id.vCombat);

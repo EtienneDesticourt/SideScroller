@@ -28,7 +28,7 @@ public class Team {
 	private int numberOfUnits=0;
 	private int numberOfProjectiles=0;
 	private Projectile[] myProjectiles;
-	private float[] skills; //health,speed,damages
+	private int[] skills; //health,speed,damages
 	
 	public Team(){
 		setSpawnSpeed(5000);
@@ -47,6 +47,7 @@ public class Team {
 			this.spawnY = Team2SpawnY;	
 			this.movementSide = -1;		
 		}
+		skills = new int[4];
 
 	}
 
@@ -198,6 +199,12 @@ public class Team {
 		this.id = id;
 	}
 
+	public void setSkills(int skill1, int skill2, int skill3, int skill4){
+		skills[0] = skill1;
+		skills[1] = skill2;
+		skills[2] = skill3;
+		skills[3] = skill4;
+	}
 
 //	public void setUnits(Unit[] myUnits) {
 //		this.myUnits = myUnits;

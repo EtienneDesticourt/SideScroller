@@ -207,9 +207,9 @@ MapActivity 2h							/
 		Add funds handling				/
 		
 CombatActivity 4h30						/
-	Fetch skills mods					/
-	Add variables for each skill		/
-		Add them in team				/
+	Fetch skills mods					V
+	Add variables for each skill		V
+		Add them in team				V
 		Add desactivation effect		/
 			to  units buttons			/
 	Add enemy ai						V
@@ -227,9 +227,12 @@ CombatActivity 4h30						/
 			Add skill button			/
 			Add return to menu			/
 		Add spell submenu				V
-			Add fire spell				/
+			Add fire spell 				/
+			Add fire spell button		/
 			Add light spell				/
+			Add light spell	button		/
 			Add stars spell				/
+			Add stars spell	button		/
 
 Left: 13h
 Total: 24h
