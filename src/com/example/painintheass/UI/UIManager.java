@@ -7,6 +7,7 @@ import com.example.painintheass.MapActivity;
 import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MainMenuActivity;
 import com.example.painintheass.OptionsActivity;
+import com.example.painintheass.SkillsActivity;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.GameLogic.Team;
 
@@ -144,8 +145,11 @@ public class UIManager {
 		else if (type==2){
 			myIntent = new Intent(MyActivity, CombatActivity.class);
 		}
-		else{
+		else if (type==3){
 			myIntent = new Intent(MyActivity, OptionsActivity.class);
+		}
+		else{
+			myIntent = new Intent(MyActivity, SkillsActivity.class);
 		}
 		return myIntent;
 	}

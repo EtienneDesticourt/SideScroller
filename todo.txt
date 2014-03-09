@@ -194,9 +194,9 @@ SkillsActivity 3h						V
 	Add effect for each skill			V
 		add multipliers in units		V
 		
-MapActivity 1h							/
-    Add parameters to combat activity	/
-    Implement troups modifiers			/
+MapActivity 2h							/
+    Add parameters to skill activity	V
+    Add skills button					V
 	Add country capture					V
 		Handle return from combat		V
 	Add save on activity exit			V
@@ -207,8 +207,9 @@ MapActivity 1h							/
 		Add funds handling				/
 		
 CombatActivity 4h30						/
-	Add variables for each skill		V
-		Add them in team				V
+	Fetch skills mods					/
+	Add variables for each skill		/
+		Add them in team				/
 		Add desactivation effect		/
 			to  units buttons			/
 	Add enemy ai						V
@@ -230,8 +231,8 @@ CombatActivity 4h30						/
 			Add light spell				/
 			Add stars spell				/
 
-Left: 11h
-Total: 22h
+Left: 13h
+Total: 24h
 
-sat 15
+sat 32
 				

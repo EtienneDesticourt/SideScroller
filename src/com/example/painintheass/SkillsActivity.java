@@ -285,10 +285,11 @@ public class SkillsActivity extends Activity{
 		int cost,health,strength,speed;
 		if (b!=null){
 			countryID = b.getInt("ID");
-			cost = b.getInt("cost");
-			strength = b.getInt("health");
-			health = b.getInt("strength");
-			speed = b.getInt("speed");
+			ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
+			cost = globalVariable.getCost(countryID);
+			strength = globalVariable.getDamage(countryID);
+			health = globalVariable.getHealth(countryID);
+			speed = globalVariable.getSpeed(countryID);
 		}
 		else{
 			System.out.println("Skill activity has been started without country ID and skill points.");

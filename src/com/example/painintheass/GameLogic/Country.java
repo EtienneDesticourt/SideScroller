@@ -8,9 +8,11 @@ public class Country {
 	private int troups;
 	private int income;
 	private int money;
+	private int ID;
 	private Button myButton;
 	
-	public Country(){
+	public Country(int ID){
+		this.setID(ID);
 		income = 10;
 		troups = 10;
 		money = 100;
@@ -84,6 +86,14 @@ public class Country {
 		else{
 			this.myButton.setCurrentImage(myButton.getGreyedImage());//in this case: enemy image
 		}
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	

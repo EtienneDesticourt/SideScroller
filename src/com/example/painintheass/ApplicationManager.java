@@ -70,26 +70,26 @@ public class ApplicationManager extends Application {
 	public void setStrengthMod(float strengthMod) {
 		StrengthMod = strengthMod;
 	}
-	public int[] getHealth(int countryID) {
-		return health;
+	public int getHealth(int countryID) {
+		return health[countryID];
 	}
 	public void setHealth(int health, int countryID) {
 		this.health[countryID] = health;
 	}
-	public int[] getSpeed(int countryID) {
-		return speed;
+	public int getSpeed(int countryID) {
+		return speed[countryID];
 	}
 	public void setSpeed(int speed, int countryID) {
 		this.speed[countryID] = speed;
 	}
-	public int[] getDamage(int countryID) {
-		return damage;
+	public int getDamage(int countryID) {
+		return damage[countryID];
 	}
 	public void setDamage(int damage, int countryID) {
 		this.damage[countryID] = damage;
 	}
-	public int[] getCost(int countryID) {
-		return cost;
+	public int getCost(int countryID) {
+		return cost[countryID];
 	}
 	public void setCost(int cost, int countryID) {
 		this.cost[countryID] = cost;

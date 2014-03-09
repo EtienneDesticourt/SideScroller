@@ -30,12 +30,12 @@ public class MapActivity extends Activity{
 	//MUSIC IDEA: SOUND OF ANVIL BEING HIT AS DRUMS
 	
  	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
-		World[0] = new Country();
-		World[1] = new Country();
-		World[2] = new Country();
-		World[3] = new Country();
-		World[4] = new Country();		
-		World[5] = new Country();		
+		World[0] = new Country(0);
+		World[1] = new Country(1);
+		World[2] = new Country(2);
+		World[3] = new Country(3);
+		World[4] = new Country(4);		
+		World[5] = new Country(5);		
 
 		myUIM.setWorld(World);
 		World[0].setButton(Countries[0]);
@@ -58,6 +58,28 @@ public class MapActivity extends Activity{
 		int bwidth,bheight;
 
 		
+
+		left = (int) (0.38*width);
+		up = (int) (0.70*height);
+		bwidth = (int) (0.08125*width);
+		bheight = (int) (0.08125*height);
+		Button skills = new Button(left,up,bwidth,bheight,27,27,27,27) {
+			public void onClick(UIManager myUIM){
+				Country cur = myUIM.getSelected();
+				if (cur.isPlayerControlled()){
+					Intent intent = myUIM.getIntent(4);
+					Bundle b = new Bundle();
+					b.putInt("key", cur.getID()); 
+					intent.putExtras(b); 
+					startActivity(intent);
+				}
+			}
+		};
+		
+		
+		
+		
+		
 		left = (int) (0.38*width);
 		up = (int) (0.70*height);
 		
@@ -74,6 +96,7 @@ public class MapActivity extends Activity{
 			}
 		};
 
+		
 		left = (int) (0.197*width);
 		up = (int) (0.545*height);
 		bwidth = (int) (0.260416666667*width);
@@ -194,7 +217,7 @@ public class MapActivity extends Activity{
 		TextLabel money = new TextLabel(left,up,"0000000");
 		
 		
-		Widget[] mapState1 = {troups,income,money,nextTurn,attack1,resolve1,coin1,coin2,coin3,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState1 = {skills,troups,income,money,nextTurn,attack1,resolve1,coin1,coin2,coin3,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState1,false,0);
 		
 		Button[] Countries = {pays1,pays2,pays3,pays4,pays5,pays6};
@@ -218,7 +241,18 @@ public class MapActivity extends Activity{
 		};
 		attack.setBackgroundImage(22);
 		
-		Widget[] mapState2 = {troups,income,money,attack,resolve1,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		left = (int) (0.38*width);
+		up = (int) (0.70*height);
+		bwidth = (int) (0.08125*width);
+		bheight = (int) (0.08125*height);
+		Button skills2 = new Button(left,up,bwidth,bheight,28,28,28,28) {
+			public void onClick(UIManager myUIM){
+			}
+		};
+		
+		
+		
+		Widget[] mapState2 = {skills2,troups,income,money,attack,resolve1,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState2,false,0);
 		
 		
@@ -240,7 +274,7 @@ public class MapActivity extends Activity{
 		};
 		buyTroups.setBackgroundImage(26);
 		
-		Widget[] mapState3 = {troups,income,money,attack1,resolve1,coin1,coin2,coin3,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState3 = {skills,troups,income,money,attack1,resolve1,coin1,coin2,coin3,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState3,false,0);
 		
 		
@@ -270,7 +304,7 @@ public class MapActivity extends Activity{
 		};
 		resolve2.setBackgroundImage(23);
 		
-		Widget[] mapState4 = {troups,income,money,resolve2,attack2,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState4 = {skills,troups,income,money,resolve2,attack2,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState4,false,0);
 	}
 	
