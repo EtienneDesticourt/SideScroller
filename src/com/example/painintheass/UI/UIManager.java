@@ -24,7 +24,10 @@ public class UIManager {
 	private int soundVolume;
 	private boolean update;
 	private boolean endActivity;
-	
+	private int health;
+	private int speed;
+	private int damage;
+	private int cost;
 	
 	public UIManager(){
 		states = new Widget[20][];
@@ -191,5 +194,42 @@ public class UIManager {
 		this.endActivity = endActivity;
 	}
 	
+	public int getHealth() {
+		return health;
+	}
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public int getDamage() {
+		return damage;
+	}
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	public void increaseHealth(){
+	}
 	
+	public void increaseCost(){	
+	}
+	
+	public void increaseSpeed(){		
+	}
+	
+	public void increaseStrength(){		
+	}
+	public void resetMods(){
+		
+	}
 }

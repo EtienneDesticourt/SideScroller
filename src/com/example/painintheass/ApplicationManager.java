@@ -10,7 +10,17 @@ public class ApplicationManager extends Application {
 	private float timeMod;
 	private float manaMod;
 	private float StrengthMod;
+	private int[] health;
+	private int[] speed;
+	private int[] damage;
+	private int[] cost;
 	
+	public ApplicationManager(){
+		health = new int[6];
+		speed = new int[6];
+		damage = new int[6];
+		cost = new int[6];
+	}
 	
 	public int getMusicVolume() {
 		return musicVolume;
@@ -59,6 +69,30 @@ public class ApplicationManager extends Application {
 	}
 	public void setStrengthMod(float strengthMod) {
 		StrengthMod = strengthMod;
+	}
+	public int[] getHealth(int countryID) {
+		return health;
+	}
+	public void setHealth(int health, int countryID) {
+		this.health[countryID] = health;
+	}
+	public int[] getSpeed(int countryID) {
+		return speed;
+	}
+	public void setSpeed(int speed, int countryID) {
+		this.speed[countryID] = speed;
+	}
+	public int[] getDamage(int countryID) {
+		return damage;
+	}
+	public void setDamage(int damage, int countryID) {
+		this.damage[countryID] = damage;
+	}
+	public int[] getCost(int countryID) {
+		return cost;
+	}
+	public void setCost(int cost, int countryID) {
+		this.cost[countryID] = cost;
 	}
 	
 	

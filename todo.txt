@@ -185,18 +185,18 @@ OptionsActivity 2h						V
 	Add Cancel button					V
 	Set options globally				V
 	
-SkillsActivity 3h						/
-	Add bars for each skill				/
-		upgrade cost					/
-		upgrade mana					/
-		upgrade strength				/
-		upgrade time					/
+SkillsActivity 3h						V
+	Add bars for each skill				V
+		upgrade cost					V
+		upgrade mana					V
+		upgrade strength				V
+		upgrade time					V
 	Add effect for each skill			V
 		add multipliers in units		V
 		
 MapActivity 1h							/
     Add parameters to combat activity	/
-    Implement troups modifier			/
+    Implement troups modifiers			/
 	Add country capture					V
 		Handle return from combat		V
 	Add save on activity exit			V
@@ -230,6 +230,8 @@ CombatActivity 4h30						/
 			Add light spell				/
 			Add stars spell				/
 
-Left: 17h
+Left: 11h
 Total: 22h
+
+sat 15
 				
