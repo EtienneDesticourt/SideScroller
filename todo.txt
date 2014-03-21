@@ -194,7 +194,7 @@ SkillsActivity 3h						V
 	Add effect for each skill			V
 		add multipliers in units		V
 		
-MapActivity 2h							/
+MapActivity 2h							V
     Add parameters to skill activity	V
     Add skills button					V
 	Add country capture					V
@@ -202,37 +202,34 @@ MapActivity 2h							/
 	Add save on activity exit			V
 	Add load on activity start			V
 	Implement resolve button			V
-	Add AI								/
-		Add enemy attack				/
-		Add funds handling				/
+	Add AI								X
+		Add enemy attack				X
+		Add funds handling				X
 		
-CombatActivity 4h30						/
+CombatActivity 4h30						V
 	Fetch skills mods					V
 	Add variables for each skill		V
 		Add them in team				V
-		Add desactivation effect		/
-			to  units buttons			/
+		Add desactivation effect		X
+			to  units buttons			X
 	Add enemy ai						V
 		spawning tree					V
-	Move enemy castle					/
-	Fix units health					/
-	Fix units speed						/
-	Fix units damages					/
+	Move enemy castle					X
 	Add victory state					V
 		Add victory message				V
 		Pass victory to map activity	V
-	Add GUI								/
+	Add GUI								V
 		Add menu submenu				V
-			Add return to map			/
-			Add skill button			/
-			Add return to menu			/
+			Add return to map			V
+			Add options button			V
+			Add return to menu			V
 		Add spell submenu				V
-			Add fire spell 				/
-			Add fire spell button		/
-			Add light spell				/
-			Add light spell	button		/
-			Add stars spell				/
-			Add stars spell	button		/
+			Add fire spell 				X
+			Add fire spell button		X
+			Add light spell				X
+			Add light spell	button		X
+			Add stars spell				X
+			Add stars spell	button		X
 
 Left: 13h
 Total: 24h

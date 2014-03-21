@@ -16,12 +16,12 @@ public class OptionsResourceManager extends ResourceManager{
 		public void load(){
 			Bitmap[] images = getImages();
 			Resources res = getRes();
-			
-			images[0] = BitmapFactory.decodeResource(res, R.drawable.background_options);
-			images[1] = BitmapFactory.decodeResource(res, R.drawable.volumeKnob);
-			images[2] = BitmapFactory.decodeResource(res, R.drawable.volumeKnobInvisible);
-			images[3] = BitmapFactory.decodeResource(res, R.drawable.volumeBar);
-			
+//			
+//			images[0] = BitmapFactory.decodeResource(res, R.drawable.background_options);
+//			images[1] = BitmapFactory.decodeResource(res, R.drawable.volumeKnob);
+//			images[2] = BitmapFactory.decodeResource(res, R.drawable.volumeKnobInvisible);
+//			images[3] = BitmapFactory.decodeResource(res, R.drawable.volumeBar);
+//			
 			
 			
 		}

@@ -41,6 +41,9 @@ public class CombatResourceManager extends ResourceManager{
 		images[75] = BitmapFactory.decodeResource(res, R.drawable.menu_quit,op);
 		images[76] = BitmapFactory.decodeResource(res, R.drawable.defeat,op);
 		images[77] = BitmapFactory.decodeResource(res, R.drawable.victory,op);
+//		images[78] = BitmapFactory.decodeResource(res,R.drawable.confirm_window,op);
+//		images[79] = BitmapFactory.decodeResource(res,R.drawable.ok_button,op);
+//		images[80] = BitmapFactory.decodeResource(res,R.drawable.cancel_button,op);
 		//Anims
 		
 //		AnimationDrawable anim;
@@ -152,7 +155,6 @@ public class CombatResourceManager extends ResourceManager{
 		images[69] = BitmapFactory.decodeResource(res,R.drawable.castle_broken,op);
 //		images[66] = Bitmap.createScaledBitmap(images[66],images[66].getWidth()/2,images[66].getHeight()/2,false);
 //		images[67] = Bitmap.createScaledBitmap(images[67],images[67].getWidth()/2,images[67].getHeight()/2,false);
-		
 		
 		int w,h;
 		for (int i = 10;i<68;i++){

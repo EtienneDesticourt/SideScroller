@@ -11,6 +11,7 @@ public class AI {
 	private int NUMBER_OF_TEAM=2;
 	private boolean calcMoves;
 	private boolean calcCollisions;
+	private boolean spawningUnits;
 	private Team[] MyTeams;
 	private boolean gameIsRunning = true;
 	private static int moveCalcDelay =  (int) (1000/30.0);
@@ -31,19 +32,28 @@ public class AI {
 	        	long current;
 	        	int r;
 	        	while (gameIsRunning){
-	        		current = new Date().getTime();
-	        		if ((current-lastSpawn)>MyTeams[1].getSpawnSpeed()){
-	        			r = (int)(Math.random() * ((2) + 1));
-	        			if (r==0){MyTeams[1].spawnKnight();}
-	        			else if (r==1){MyTeams[1].spawnArcher();}
-	        			else{MyTeams[1].spawnMage();}
-	        			lastSpawn = current;
+	        		while (spawningUnits){
+		        		current = new Date().getTime();
+		        		if ((current-lastSpawn)>MyTeams[1].getSpawnSpeed()){
+		        			r = (int)(Math.random() * ((2) + 1));
+		        			if (r==0){MyTeams[1].spawnKnight();}
+		        			else if (r==1){MyTeams[1].spawnArcher();}
+		        			else{MyTeams[1].spawnMage();}
+		        			lastSpawn = current;
+		        		}
+			        	try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}	      
 	        		}
+
 		        	try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
-					}	        		
+					}	 
+		        	
 	        	}
 	        }
 	        		
@@ -345,5 +355,13 @@ public class AI {
 	public void startMovingUnits(){
 		calcMoves = true;
 		calcCollisions = true;
+	}
+
+	public boolean isSpawningUnits() {
+		return spawningUnits;
+	}
+
+	public void setSpawningUnits(boolean spawningUnits) {
+		this.spawningUnits = spawningUnits;
 	}
 }

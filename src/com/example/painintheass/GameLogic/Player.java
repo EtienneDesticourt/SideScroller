@@ -23,7 +23,7 @@ public class Player {
 		
 		for (int j=0;j<3;j++){
 			for (int i=0; i< 10;i++){
-				myTeam.addProjectile(new FallingArrow(124,2,1,x+i*10,0-j*10,20,20,10));			
+				myTeam.addProjectile(new FallingProjectile(124,2,1,x+i*10,0-j*10,20,20,10));			
 			}
 		}
 	}

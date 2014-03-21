@@ -100,6 +100,16 @@ public class CombatView extends View{
         dad.finish(); //I KNOW I KNOW, IT'S WRONG
 	}
 	
+	public void quitGame(int full){
+		CombatActivity dad = ((CombatActivity)getContext());
+		if (full==1){
+			dad.endAll();
+		}
+		else{
+			dad.finish();
+		}
+	}
+	
 	
 	protected class MyGestureDetector extends SimpleOnGestureListener {
 		@Override
@@ -162,6 +172,11 @@ public class CombatView extends View{
 		if (!fullyInitialized || gameEnded){
 			return;
 		}
+		
+		if (MyUIM.isEndActivity()){
+			quitGame(MyUIM.getExitFlag());
+		}
+		
 		
 		//BACKGROUND
 		Bitmap sky = MyRM.getImage(0);

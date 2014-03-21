@@ -8,6 +8,7 @@ import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MainMenuActivity;
 import com.example.painintheass.OptionsActivity;
 import com.example.painintheass.SkillsActivity;
+import com.example.painintheass.GameLogic.AI;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.GameLogic.Team;
 
@@ -29,8 +30,10 @@ public class UIManager {
 	private int speed;
 	private int damage;
 	private int cost;
+	private int exitFlag;
 	
 	public UIManager(){
+		
 		states = new Widget[20][];
 		statesBackground = new int[20];
 		statesGameValue = new boolean[20];
@@ -40,12 +43,14 @@ public class UIManager {
 		setOn(true);
 	}
 	
+	
 	public UIManager(Activity A){
 		this();
 		this.setMyActivity(A);
 	}
 	
 	public void addState(Widget[] state, boolean isAGameState, int backgroundIndex){
+		//isAGameState remnant of old drawing system.
 		states[stateNumber] = state;
 		statesBackground[stateNumber] = backgroundIndex; 
 		statesGameValue[stateNumber] = isAGameState;
@@ -235,5 +240,16 @@ public class UIManager {
 	}
 	public void resetMods(){
 		
+	}
+
+	public int getExitFlag() {
+		return exitFlag;
+	}
+
+	public void setExitFlag(int exitFlag) {
+		this.exitFlag = exitFlag;
+	}
+	public AI getMyAI(){
+		return null;
 	}
 }

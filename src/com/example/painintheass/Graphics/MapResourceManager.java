@@ -45,8 +45,8 @@ public class MapResourceManager extends ResourceManager{
 		images[24] = BitmapFactory.decodeResource(res, R.drawable.mapcoin);
 		images[25] = BitmapFactory.decodeResource(res, R.drawable.soldiercoin);
 		images[26] = BitmapFactory.decodeResource(res, R.drawable.cross);
-		images[27] = BitmapFactory.decodeResource(res, R.drawable.skills);
-		images[28] = BitmapFactory.decodeResource(res, R.drawable.skillsgrey);
+//		images[27] = BitmapFactory.decodeResource(res, R.drawable.skills);
+//		images[28] = BitmapFactory.decodeResource(res, R.drawable.skillsgrey);
 		
 		
 	}
