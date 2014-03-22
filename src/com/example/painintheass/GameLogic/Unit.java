@@ -124,6 +124,7 @@ public class Unit {
 	}
 	
 	public void die(){
+		System.out.println("I'm so dead right now.");
 		action = 2;
 		delTime = new Date().getTime();
 		myTeam.appendDelQueue(this);
@@ -174,6 +175,7 @@ public class Unit {
 	}
 	
 	public void setAction(int newAction){
+		System.out.println("Someone is setting my action to "+newAction);
 		this.action = newAction;
 	}	
 

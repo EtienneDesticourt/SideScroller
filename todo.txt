@@ -239,16 +239,7 @@ Total: 24h
 -------------22/03/14------------------------
 ---------------------------------------------
 
-MainMenuActivity V
-
-OptionsActivity			
-	Place Title			
-	Place music bar		
-	Place sound bar		
-	Place music knobs	
-	Place sound knobs	
-	Place ok button		
-	Place cancel button	
+MainMenuActivity 		V
 	
 	
 SkillsActivity			V
@@ -265,8 +256,64 @@ MapActivity
 Combat Activity 		V
 
 
+---------------------------------------------
+-------------22/03/14------------------------
+---------------------------------------------
 
 
 
+OptionsActivity			
+	Place Title			
+	Place music bar		
+	Place sound bar		
+	Place music knobs	
+	Place sound knobs	
+	Place ok button		
+	Place cancel button	
+	
+
+MapActivity
+	Place text correctly
+	Implement enemy attack
+	Add skill and troup buying ability
+		
+SkillsActivity
+	Get money from country ID
+	Add cost to skills upgrade
+	
+Combat Activity
+	Move enemy castle
+	Stop camera at borders
+	Add soldier cost
+
+Add sound system
+
+---------------------------------------------
+------------------POLISH---------------------
+---------------------------------------------
+	
+MapActivity:
+	Add arrow pointing to target
+	Add turns to arrival of troups
+	Add troup depletion from attacks
+	Add dialogues
+	
+Combat Activity:
+	Add red overlay from getting hit
+	Add castle building 
+	Add arrow spell
+	Add fire spell
+	Add healing spell
+	Add particles:
+		dust
+		stars for healing
+		sparks for hitting
+	Add camera shake:
+		at each 0.1% of castle destruction
+		when using a destructive spell
+		
+		
+		
+	
 
 				

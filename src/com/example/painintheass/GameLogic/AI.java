@@ -160,7 +160,7 @@ public class AI {
 		    				}
 
 		    				currUnit.lock();
-		    				if (currUnit.getAction()==3){
+		    				if (currUnit.getAction()==2){
 			    				currUnit.unlock();
 		    					continue;
 		    				}
@@ -170,20 +170,20 @@ public class AI {
 		    						break;
 		    					}
 		    					UnitsTeam1[j].lock();
-		    					if (UnitsTeam1[j].getAction()==3){
+		    					if (UnitsTeam1[j].getAction()==2){
 			    					UnitsTeam1[j].unlock();
 		    						continue;
 		    					}
 		    					
 		    					if (Rect.intersects(currUnit.getAttackRect(), UnitsTeam1[j].getBodyRect())){
-		    						if (currUnit.getType()!=4){
+		    						if (currUnit.getType()!=4 && currUnit.getAction()!=1){
 			    						currUnit.setAction(1);
 			    						currUnit.setTarget(UnitsTeam1[j]);	
 		    						}
 		    					}
 		    					
 		    					if (Rect.intersects(UnitsTeam1[j].getAttackRect(), currUnit.getBodyRect())){
-		    						if (UnitsTeam1[j].getType()!=4){
+		    						if (UnitsTeam1[j].getType()!=4 && UnitsTeam1[j].getAction()!=1){
 			    						UnitsTeam1[j].setAction(1);
 			    						UnitsTeam1[j].setTarget(currUnit);
 		    						}

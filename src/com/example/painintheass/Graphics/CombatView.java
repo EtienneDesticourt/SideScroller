@@ -41,7 +41,6 @@ public class CombatView extends View{
 
 	public CombatView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		gameEnded = false;
 		MyCamera = new Camera(10);
 		MyRM = new CombatResourceManager(context);
