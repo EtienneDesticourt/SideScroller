@@ -20,26 +20,26 @@ public class SkillsActivity extends Activity{
 	
 	
 	
-	public Widget[] initCostGUI(int width, int height, OptionsUIManager myUIM){
+	public Widget[] initCostGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		Label title = new Label(left,up,9);
+//		left = (int) (0.0*width);
+//		up = (int) (0.0*height);
+//		Label title = new Label(left,up,9);
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
+		left = (int) (0.0333333333333*width);
+		up = (int) (0.19375*height);
 		Label icon = new Label(left,up,5);
 		
 		Widget[] state = new Widget[100];
 		Button current;
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		up = (int) (0.2*height);
+		bwidth = (int) (0.0625*width);
+		bheight = (int) (0.140625*height);
 		int i;
 		for (i=0;i<10;i++){
-			left = (int) (0.0*width);
+			left = (int) ((0.175+i*0.072917)*width);
 			current= new Button(left,up,bwidth,bheight,2,3,2,2){
 				public void onClick(UIManager myUIM){
 				}
@@ -47,10 +47,10 @@ public class SkillsActivity extends Activity{
 			state[i] = current;			
 		}
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) ((0.84375+0.072917)*width);
+		up = (int) (0.23125*height);
+		bwidth = (int) (0.05208*width);
+		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
 			public void onClick(UIManager myUIM){
 				int currentCost = myUIM.getCost();
@@ -60,32 +60,32 @@ public class SkillsActivity extends Activity{
 			}
 		};
 
-		state[i+1] = title;
-		state[i+2] = icon;
-		state[i+3] = current;		
+//		state[i+1] = title;
+		state[i] = icon;
+		state[i+1] = current;		
 		return state;		
 	}
 	
-	public Widget[] initHealthGUI(int width, int height, OptionsUIManager myUIM){
+	public Widget[] initHealthGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		Label title = new Label(left,up,8);
-
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
+//		left = (int) (0.0*width);
+//		up = (int) (0.0*height);
+//		Label title = new Label(left,up,8);
+		
+		left = (int) (0.0333333333333*width);
+		up = (int) ((0.19375+0.1875*1)*height);
 		Label icon = new Label(left,up,7);
 		
 		Widget[] state = new Widget[100];
 		Button current;
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		up = (int) ((0.2+0.1875*1)*height);
+		bwidth = (int) (0.0625*width);
+		bheight = (int) (0.140625*height);
 		int i;
 		for (i=0;i<10;i++){
-			left = (int) (0.0*width);
+			left = (int) ((0.175+i*0.072917)*width);
 			current= new Button(left,up,bwidth,bheight,2,3,2,2){
 				public void onClick(UIManager myUIM){
 				}
@@ -93,10 +93,10 @@ public class SkillsActivity extends Activity{
 			state[i] = current;			
 		}
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) ((0.84375+0.072917)*width);
+		up = (int) ((0.23125+0.1875*1)*height);
+		bwidth = (int) (0.05208*width);
+		bheight = (int) ((0.078125)*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
 			public void onClick(UIManager myUIM){
 				int currentHealth = myUIM.getHealth();
@@ -106,32 +106,32 @@ public class SkillsActivity extends Activity{
 			}
 		};
 
-		state[i+1] = title;
-		state[i+2] = icon;
-		state[i+3] = current;		
+//		state[i+1] = title;
+		state[i] = icon;
+		state[i+1] = current;			
 		return state;	
 	}
 	
-	public Widget[] initDamageGUI(int width, int height, OptionsUIManager myUIM){
+	public Widget[] initDamageGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
+//
+//		left = (int) (0.0*width);
+//		up = (int) (0.0*height);
+//		Label title = new Label(left,up,11);
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		Label title = new Label(left,up,11);
-
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
+		left = (int) (0.0333333333333*width);
+		up = (int) ((0.19375+0.1875*2)*height);
 		Label icon = new Label(left,up,6);
 		
 		Widget[] state = new Widget[100];
 		Button current;
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		up = (int) ((0.2+0.1875*2)*height);
+		bwidth = (int) (0.0625*width);
+		bheight = (int) (0.140625*height);
 		int i;
 		for (i=0;i<10;i++){
-			left = (int) (0.0*width);
+			left = (int) ((0.175+i*0.072917)*width);
 			current= new Button(left,up,bwidth,bheight,2,3,2,2){
 				public void onClick(UIManager myUIM){
 				}
@@ -139,10 +139,10 @@ public class SkillsActivity extends Activity{
 			state[i] = current;			
 		}
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) ((0.84375+0.072917)*width);
+		up = (int) ((0.23125+0.1875*2)*height);
+		bwidth = (int) (0.05208*width);
+		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
 			public void onClick(UIManager myUIM){
 				int currentDamage = myUIM.getDamage();
@@ -152,32 +152,32 @@ public class SkillsActivity extends Activity{
 			}
 		};
 
-		state[i+1] = title;
-		state[i+2] = icon;
-		state[i+3] = current;		
+//		state[i+1] = title;
+		state[i] = icon;
+		state[i+1] = current;			
 		return state;
 	}
 	
-	public Widget[] initSpeedGUI(int width, int height, OptionsUIManager myUIM){
+	public Widget[] initSpeedGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		Label title = new Label(left,up,10);
+//		left = (int) (0.0*width);
+//		up = (int) (0.0*height);
+//		Label title = new Label(left,up,10);
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
+		left = (int) (0.0333333333333*width);
+		up = (int) ((0.19375+0.1875*3)*height);
 		Label icon = new Label(left,up,4);
 		
 		Widget[] state = new Widget[100];
 		Button current;
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		up = (int) ((0.2+0.1875*3)*height);
+		bwidth = (int) (0.0625*width);
+		bheight = (int) (0.140625*height);
 		int i;
 		for (i=0;i<10;i++){
-			left = (int) (0.0*width);
+			left = (int) ((0.175+i*0.072917)*width);
 			current= new Button(left,up,bwidth,bheight,2,3,2,2){
 				public void onClick(UIManager myUIM){
 				}
@@ -185,10 +185,10 @@ public class SkillsActivity extends Activity{
 			state[i] = current;			
 		}
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) ((0.84375+0.072917)*width);
+		up = (int) ((0.23125+0.1875*3)*height);
+		bwidth = (int) (0.05208*width);
+		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
 			public void onClick(UIManager myUIM){
 				int currentSpeed = myUIM.getSpeed();
@@ -198,69 +198,73 @@ public class SkillsActivity extends Activity{
 			}
 		};
 
-		state[i+1] = title;
-		state[i+2] = icon;
-		state[i+3] = current;		
+//		state[i+1] = title;
+		state[i] = icon;
+		state[i+1] = current;			
 		return state;
 	}
 	
-	public void initGUI(int width, int height, OptionsUIManager myUIM){
+	public void initGUI(int width, int height, SkillsUIManager myUIM){
 		
 		
 		int left,up,bwidth,bheight;
 		
 
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		Label title = new Label(left,up,10);
+		left = (int) (0.0291666666*width);
+		up = (int) (0.021875*height);
+		Label title = new Label(left,up,1);
 		
-		left = (int) (0.0*width);
-		up = (int) (0.0*height);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) (0.54375*width);
+		up = (int) (0.059375*height);
+		bwidth = (int) (0.125*width);
+		bheight = (int) (0.078125*height);
 		Button ok = new Button(left,up,bwidth,bheight,13,13,13,13){
 			public void onClick(UIManager myUIM){
 				myUIM.setUpdate(true);
 				myUIM.setEndActivity(true);
 			}
 		};
-		left = (int) (0.0*width);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) (0.689584*width);
 		Button cancel = new Button(left,up,bwidth,bheight,14,14,14,14){
 			public void onClick(UIManager myUIM){
 				myUIM.setUpdate(false);
 				myUIM.setEndActivity(true);
 			}
 		};
-		left = (int) (0.0*width);
-		bwidth = (int) (0.0*width);
-		bheight = (int) (0.0*height);
+		left = (int) (0.83333333334*width);
 		Button reset = new Button(left,up,bwidth,bheight,15,15,15,15){
 			public void onClick(UIManager myUIM){
 				myUIM.resetMods();
 			}
 		};
 		
-		Widget[] state = new Widget[100];
+		Widget[] state = new Widget[52];
 		Widget[] temp1,temp2,temp3,temp4;
 		temp1 = initCostGUI(width,height,myUIM);
 		temp2 = initHealthGUI(width,height,myUIM);
 		temp3 = initDamageGUI(width,height,myUIM);
 		temp4 = initSpeedGUI(width,height,myUIM);
 		int i;
-		for (i=0;i<13;i++){
+		for (i=0;i<12;i++){
+			System.out.println(i);
+			System.out.println(i+12);
+			System.out.println(i+24);
+			System.out.println(i+36);
 			state[i] = temp1[i];
 			state[i+12] = temp2[i];
 			state[i+24] = temp3[i];
 			state[i+36] = temp4[i];			
 		}
 		
-		state[i+36+1] = title;
-		state[i+36+2] = reset;
-		state[i+36+3] = cancel;
-		state[i+36+4] = ok;
-		myUIM.addState(state, false);
+		state[i+36] = title;
+		System.out.println(i+36);
+		state[i+36+1] = reset;
+		System.out.println(i+36+1);
+		state[i+36+2] = cancel;
+		System.out.println(i+36+2);
+		state[i+36+3] = ok;
+		System.out.println(i+36+3);
+		myUIM.addState(state, false,0);
 		
 		
 		
@@ -292,9 +296,17 @@ public class SkillsActivity extends Activity{
 			speed = globalVariable.getSpeed(countryID);
 		}
 		else{
-			System.out.println("Skill activity has been started without country ID and skill points.");
-			finish();
-			return;
+			//STANDALONE TEST
+			cost = 1;
+			health = 2;
+			strength = 3;
+			speed = 4;
+			
+			
+			//RELEASE VERSION
+//			System.out.println("Skill activity has been started without country ID and skill points.");
+//			finish();
+//			return;
 		}
 		
 		
@@ -309,10 +321,11 @@ public class SkillsActivity extends Activity{
 		myUIM.setHealth(health);
 		myUIM.setDamage(strength);
 		myUIM.setSpeed(speed);
+		initGUI(width,height, myUIM);
+		myUIM.update();
 		
-		
-		setContentView(R.layout.activity_options);
-		SkillsView myView = (SkillsView) findViewById(R.id.vOptions);
+		setContentView(R.layout.activity_skills);
+		SkillsView myView = (SkillsView) findViewById(R.id.vSkills);
 		myView.setUIManager(myUIM);
 		myView.doneInitialiazing();
 		

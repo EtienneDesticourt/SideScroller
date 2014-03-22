@@ -11,6 +11,7 @@
         android:targetSdkVersion="17" />
 
     <application
+        android:name="com.example.painintheass.ApplicationManager"
         android:theme="@android:style/Theme.NoTitleBar"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -27,6 +28,8 @@
         </activity>
         <activity android:name="com.example.painintheass.MapActivity"></activity>
         <activity android:name="com.example.painintheass.CombatActivity"></activity>
+        <activity android:name="com.example.painintheass.OptionsActivity"></activity>
+        <activity android:name="com.example.painintheass.SkillsActivity"></activity>
     </application>
 
 </manifest>

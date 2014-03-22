@@ -2,6 +2,7 @@ package com.example.painintheass.Graphics;
 
 import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MapActivity;
+import com.example.painintheass.GameLogic.Castle;
 import com.example.painintheass.GameLogic.Projectile;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.GameLogic.Unit;
@@ -15,6 +16,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
@@ -166,9 +168,152 @@ public class CombatView extends View{
 	}
 	
 	
+
+	
+	protected void drawBackground(Canvas c){
+		Bitmap sky = MyRM.getImage(0);
+		Bitmap clouds = MyRM.getImage(1);
+		Bitmap backMoun = MyRM.getImage(2);
+		Bitmap frontMoun = MyRM.getImage(3);
+		Bitmap grass = MyRM.getImage(4);
+		
+
+		int dX = (int) MyCamera.getX();
+		
+		c.drawBitmap(sky,0,0,null);	
+		for (int i=0; i<6;i++){			
+	        c.drawBitmap(clouds, (int) (0.152*width*(i+1))+(clouds.getWidth()*i)-dX/6, (int) (0.10625*height), null);
+	        c.drawBitmap(backMoun, (backMoun.getWidth()*i)-dX/4, (int) (0.21875*height), null);
+	        c.drawBitmap(frontMoun, (frontMoun.getWidth()*i)-dX/2, (int) (0.33125*height), null);
+	        c.drawBitmap(grass, (grass.getWidth()*i)-dX, (int) (0.6875*height), null);
+		}
+	}
+		
+	protected void checkVictory(Unit currUnit, Canvas c){
+		boolean state;
+		
+		if (currUnit.getAction() == 3){ //IF DESTROYED
+			
+			if (currUnit.getMyTeam().getId()==0){ //IF MY TEAM: LOSE
+				state=true;
+				c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
+			}
+			else{ //IF NOT MY TEAM: WIN
+				state=false;
+				c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
+			}
+			
+			endGame(state);
+		}
+	}
+		
+	protected void drawUnits(Canvas c){
+		Rect newRect;
+		Unit currUnit;
+        Animation currAnim;
+		float percent;
+		int length;
+		Bitmap image;
+		int i;
+		Matrix matrix = new Matrix();
+		matrix.preScale(-1.0f, 1.0f);
+		
+		
+		int dX = (int) MyCamera.getX();		
+		
+		
+        for (int teamIndex=0;teamIndex<2;teamIndex++){
+  
+        	int unitsNum = MyTeams[teamIndex].getUnitsNumber();
+        	
+        	for (int unitIndex=0;unitIndex<unitsNum;unitIndex++){
+        		currUnit = MyTeams[teamIndex].getUnit(unitIndex);
+        		
+        		percent = currUnit.getLife()/ (float) currUnit.getMaxLife();
+        		
+//        		length = (int) (percent*255);
+//        		MyPaint.setARGB(255,200, length,0);
+//        		MyPaint.setStyle(Paint.Style.STROKE);
+//        		length =(int) (percent*100);
+        		//c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
+        		
+        		
+        		
+        		if (currUnit.getType()==4){// IF CASTLE
+        			checkVictory(currUnit,c);
+        			        			
+        			if (percent>0.5) i = 68;
+        			else i = 69;        			
+        			image = MyRM.getImage(i);
+        			
+        			
+    				c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+    				//newRect = currUnit.getBodyRect();
+    				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+        			continue; //Castles don't deal with animations
+        		}
+        		
+        		
+        		
+        		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
+        		image = MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame());
+        		if (teamIndex==1) image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false);
+        		c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+
+				//newRect = currUnit.getBodyRect();
+				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+        	}
+        }
+	}
+	
+	protected void drawGUI(Canvas c){
+		
+		Widget[] state = MyUIM.getCurrentState();
+		Widget currWidget;
+		Bitmap image;
+		
+		for (int i=0;i<state.length;i++){
+			currWidget = state[i];
+			
+			if (currWidget.getString().equals("")){ //IF WIDGET NOT TEXT
+				image = MyRM.getImage(currWidget.getCurrentImage());
+				c.drawBitmap(image,currWidget.getX(),currWidget.getY(),null);
+			}
+			
+			else{ //IF WIDGET TEXT
+				c.drawText(currWidget.getString(), currWidget.getX(), currWidget.getY(), currWidget.getPaint());
+			}
+			
+		}
+	}
+	
+	protected void drawProjectiles(Canvas c){
+
+        Projectile currProj;
+		Bitmap image;
+		
+		int dX = (int) MyCamera.getX();
+        
+        for (int teamIndex=0;teamIndex<2;teamIndex++){
+        	
+        	for (int i=0;i<1000;i++){
+        		currProj = MyTeams[teamIndex].getProjectile(i);
+        		if (currProj == null) break;
+        		
+        		image = MyRM.getImage(currProj.getImage());
+        		c.drawBitmap(image,currProj.getX()-dX,currProj.getY(),null);
+        		
+        		
+        		//Rect newRect = currProj.getMyRect();        		
+        		//c.drawRect(newRect.left-dX,newRect.top,newRect.right-dX,newRect.bottom, MyPaint);
+        	}
+        	
+        }
+	}
+	
+	
 	@Override
 	protected void onDraw(Canvas c){
-		Rect newRect;
 		if (!fullyInitialized || gameEnded){
 			return;
 		}
@@ -178,117 +323,16 @@ public class CombatView extends View{
 		}
 		
 		
-		//BACKGROUND
-		Bitmap sky = MyRM.getImage(0);
-		Bitmap clouds = MyRM.getImage(1);
-		Bitmap backMoun = MyRM.getImage(2);
-		Bitmap frontMoun = MyRM.getImage(3);
-		Bitmap grass = MyRM.getImage(4);
-		
-		
-		c.drawBitmap(sky,0,0,null);
-
-		//PARALLAX
-		int dX = (int) MyCamera.getX();
-		
-		for (int i=0; i<6;i++){			
-	        c.drawBitmap(clouds, (int) (0.152*width*(i+1))+(clouds.getWidth()*i)-dX/6, (int) (0.10625*height), null);
-	        c.drawBitmap(backMoun, 0+(backMoun.getWidth()*i)-dX/4, (int) (0.21875*height), null);
-	        c.drawBitmap(frontMoun, 0+(frontMoun.getWidth()*i)-dX/2, (int) (0.33125*height), null);
-	        c.drawBitmap(grass, 0+(grass.getWidth()*i)-dX, (int) (0.6875*height), null);
-		}
-		
-		//UNITS
-		Unit currUnit;
-        Animation currAnim;
-		float percent;
-		int length;
-        for (int teamIndex=0;teamIndex<2;teamIndex++){
-        	int unitsNum = MyTeams[teamIndex].getUnitsNumber();
-        	for (int unitIndex=0;unitIndex<unitsNum;unitIndex++){
-        		currUnit = MyTeams[teamIndex].getUnit(unitIndex);
-        		percent = currUnit.getLife()/ (float) currUnit.getMaxLife();
-        		length = (int) (percent*255);
-        		MyPaint.setARGB(255,200, length,0);
-        		MyPaint.setStyle(Paint.Style.STROKE);
-        		length =(int) (percent*100);
-        		//c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
-        		
-        		//System.out.println(currUnit.getX());
-        		if (currUnit.getType()==4){//Deals with castles
-        			if (currUnit.getAction() == 3){ //Victory check
-        				boolean state;
-        				if (currUnit.getMyTeam().getId()==0){
-        					state=true;
-        					c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
-        				}
-        				else{
-        					state=false;
-        					c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
-        				}
-        				
-        				endGame(state);
-        			}
-        			int i;
-        			if (percent>0.5){
-        				i = 68;
-        			}
-        			else{
-        				i = 69;
-        			}
-    				c.drawBitmap(MyRM.getImage(i),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
-    				newRect = currUnit.getBodyRect();
-    				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
-        			continue;
-        		}
-        		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
-//        		currAnim.start();
-//        		currAnim.setBounds(currUnit.getBodyRect());
-//        		currAnim.draw(c);
-        		//c.draw
-        		c.drawBitmap(MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame()),currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
-
-				newRect = currUnit.getBodyRect();
-				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
-        	}
-        }
-		//PROJECTILES
-        Projectile currProj;
-        for (int teamIndex=0;teamIndex<2;teamIndex++){
-        	for (int i=0;i<1000;i++){
-        		currProj = MyTeams[teamIndex].getProjectile(i);
-        		if (currProj == null){
-        			break;
-        		}
-        		c.drawBitmap(MyRM.getImage(currProj.getImage()),currProj.getX()-dX,currProj.getY(),null);
-        		newRect = currProj.getMyRect();
-        		
-        		//c.drawRect(newRect.left-dX,newRect.top,newRect.right-dX,newRect.bottom, MyPaint);
-        	}
-        }
-        
-        
-		//GUI	
-		Widget[] state = MyUIM.getCurrentState();
-		Widget currWidget;
-		Bitmap img;
-		for (int i=0;i<state.length;i++){
-			currWidget = state[i];
-			if (currWidget.getString().equals("")){
-				img = MyRM.getImage(currWidget.getCurrentImage());
-				c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);
-			}
-			else{
-				c.drawText(currWidget.getString(), currWidget.getX(), currWidget.getY(), currWidget.getPaint());
-			}
-		}
-		
+		drawBackground(c);
+		drawUnits(c);        
+        drawProjectiles(c);
+		drawGUI(c);
 		
 		invalidate();
 		
 //		try {
 //            Thread.sleep(500);
 //        } catch (Exception exc) {}
-//		
+
 	}
 }

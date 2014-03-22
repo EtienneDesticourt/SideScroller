@@ -26,7 +26,7 @@ public class MapActivity extends Activity{
 	private int type = 1;
 	private int lastAttack=0;
 	private MapUIManager myUIM;
-	private final String saveFileName = "SAVE";
+	private final String saveFileName = "/SAVE";
 	//MUSIC IDEA: SOUND OF ANVIL BEING HIT AS DRUMS
 	
  	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
@@ -59,26 +59,6 @@ public class MapActivity extends Activity{
 
 		
 
-		left = (int) (0.38*width);
-		up = (int) (0.70*height);
-		bwidth = (int) (0.08125*width);
-		bheight = (int) (0.08125*height);
-		Button skills = new Button(left,up,bwidth,bheight,27,27,27,27) {
-			public void onClick(UIManager myUIM){
-				Country cur = myUIM.getSelected();
-				if (cur.isPlayerControlled()){
-					Intent intent = myUIM.getIntent(4);
-					Bundle b = new Bundle();
-					b.putInt("key", cur.getID()); 
-					intent.putExtras(b); 
-					startActivity(intent);
-				}
-			}
-		};
-		
-		
-		
-		
 		
 		left = (int) (0.38*width);
 		up = (int) (0.70*height);
@@ -168,9 +148,24 @@ public class MapActivity extends Activity{
 		};	
 
 		left = (int) (0.583*width);
-		up = (int) (0.578*height);
+		up = (int) (0.499875*height);
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.0625*height);
+		Button skills = new Button(left,up,bwidth,bheight,27,27,27,27) {
+			public void onClick(UIManager myUIM){
+				Country cur = myUIM.getSelected();
+				if (cur==null){return;}
+				if (cur.isPlayerControlled()){
+					Intent intent = myUIM.getIntent(4);
+					Bundle b = new Bundle();
+					b.putInt("ID", cur.getID()); 
+					intent.putExtras(b); 
+					startActivity(intent);
+				}
+			}
+		};
+		System.out.println("fuck you android.");
+		up = (int) (0.578*height);
 		Button attack1 = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
 			}
@@ -204,20 +199,30 @@ public class MapActivity extends Activity{
 		Label coin1 = new Label(left,up,25);
 		up = (int) (0.328*height);
 		Label coin2 = new Label(left,up,24);
-		up = (int) (0.4375*height);
-		Label coin3 = new Label(left,up,24);
+//		up = (int) (0.4375*height);
+//		Label coin3 = new Label(left,up,24);
 		
 
 		left = (int) (0.57*width);
 		up = (int) (0.218*height);
 		TextLabel troups = new TextLabel(left,up,"0000000");
 		up = (int) (0.328*height);
-		TextLabel income = new TextLabel(left,up,"0000000");
-		up = (int) (0.4375*height);
 		TextLabel money = new TextLabel(left,up,"0000000");
+//		up = (int) (0.4375*height);
+//		TextLabel income = new TextLabel(left,up,"0000000");
+		
+		left = (int) (0.583*width);
+		up = (int) (0.499875*height);
+		bwidth = (int) (0.25*width);
+		bheight = (int) (0.0625*height);
+		Button skills2 = new Button(left,up,bwidth,bheight,28,28,28,28) {
+			public void onClick(UIManager myUIM){
+			}
+		};
 		
 		
-		Widget[] mapState1 = {skills,troups,income,money,nextTurn,attack1,resolve1,coin1,coin2,coin3,pays1,pays2,pays3,pays4,pays5,pays6};
+		
+		Widget[] mapState1 = {skills2,troups,money,nextTurn,attack1,resolve1,coin1,coin2,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState1,false,0);
 		
 		Button[] Countries = {pays1,pays2,pays3,pays4,pays5,pays6};
@@ -232,27 +237,26 @@ public class MapActivity extends Activity{
 		bheight = (int) (0.0625*height);
 		Button attack = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
-				Country enemyCountry = myUIM.getSelected();
-				if (enemyCountry.isPlayerControlled()) return;
-				startActivity(myUIM.getIntent(2));
-				myUIM.setAttacking(enemyCountry);
+				Country cur = myUIM.getSelected();
+				if (cur==null){return;}
+				if (!cur.isPlayerControlled()){
+					Intent intent = myUIM.getIntent(2);
+					Bundle b = new Bundle();
+					b.putInt("ID", cur.getID()); 
+					intent.putExtras(b); 
+					startActivity(intent);
+					myUIM.setAttacking(cur);
+				}
 				//myUIM.setCurrentStateIndex(5); //Start battle 
 			}
 		};
 		attack.setBackgroundImage(22);
-		
-		left = (int) (0.38*width);
-		up = (int) (0.70*height);
-		bwidth = (int) (0.08125*width);
-		bheight = (int) (0.08125*height);
-		Button skills2 = new Button(left,up,bwidth,bheight,28,28,28,28) {
-			public void onClick(UIManager myUIM){
-			}
-		};
+
 		
 		
 		
-		Widget[] mapState2 = {skills2,troups,income,money,attack,resolve1,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		
+		Widget[] mapState2 = {skills2,troups,money,attack,resolve1,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState2,false,0);
 		
 		
@@ -274,7 +278,7 @@ public class MapActivity extends Activity{
 		};
 		buyTroups.setBackgroundImage(26);
 		
-		Widget[] mapState3 = {skills,troups,income,money,attack1,resolve1,coin1,coin2,coin3,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState3 = {skills,troups,money,attack1,resolve1,coin1,coin2,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState3,false,0);
 		
 		
@@ -304,7 +308,7 @@ public class MapActivity extends Activity{
 		};
 		resolve2.setBackgroundImage(23);
 		
-		Widget[] mapState4 = {skills,troups,income,money,resolve2,attack2,coin1,coin2,coin3,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState4,false,0);
 	}
 	
@@ -342,6 +346,7 @@ public class MapActivity extends Activity{
 		myView.doneInitialiazing();
 		Country[] World = new Country[6];
 		initMap(width,height,myUIM,World);
+		System.out.println(3);
 		
 		
 		
@@ -367,21 +372,43 @@ public class MapActivity extends Activity{
 	}
 	
 	protected void onPause(){
-		File saveFile = new File(this.getFilesDir(), saveFileName);
+		super.onPause();
+		File saveFile = new File(getFilesDir()+saveFileName);
 		String string = getSaveData();
 		
 		
 		
 		try {
-			  FileOutputStream outputStream = openFileOutput(saveFileName, Context.MODE_PRIVATE);
+			  FileOutputStream outputStream = openFileOutput(getFilesDir()+saveFileName, Context.MODE_PRIVATE);
 			  outputStream.write(string.getBytes());
 			  outputStream.close();
 		} catch (Exception e) {
 			  e.printStackTrace();
-		}		
+		}	
+		
 	}
 	
 	public void loadData(String data){
+//		if (data == null){
+//			System.out.println("No save file.");
+//			Country[] World = myUIM.getWorld();
+//			
+//			for (int i=0;i<6;i++){
+//				if (i==0){
+//					World[i].setPlayerControlled(true);
+//				}
+//				else{
+//					World[i].setPlayerControlled(false);				
+//				}
+//				World[i].setTroups(0);
+//				World[i].setIncome(10);
+//				World[i].setMoney(0);
+//			}	
+//			return;
+//		}
+		
+		
+		
 		String[] countryData = data.split("\n");
 		Country[] World = myUIM.getWorld();
 		
@@ -400,11 +427,20 @@ public class MapActivity extends Activity{
 	}
 	
 	protected void onResume(){
+		super.onResume();
 		//Read file in Internal Storage
+		System.out.println(getFilesDir());
+		
+		
+		File file = new File(getFilesDir()+saveFileName);
+		if(!file.exists()) 
+		     return;
+		
+		
 		FileInputStream fis;
 		String content = "";
 		try {
-			fis = openFileInput(saveFileName);
+			fis = openFileInput(getFilesDir()+saveFileName);
 			byte[] input = new byte[fis.available()];
 			while (fis.read(input) != -1) {}
 			content += new String(input);

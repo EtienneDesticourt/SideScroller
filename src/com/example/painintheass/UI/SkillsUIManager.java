@@ -22,12 +22,13 @@ public class SkillsUIManager extends UIManager{
 		cost = firstCost;
 		damage = firstDamage;
 		speed = firstSpeed;
+		update();
 	}
 	public void increaseHealth(){
 		Widget[] widgets = super.getCurrentState();
 		health += 1;
 		for (int i=HEALTHSTART;i<HEALTHSTART+health;i++){
-			widgets[i].setBackgroundImage(widgets[i].getClickedImage());
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
 		}	
 	}
 	
@@ -35,25 +36,55 @@ public class SkillsUIManager extends UIManager{
 		Widget[] widgets = super.getCurrentState();
 		cost += 1;
 		for (int i=COSTSTART;i<COSTSTART+cost;i++){
-			widgets[i].setBackgroundImage(widgets[i].getClickedImage());
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
 		}		
 	}
 	
 	public void increaseSpeed(){
 		Widget[] widgets = super.getCurrentState();
 		speed += 1;
-		for (int i=SPEEDSTART;i<SPEEDSTART+health;i++){
-			widgets[i].setBackgroundImage(widgets[i].getClickedImage());
+		for (int i=SPEEDSTART;i<SPEEDSTART+speed;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
 		}		
 	}
 	
 	public void increaseStrength(){
 		Widget[] widgets = super.getCurrentState();
 		damage += 1;
-		for (int i=STRENGTHSTART;i<STRENGTHSTART+health;i++){
-			widgets[i].setBackgroundImage(widgets[i].getClickedImage());
+		for (int i=STRENGTHSTART;i<STRENGTHSTART+damage;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
 		}		
 	}
+	
+	public void update(){
+
+		Widget[] widgets = super.getCurrentState();
+		for (int i=HEALTHSTART;i<HEALTHSTART+health;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
+		}
+		for (int i=HEALTHSTART+health;i<HEALTHSTART+11;i++){
+			widgets[i].setCurrentImage(widgets[i].getBackgroundImage());
+		}	
+		for (int i=COSTSTART;i<COSTSTART+cost;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
+		}	
+		for (int i=COSTSTART+cost;i<COSTSTART+11;i++){
+			widgets[i].setCurrentImage(widgets[i].getBackgroundImage());
+		}	
+		for (int i=SPEEDSTART;i<SPEEDSTART+speed;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
+		}	
+		for (int i=SPEEDSTART+speed;i<SPEEDSTART+11;i++){
+			widgets[i].setCurrentImage(widgets[i].getBackgroundImage());
+		}	
+		for (int i=STRENGTHSTART;i<STRENGTHSTART+damage;i++){
+			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
+		}	
+		for (int i=STRENGTHSTART+damage;i<STRENGTHSTART+11;i++){
+			widgets[i].setCurrentImage(widgets[i].getBackgroundImage());
+		}	
+	}
+	
 	
 	public int getHealth() {
 		return health;

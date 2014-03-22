@@ -11,7 +11,7 @@ public class AI {
 	private int NUMBER_OF_TEAM=2;
 	private boolean calcMoves;
 	private boolean calcCollisions;
-	private boolean spawningUnits;
+	private boolean spawningUnits=true;
 	private Team[] MyTeams;
 	private boolean gameIsRunning = true;
 	private static int moveCalcDelay =  (int) (1000/30.0);
@@ -33,7 +33,9 @@ public class AI {
 	        	int r;
 	        	while (gameIsRunning){
 	        		while (spawningUnits){
+	        			
 		        		current = new Date().getTime();
+		        		//System.out.println(current-lastSpawn);
 		        		if ((current-lastSpawn)>MyTeams[1].getSpawnSpeed()){
 		        			r = (int)(Math.random() * ((2) + 1));
 		        			if (r==0){MyTeams[1].spawnKnight();}

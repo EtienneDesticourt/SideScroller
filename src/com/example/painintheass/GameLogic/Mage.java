@@ -28,7 +28,7 @@ public class Mage extends Unit{
 		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+50,getY()+40+yMod,17,8, super.getDamage()));
 		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+10,getY()+40+yMod,17,8, super.getDamage()));
 		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+30,getY()+40+yMod,17,8, super.getDamage()));
-		if (super.getTarget().getAction()==3){
+		if (super.getTarget().getAction()==2){
 			super.setAction(0);
 		}
 	}

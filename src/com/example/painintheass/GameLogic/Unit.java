@@ -30,7 +30,7 @@ public class Unit {
 	private int damage;
 	private int attackRange;
 	private long attackSpeed;
-	private int action; //0:move 1:attack
+	private int action; //0:move 1:attack 2:die
 	private int lastAction;
 	private int currFrame;
 	private int maxFrame;
@@ -76,9 +76,9 @@ public class Unit {
 	}
 	
 	public void applySkillModifier(float health,float speed, float damage){
-		this.life *= health;
-		this.speed *= speed;
-		this.damage *= damage;
+		this.life += this.life*health;
+		this.speed += this.life*speed;
+		this.damage += this.life*damage;
 	}
 	
 	public void init(){ //only adds to ai processing after subclass has finished init
@@ -94,14 +94,14 @@ public class Unit {
 	
 	public void attack(){
 		Target.hit(damage,false);
-		if (Target.getAction()==3){
+		if (Target.getAction()==2){
 			action = 0;
 		}
 	}
 	
 	public void hit(int damage,boolean ranged){
 		this.life -= damage;
-		if (this.life < 0 && action != 3){
+		if (this.life < 0 && action != 2){
 			die();
 		}
 	}
@@ -124,7 +124,7 @@ public class Unit {
 	}
 	
 	public void die(){
-		action = 3;
+		action = 2;
 		delTime = new Date().getTime();
 		myTeam.appendDelQueue(this);
 	}

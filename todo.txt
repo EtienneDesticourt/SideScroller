@@ -231,8 +231,42 @@ CombatActivity 4h30						V
 			Add stars spell				X
 			Add stars spell	button		X
 
-Left: 13h
+Left: 0h
 Total: 24h
 
-sat 32
+
+---------------------------------------------
+-------------22/03/14------------------------
+---------------------------------------------
+
+MainMenuActivity V
+
+OptionsActivity			
+	Place Title			
+	Place music bar		
+	Place sound bar		
+	Place music knobs	
+	Place sound knobs	
+	Place ok button		
+	Place cancel button	
+	
+	
+SkillsActivity			V
+	Place Title			V
+	Place icons			V
+	Place skill buttons	V
+	Place plus buttons	V
+	Place OK button		V
+	Place cancel button	V
+	
+MapActivity 
+	Place skill button	V
+
+Combat Activity 		V
+
+
+
+
+
+
 				

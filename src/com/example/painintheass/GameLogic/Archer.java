@@ -28,7 +28,7 @@ public class Archer extends Unit{
 	public void attack(){
 		int side = super.getMyTeam().getMovementSide();
 		super.getMyTeam().addProjectile(new Projectile(66,22,side,getX()+50+xMod,getY()+30+yMod,41,7,super.getDamage()));
-		if (super.getTarget().getAction()==3){
+		if (super.getTarget().getAction()==2){
 			super.setAction(0);
 		}		
 	}

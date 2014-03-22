@@ -157,23 +157,21 @@ public class CombatActivity extends Activity {
 		
 		
 		//CONFIRM STATE 1
-		left = (int) (0.86875*width);
-		up = (int) (0.215625*height);
+		left = (int) (0.2875*width);
+		up = (int) (0.43125*height);
 		Label confirmWindow = new Label(left,up,78);
 		
-		left = (int) (0.86875*width);
-		up = (int) (0.215625*height);
+		up = (int) (0.63125*height);
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button ok = new Button(left,up,bwidth,bheight,79,79,79,79) {
 			public void onClick(UIManager myUIM){
-				myUIM.setExitFlag(1);
+				myUIM.setExitFlag(0);
 				myUIM.setEndActivity(true);
 			}
 		};
 		
-		left = (int) (0.86875*width);
-		up = (int) (0.215625*height);
+		left = (int) (0.60833333334*width);
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button cancel = new Button(left,up,bwidth,bheight,80,80,80,80) {
@@ -186,14 +184,14 @@ public class CombatActivity extends Activity {
 		myUIM.addState(state4, true, 0);
 		
 		//CONFIRM STATE 2
-		
-		left = (int) (0.86875*width);
-		up = (int) (0.215625*height);
+
+		left = (int) (0.2875*width);
+		up = (int) (0.63125*height);
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button ok2 = new Button(left,up,bwidth,bheight,79,79,79,79) {
 			public void onClick(UIManager myUIM){
-				myUIM.setExitFlag(0);
+				myUIM.setExitFlag(1);
 				myUIM.setEndActivity(true);
 			}
 		};
@@ -221,7 +219,14 @@ public class CombatActivity extends Activity {
 	}
 	
 	protected void onResume(){
+		super.onResume();
 		myUIM.getMyAI().startMovingUnits();
+		//System.out.println(myUIM.getMyAI().);
+	}
+	
+	protected void onPause(){
+		super.onPause();
+		myUIM.getMyAI().stopMovingUnits();
 	}
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -263,7 +268,7 @@ public class CombatActivity extends Activity {
 		//init ai
 		AI myAI = new AI(myTeams,myView.getMyRM()); //resets unit. Spawn after this line
 		myUIM.setMyAI(myAI);	
-		myAI.startMovingUnits();
+		//myAI.startMovingUnits();
 
 		friendlyTeam.spawnCastle();
 		enemyTeam.spawnCastle();
