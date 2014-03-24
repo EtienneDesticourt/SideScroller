@@ -13,7 +13,10 @@ public class Team {
 	private static int Team1SpawnY = 100;
 	private static int Team2SpawnX = 600;
 	private static int Team2SpawnY = 100;
-	
+	private final static int SOLDIERCOST = 10;
+	private final static int ARCHERCOST = 10;
+	private final static int KNIGHTCOST = 10;
+	private final static int MAGECOST = 10;
 	/////////////////////////////////////
 	
 	private int spawnX;
@@ -22,6 +25,7 @@ public class Team {
 	private int id;
 
 	private int spawnSpeed;
+	private int money = 0;
 	private Unit[] myUnits;
 	private Unit[] delQueue;
 	private int numberToDelete=0;
@@ -70,6 +74,7 @@ public class Team {
 		int id = addUnit(temp);
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
+		money -= SOLDIERCOST;
 		
 	}
 	public void spawnArcher(){
@@ -77,18 +82,22 @@ public class Team {
 		int id = addUnit(temp);
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
+		money -= ARCHERCOST;
+		
 	}
 	public void spawnMage(){
 		Unit temp = new Mage(this);
 		int id = addUnit(temp);
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
+		money -= MAGECOST;
 	}
 	public void spawnKnight(){
 		Unit temp = new Knight(this);
 		int id = addUnit(temp);
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
+		money -= KNIGHTCOST;
 	}
 	public void spawnDemoman(){
 		Unit temp = new Demoman(this);
@@ -204,6 +213,16 @@ public class Team {
 		skills[1] = skill2;
 		skills[2] = skill3;
 		skills[3] = skill4;
+	}
+
+
+	public int getMoney() {
+		return money;
+	}
+
+
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 //	public void setUnits(Unit[] myUnits) {

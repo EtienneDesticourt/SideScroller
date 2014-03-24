@@ -190,6 +190,11 @@ public abstract class Widget {
 	public void setString(String text){
 	}
 	
+	public void updateLeft(){
+		
+	}
+	
+	
 	public String getString(){
 		//Only for labels
 		return "";

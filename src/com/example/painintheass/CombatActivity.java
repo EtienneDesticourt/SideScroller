@@ -26,6 +26,10 @@ public class CombatActivity extends Activity {
 		int bwidth,bheight;
 
 		
+		
+		
+		
+		
 		left = (int) (0.02083*width);
 		up = (int) (0.040625*height);
 		bwidth = (int) (0.10416*width);
@@ -248,8 +252,8 @@ public class CombatActivity extends Activity {
 		int countryID = b.getInt("ID");
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		skill1 = globalVariable.getHealth(countryID);
-		skill2 = globalVariable.getSpeed(countryID);
-		skill3 = globalVariable.getDamage(countryID);
+		skill2 = globalVariable.getTime(countryID);
+		skill3 = globalVariable.getStrength(countryID);
 		skill4 = globalVariable.getCost(countryID);
 		
 		myUIM = new CombatUIManager(friendlyTeam,enemyTeam,p);

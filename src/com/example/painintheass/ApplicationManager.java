@@ -1,25 +1,17 @@
 package com.example.painintheass;
 
+import com.example.painintheass.GameLogic.Country;
+
 import android.app.Application;
 
 public class ApplicationManager extends Application {
 	private int musicVolume;
 	private int soundVolume;
 	private boolean updated;
-	private float costMod;
-	private float timeMod;
-	private float manaMod;
-	private float StrengthMod;
-	private int[] health;
-	private int[] speed;
-	private int[] damage;
-	private int[] cost;
+	private Country[] World;
 	
 	public ApplicationManager(){
-		health = new int[6];
-		speed = new int[6];
-		damage = new int[6];
-		cost = new int[6];
+		
 	}
 	
 	public int getMusicVolume() {
@@ -43,58 +35,36 @@ public class ApplicationManager extends Application {
 		this.updated = updated;
 	}
 	
-	public float getCostMod() {
-		return costMod;
-	}
-	public void setCostMod(float costMod) {
-		this.costMod = costMod;
-	}
-	
-	public float getTimeMod() {
-		return timeMod;
-	}
-	public void setTimeMod(float timeMod) {
-		this.timeMod = timeMod;
-	}
-	
-	public float getManaMod() {
-		return manaMod;
-	}
-	public void setManaMod(float manaMod) {
-		this.manaMod = manaMod;
-	}
-	
-	public float getStrengthMod() {
-		return StrengthMod;
-	}
-	public void setStrengthMod(float strengthMod) {
-		StrengthMod = strengthMod;
+	public Country getCountry(int countryID){
+		return World[countryID];
 	}
 	public int getHealth(int countryID) {
-		return health[countryID];
+		return World[countryID].getHealth();
 	}
 	public void setHealth(int health, int countryID) {
-		this.health[countryID] = health;
+		this.World[countryID].setHealth(health);
 	}
-	public int getSpeed(int countryID) {
-		return speed[countryID];
+	public int getTime(int countryID) {
+		return World[countryID].getTime();
 	}
-	public void setSpeed(int speed, int countryID) {
-		this.speed[countryID] = speed;
+	public void setTime(int time, int countryID) {
+		this.World[countryID].setTime(time);
 	}
-	public int getDamage(int countryID) {
-		return damage[countryID];
+	public int getStrength(int countryID) {
+		return World[countryID].getStrength();
 	}
-	public void setDamage(int damage, int countryID) {
-		this.damage[countryID] = damage;
+	public void setDamage(int strength, int countryID) {
+		this.World[countryID].setStrength(strength);
 	}
 	public int getCost(int countryID) {
-		return cost[countryID];
+		return World[countryID].getCost();
 	}
 	public void setCost(int cost, int countryID) {
-		this.cost[countryID] = cost;
+		this.World[countryID].setCost(cost);
 	}
-	
+	public void setWorld(Country[] newWorld){
+		this.World = newWorld;
+	}
 	
 	
 }

@@ -8,11 +8,19 @@ public class Country {
 	private int troups;
 	private int income;
 	private int money;
+	private int cost;
+	private int time;
+	private int strength;
+	private int health;
 	private int ID;
 	private Button myButton;
 	
 	public Country(int ID){
 		this.setID(ID);
+		cost = 0;
+		time = 0;
+		strength = 0;
+		health = 0;
 		income = 10;
 		troups = 10;
 		money = 100;
@@ -94,6 +102,38 @@ public class Country {
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public int getStrength() {
+		return strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
 	}
 	
 	

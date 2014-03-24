@@ -6,6 +6,7 @@ import com.example.painintheass.UI.Button;
 import com.example.painintheass.UI.Label;
 import com.example.painintheass.UI.OptionsUIManager;
 import com.example.painintheass.UI.SkillsUIManager;
+import com.example.painintheass.UI.TextLabel;
 import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.Widget;
 
@@ -19,8 +20,7 @@ public class SkillsActivity extends Activity{
 	private int countryID;
 	
 	
-	
-	public Widget[] initCostGUI(int width, int height, SkillsUIManager myUIM){
+ 	public Widget[] initCostGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 
@@ -112,7 +112,7 @@ public class SkillsActivity extends Activity{
 		return state;	
 	}
 	
-	public Widget[] initDamageGUI(int width, int height, SkillsUIManager myUIM){
+	public Widget[] initStrengthGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 //
@@ -158,7 +158,7 @@ public class SkillsActivity extends Activity{
 		return state;
 	}
 	
-	public Widget[] initSpeedGUI(int width, int height, SkillsUIManager myUIM){
+	public Widget[] initTimeGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
 
@@ -193,7 +193,7 @@ public class SkillsActivity extends Activity{
 			public void onClick(UIManager myUIM){
 				int currentSpeed = myUIM.getSpeed();
 				if (currentSpeed<10){
-					myUIM.increaseSpeed();
+					myUIM.increaseTime();
 				}
 			}
 		};
@@ -237,19 +237,24 @@ public class SkillsActivity extends Activity{
 				myUIM.resetMods();
 			}
 		};
+		left = (int) (0.45625*width);
+		Label coin = new Label(left,up,16);	
+		up = (int) (0.059375*height) +10;	
+		TextLabel money = new TextLabel(left,up, String.valueOf(myUIM.getMoney()));
 		
-		Widget[] state = new Widget[52];
+		
+		Widget[] state = new Widget[54];
 		Widget[] temp1,temp2,temp3,temp4;
 		temp1 = initCostGUI(width,height,myUIM);
 		temp2 = initHealthGUI(width,height,myUIM);
-		temp3 = initDamageGUI(width,height,myUIM);
-		temp4 = initSpeedGUI(width,height,myUIM);
+		temp3 = initStrengthGUI(width,height,myUIM);
+		temp4 = initTimeGUI(width,height,myUIM);
 		int i;
 		for (i=0;i<12;i++){
-			System.out.println(i);
-			System.out.println(i+12);
-			System.out.println(i+24);
-			System.out.println(i+36);
+//			System.out.println(i);
+//			System.out.println(i+12);
+//			System.out.println(i+24);
+//			System.out.println(i+36);
 			state[i] = temp1[i];
 			state[i+12] = temp2[i];
 			state[i+24] = temp3[i];
@@ -257,13 +262,15 @@ public class SkillsActivity extends Activity{
 		}
 		
 		state[i+36] = title;
-		System.out.println(i+36);
+//		System.out.println(i+36);
 		state[i+36+1] = reset;
-		System.out.println(i+36+1);
+//		System.out.println(i+36+1);
 		state[i+36+2] = cancel;
-		System.out.println(i+36+2);
+//		System.out.println(i+36+2);
 		state[i+36+3] = ok;
-		System.out.println(i+36+3);
+//		System.out.println(i+36+3);
+		state[i+36+4] = coin;
+		state[i+36+5] = money;
 		myUIM.addState(state, false,0);
 		
 		
@@ -274,7 +281,7 @@ public class SkillsActivity extends Activity{
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		if (state){
 			globalVariable.setHealth(myUIM.getHealth(),countryID);
-			globalVariable.setSpeed(myUIM.getSpeed(),countryID);
+			globalVariable.setTime(myUIM.getSpeed(),countryID);
 			globalVariable.setDamage(myUIM.getDamage(),countryID);
 			globalVariable.setCost(myUIM.getCost(),countryID);
 		}
@@ -286,22 +293,24 @@ public class SkillsActivity extends Activity{
 		
 		
 		Bundle b = getIntent().getExtras();
-		int cost,health,strength,speed;
+		int cost,health,strength,time,money;
 		if (b!=null){
 			countryID = b.getInt("ID");
 			ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 			cost = globalVariable.getCost(countryID);
-			strength = globalVariable.getDamage(countryID);
+			strength = globalVariable.getStrength(countryID);
 			health = globalVariable.getHealth(countryID);
-			speed = globalVariable.getSpeed(countryID);
+			time = globalVariable.getTime(countryID);
+			money = globalVariable.getCountry(countryID).getMoney();
+			
 		}
 		else{
 			//STANDALONE TEST
 			cost = 1;
 			health = 2;
 			strength = 3;
-			speed = 4;
-			
+			time = 4;
+			money = 5;
 			
 			//RELEASE VERSION
 //			System.out.println("Skill activity has been started without country ID and skill points.");
@@ -319,9 +328,10 @@ public class SkillsActivity extends Activity{
 		myUIM = new SkillsUIManager();
 		myUIM.setCost(cost);
 		myUIM.setHealth(health);
-		myUIM.setDamage(strength);
-		myUIM.setSpeed(speed);
+		myUIM.setStrength(strength);
+		myUIM.setTime(time);
 		initGUI(width,height, myUIM);
+		myUIM.setMoney(money);
 		myUIM.update();
 		
 		setContentView(R.layout.activity_skills);

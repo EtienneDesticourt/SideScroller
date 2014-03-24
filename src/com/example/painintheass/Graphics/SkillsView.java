@@ -70,9 +70,14 @@ public class SkillsView extends View{
 		for (int i=0;i<state.length;i++){
 //			System.out.println(i);
 			currWidget = state[i];
-//			System.out.println(currWidget);
-			img = MyRM.getImage(currWidget.getCurrentImage());
-			c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);
+			if (currWidget.getString().equals("")){
+				//			System.out.println(currWidget);
+				img = MyRM.getImage(currWidget.getCurrentImage());
+				c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);
+			}
+			else{
+				c.drawText(currWidget.getString(), currWidget.getX(), currWidget.getY(), currWidget.getPaint());
+			}
 		}
 		
 		if (MyUIM.isEndActivity()){

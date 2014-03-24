@@ -49,6 +49,12 @@ public class UIManager {
 		this.setMyActivity(A);
 	}
 	
+	
+	public Widget getWidget(int stateIndex, int widgetIndex){
+		return states[stateIndex][widgetIndex];
+	}
+	
+	
 	public void addState(Widget[] state, boolean isAGameState, int backgroundIndex){
 		//isAGameState remnant of old drawing system.
 		states[stateNumber] = state;
@@ -233,7 +239,7 @@ public class UIManager {
 	public void increaseCost(){	
 	}
 	
-	public void increaseSpeed(){		
+	public void increaseTime(){		
 	}
 	
 	public void increaseStrength(){		

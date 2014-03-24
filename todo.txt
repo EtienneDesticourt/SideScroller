@@ -261,7 +261,6 @@ Combat Activity 		V
 ---------------------------------------------
 
 
-
 OptionsActivity			
 	Place Title			
 	Place music bar		
@@ -277,14 +276,17 @@ MapActivity
 	Implement enemy attack
 	Add skill and troup buying ability
 		
-SkillsActivity
-	Get money from country ID
-	Add cost to skills upgrade
+SkillsActivity								V
+	Get money from country ID				V
+	Add cost to skills upgrade				V
 	
 Combat Activity
+	Fix death for my side
+	Fix collision range for enemies
 	Move enemy castle
 	Stop camera at borders
 	Add soldier cost
+	Add AI
 
 Add sound system
 
@@ -299,6 +301,7 @@ MapActivity:
 	Add dialogues
 	
 Combat Activity:
+	Add money making system
 	Add red overlay from getting hit
 	Add castle building 
 	Add arrow spell
@@ -311,9 +314,52 @@ Combat Activity:
 	Add camera shake:
 		at each 0.1% of castle destruction
 		when using a destructive spell
+	Assets map (castles,units,...)
+	Add button desactivation
 		
 		
-		
+---------------------------------------------
+-----------------SFX LIST--------------------
+---------------------------------------------
+Menu activity:
+	Play button sound
+	
+Map activity:
+	Select country sound
+	Attack button sound (start of combat)
+	increse troups button sound at the same time money spent.
+	Skills/resolve/next turn buttons sound	
+	
+Skills activity:
+	Reset button sound
+	increase skill sound (One for each skill or the same for all)
+	Ok button sound
+	Cancel button sound
+
+Combat activity:
+	Open spell menu sound
+	Open menu sound
+	Click soldier button (archer,knight,mage all the same or all different?)
+	Unit spawning sound
+	Confirmation window popup sound?
+	Confirm or cancel buttons sound on confirmation window
+	
+	
+	Combat sounds:
+		Arrow being shot sound
+		Arrow hitting target sound 
+		Lots of arrow being shot sound (for arrow spell) 
+		healing spell sound
+		Sword being flung/hitting another sword sound
+		Magical projectile being shot sound (3 projectiles launched at a time)
+		Magical projectile hitting target sound?
+		Knight dying (wearing armor)
+		Archer dying (wearing leather)
+		Mage dying (wearing cloth)
+		Castle being hit
+		Sound to accompany camera shake( Accompanies spells and each 10% of castle destruction)
+		Victory and defeat tune 
+
 	
 
 				

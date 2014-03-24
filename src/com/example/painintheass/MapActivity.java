@@ -203,10 +203,10 @@ public class MapActivity extends Activity{
 //		Label coin3 = new Label(left,up,24);
 		
 
-		left = (int) (0.57*width);
-		up = (int) (0.218*height);
+		left = (int) (0.77*width);
+		up = (int) (0.29*height);
 		TextLabel troups = new TextLabel(left,up,"0000000");
-		up = (int) (0.328*height);
+		up = (int) (0.39*height);
 		TextLabel money = new TextLabel(left,up,"0000000");
 //		up = (int) (0.4375*height);
 //		TextLabel income = new TextLabel(left,up,"0000000");
@@ -346,7 +346,11 @@ public class MapActivity extends Activity{
 		myView.doneInitialiazing();
 		Country[] World = new Country[6];
 		initMap(width,height,myUIM,World);
-		System.out.println(3);
+
+		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
+		globalVariable.setWorld(World);
+		
+//		System.out.println(3);
 		
 		
 		
@@ -365,6 +369,10 @@ public class MapActivity extends Activity{
 			result += Integer.toString(World[i].getTroups())+" ";
 			result += Integer.toString(World[i].getIncome())+" ";
 			result += Integer.toString(World[i].getMoney())+" ";
+			result += Integer.toString(World[i].getCost())+" ";
+			result += Integer.toString(World[i].getTime())+" ";
+			result += Integer.toString(World[i].getHealth())+" ";
+			result += Integer.toString(World[i].getStrength())+" ";
 			result += "\n";
 			
 		}
@@ -423,7 +431,16 @@ public class MapActivity extends Activity{
 			World[i].setTroups(Integer.valueOf(current[1]));
 			World[i].setIncome(Integer.valueOf(current[2]));
 			World[i].setMoney(Integer.valueOf(current[3]));
-		}		
+			World[i].setCost(Integer.valueOf(current[4]));
+			World[i].setTime(Integer.valueOf(current[5]));
+			World[i].setHealth(Integer.valueOf(current[6]));
+			World[i].setStrength(Integer.valueOf(current[7]));
+		}	
+		
+
+		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
+		globalVariable.setWorld(World);
+		
 	}
 	
 	protected void onResume(){

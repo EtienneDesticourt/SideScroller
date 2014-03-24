@@ -34,6 +34,8 @@ public class SkillsResourceManager extends ResourceManager{
 			images[13] = BitmapFactory.decodeResource(res, R.drawable.ok_skills);
 			images[14] = BitmapFactory.decodeResource(res, R.drawable.cancel_skills);
 			images[15] = BitmapFactory.decodeResource(res, R.drawable.reset_skills);
+			images[16] = BitmapFactory.decodeResource(res, R.drawable.coin_skills);
+			
 			
 			
 			
