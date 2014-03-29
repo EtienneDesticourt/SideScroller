@@ -134,7 +134,7 @@ public class CombatResourceManager extends ResourceManager{
 		h = images[65].getHeight();
 		w = images[65].getWidth();
 		images[65] = Bitmap.createScaledBitmap(images[65],w/4,h/4,false);
-		anim = new Animation(59,65,2);
+		anim = new Animation(59,65,2,false);
 		this.addAnimation(2, 2, anim);
 		//System.out.println("Token 13");
 			//archer
@@ -211,7 +211,7 @@ public class CombatResourceManager extends ResourceManager{
 		h = images[38].getHeight();
 		w = images[38].getWidth();
 		images[38] = Bitmap.createScaledBitmap(images[38],w/4,h/4,false);
-		anim = new Animation(32,38,2);
+		anim = new Animation(32,38,2,false);
 		this.addAnimation(1, 2, anim);
 		//System.out.println("Token 16");
 			//mage
@@ -300,7 +300,7 @@ public class CombatResourceManager extends ResourceManager{
 		h = images[28].getHeight();
 		w = images[28].getWidth();
 		images[28] = Bitmap.createScaledBitmap(images[28],w/4,h/4,false);
-		anim = new Animation(18,28,2);
+		anim = new Animation(18,28,2,false);
 		this.addAnimation(3, 2, anim);
 		//System.out.println("Token 19");
 

@@ -213,7 +213,7 @@ public class CombatView extends View{
 		float percent;
 		int length;
 		Bitmap image;
-		int i;
+		int i,x,y;
 		Matrix matrix = new Matrix();
 		matrix.preScale(-1.0f, 1.0f);
 		
@@ -230,9 +230,9 @@ public class CombatView extends View{
         		
         		percent = currUnit.getLife()/ (float) currUnit.getMaxLife();
         		
-//        		length = (int) (percent*255);
-//        		MyPaint.setARGB(255,200, length,0);
-//        		MyPaint.setStyle(Paint.Style.STROKE);
+        		length = (int) (percent*255);
+        		MyPaint.setARGB(255,200, length,0);
+        		MyPaint.setStyle(Paint.Style.STROKE);
 //        		length =(int) (percent*100);
         		//c.drawRect(currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()-10+currUnit.getyMod(),currUnit.getX()-dX+length+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),MyPaint);
         		
@@ -252,15 +252,16 @@ public class CombatView extends View{
         			continue; //Castles don't deal with animations
         		}
         		
-        		
+        		x = currUnit.getX();
+        		y = currUnit.getY();
         		
         		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
         		image = MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame());
-        		if (teamIndex==1) image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false);
-        		c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+        		if (teamIndex==1) image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false); 
+        		c.drawBitmap(image,x-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
 
-				//newRect = currUnit.getBodyRect();
-				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+				newRect = currUnit.getBodyRect();
+				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         	}
         }
 	}

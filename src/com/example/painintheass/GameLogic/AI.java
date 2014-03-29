@@ -105,9 +105,11 @@ public class AI {
 		    					
 		    					currAnim = myRM.getAnimation(myUnits[i].getType(), action);
 		    					//System.out.println(myUnits[i].getType()+" "+action);
-		    					if ((current-lastTime)>currAnim.getSpeed()){ //crashes on 0 0
+		    					if ((current-lastTime)>currAnim.getSpeed()){ //crashes on 0 0 //Was it fixed? I hope so.
 		    						if (temp+1>currAnim.getLength()-1){
-			    						myUnits[i].setCurrFrame(0);
+		    							if (currAnim.isLoop()){
+		    								myUnits[i].setCurrFrame(0);
+		    							}
 			    					}
 			    					else{
 				    					myUnits[i].setCurrFrame(temp+1);		    						
@@ -200,8 +202,8 @@ public class AI {
 		    				}
 		    				for (int j=0;j<100;j++){
 		    					if (UnitsTeam1[j]==null && UnitsTeam0[j]==null){ break;}
-		    					if (UnitsTeam1[j]!=null){
-			    					if (myProjectiles0[i]!=null){
+		    					if (UnitsTeam1[j]!=null ){
+			    					if (UnitsTeam1[j].getAction()!= 2 && myProjectiles0[i]!=null){
 			    						if (Rect.intersects(UnitsTeam1[j].getBodyRect(), myProjectiles0[i].getMyRect() )){
 			    							UnitsTeam1[j].hit(myProjectiles0[i].getDamage(), true);
 			    							MyTeams[0].delProjectile(i);
@@ -209,7 +211,7 @@ public class AI {
 			    					}
 		    					}
 		    					if (UnitsTeam0[j]!=null){
-			    					if (myProjectiles1[i]!=null){
+			    					if (UnitsTeam0[j].getAction()!= 2 && myProjectiles1[i]!=null){
 			    						if(Rect.intersects(UnitsTeam0[j].getBodyRect(), myProjectiles1[i].getMyRect() )){
 			    							UnitsTeam0[j].hit(myProjectiles1[i].getDamage(), true);
 			    							MyTeams[1].delProjectile(i);

@@ -3,6 +3,7 @@ package com.example.painintheass.GameLogic;
 import java.util.Date;
 
 
+
 import android.graphics.Rect;
 
 
@@ -15,6 +16,7 @@ castle 30 0 200 235
 
 public class Unit {
 	private Team myTeam;
+	private int teamID;
 	boolean isMoving;
 	private boolean inUse;
 	private int x;
@@ -46,6 +48,7 @@ public class Unit {
 		this.unlock();
 		//System.out.println("I'm a new unit.");
 		myTeam = unitsTeam;
+		teamID = myTeam.getId();
 		isMoving = false;
 		currFrame = 0;
 		maxFrame = 4;
@@ -57,14 +60,29 @@ public class Unit {
 		attackRange = 10;
 		bodyRect = new Rect();
 		attackRect = new Rect();
-		bodyRect.left = x;
-		bodyRect.right = x+128;
+		if (teamID == 0 || true){
+			bodyRect.left = x;
+			bodyRect.right = x+128;
+		}
+		else{
+			bodyRect.left = x-128;
+			bodyRect.right = x;
+			
+		}
 		bodyRect.top = y;
 		bodyRect.bottom = y+128;
-		attackRect.left = x;
-		attackRect.right = x+attackRange;
 		attackRect.top = y;
 		attackRect.bottom = y+128;
+		System.out.println(teamID);
+		if (teamID == 0){
+			attackRect.left = x;
+			attackRect.right = x+attackRange;
+		}
+		else{
+			System.out.println("Init: Right:"+x+" Left:"+(x-attackRange));
+			attackRect.right = x;
+			attackRect.left = x-attackRange;
+		}
 		speed = 1;
 		damage = 10;
 		life = 100;
@@ -108,7 +126,13 @@ public class Unit {
 	
 	public void setAttackRange(int range){
 		this.attackRange = range;
-		this.attackRect.right = this.attackRect.left+range;
+		if (teamID == 0){
+			this.attackRect.right = this.attackRect.left+range;
+		}
+		else{
+			this.attackRect.left = this.attackRect.right-range;
+			System.out.println("Right:"+attackRect.right+" Left:"+attackRect.left);
+		}
 	}
 
 	public Unit getTarget(){
@@ -124,7 +148,7 @@ public class Unit {
 	}
 	
 	public void die(){
-		System.out.println("I'm so dead right now.");
+//		System.out.println("I'm so dead right now.");
 		action = 2;
 		delTime = new Date().getTime();
 		myTeam.appendDelQueue(this);
@@ -150,20 +174,28 @@ public class Unit {
 	
 	public void setBodyRect(int left, int top, int width, int height){
 		bodyRect.bottom = top+height;
-		bodyRect.left = left;
 		bodyRect.top = top;
-		bodyRect.right = left+width;
-		x = left;
 		y = top;
+		if (teamID==0 || true){
+			bodyRect.left = left;
+			bodyRect.right = left+width;
+		}
+		x = left;
 		setAttackRectFromBRect();
 		
 	}
 	
 	public void setAttackRectFromBRect(){
 		attackRect.top = bodyRect.top;
-		attackRect.left = bodyRect.left;
 		attackRect.bottom = bodyRect.bottom;
-		attackRect.right = bodyRect.left+attackRange;
+		if (teamID==0){
+			attackRect.left = bodyRect.left;
+			attackRect.right = bodyRect.left+attackRange;
+		}
+		else{
+			attackRect.left = bodyRect.right-attackRange;
+			attackRect.right = bodyRect.right;
+		}
 	}
 
 	public Rect getBodyRect(){

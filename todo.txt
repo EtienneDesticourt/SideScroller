@@ -271,22 +271,25 @@ OptionsActivity
 	Place cancel button	
 	
 
-MapActivity
-	Place text correctly
-	Implement enemy attack
-	Add skill and troup buying ability
+MapActivity									
+	Place text correctly					V
+	Implement enemy attack					
+	Add troup buying ability				
 		
 SkillsActivity								V
 	Get money from country ID				V
 	Add cost to skills upgrade				V
 	
-Combat Activity
-	Fix death for my side
-	Fix collision range for enemies
-	Move enemy castle
-	Stop camera at borders
-	Add soldier cost
-	Add AI
+Combat Activity								
+	Fix death for my side					V
+	Fix death anim							V
+	Fix projectile death problem			V
+	Fix out of bounds error					
+	Fix collision range for enemies			
+	Move enemy castle						
+	Stop camera at borders					
+	Add soldier cost						
+	Add AI									
 
 Add sound system
 
@@ -360,6 +363,6 @@ Combat activity:
 		Sound to accompany camera shake( Accompanies spells and each 10% of castle destruction)
 		Victory and defeat tune 
 
-	
+/petting cat
 
 				

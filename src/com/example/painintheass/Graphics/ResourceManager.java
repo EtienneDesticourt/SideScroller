@@ -54,6 +54,9 @@ public class ResourceManager {
 		myAnimations[unitType][action] = anim;
 	}
 	
+	
+	
+	
 //	public void animate(){
 //		new Thread(new Runnable() {
 //	        public void run() {
