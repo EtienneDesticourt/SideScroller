@@ -72,6 +72,7 @@ public class Team {
 	public void spawnSoldier(){
 		Unit temp = new Soldier(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 		money -= SOLDIERCOST;
@@ -80,6 +81,7 @@ public class Team {
 	public void spawnArcher(){
 		Unit temp = new Archer(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 		money -= ARCHERCOST;
@@ -88,6 +90,7 @@ public class Team {
 	public void spawnMage(){
 		Unit temp = new Mage(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 		money -= MAGECOST;
@@ -95,6 +98,7 @@ public class Team {
 	public void spawnKnight(){
 		Unit temp = new Knight(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
 		money -= KNIGHTCOST;
@@ -102,6 +106,7 @@ public class Team {
 	public void spawnDemoman(){
 		Unit temp = new Demoman(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);	
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
@@ -109,6 +114,7 @@ public class Team {
 	public void spawnCastle(){
 		Unit temp = new Castle(this);
 		int id = addUnit(temp);
+		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
@@ -152,6 +158,7 @@ public class Team {
 	}
 	
 	public int addUnit(Unit newUnit){
+		if (numberOfUnits>=100) return -2;
 		myUnits[numberOfUnits] = newUnit;
 		numberOfUnits ++;
 		return numberOfUnits-1;

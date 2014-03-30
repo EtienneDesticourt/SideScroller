@@ -3,7 +3,7 @@ package com.example.painintheass.GameLogic;
 import android.graphics.Rect;
 
 public class Castle extends Unit{
-	private static int xMod = -30;
+	private static int[] xMod = {-30,-30};
 	private static int yMod = 0;
 	private static int width = 200;
 	private static int height = 235;

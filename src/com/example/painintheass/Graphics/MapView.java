@@ -74,6 +74,7 @@ public class MapView extends View{
 		Bitmap img;
 		for (int i=0;i<state.length;i++){
 			currWidget = state[i];
+			if (!currWidget.isVisible()) continue;
 			if (currWidget.getString().equals("")){
 				img = MyRM.getImage(currWidget.getCurrentImage());
 				c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);

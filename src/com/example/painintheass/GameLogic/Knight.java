@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 public class Knight extends Unit {
 
-	private static int xMod = -70/4;
+	private static int[] xMod = {-70/4,-148/4};
 	private static int yMod = 0/4;
 	private static int width = 115/4;
 	private static int height = 295/4;
@@ -17,7 +17,7 @@ public class Knight extends Unit {
 		super.setBodyRect(temp.left, temp.top+sizeDif, width, height);
 		super.setxMod(xMod);		
 		super.setyMod(yMod);
-		super.setAttackRange(40);
+		super.setAttackRange(50);
 		super.setAttackSpeed(1000);
 		super.init();
 	}

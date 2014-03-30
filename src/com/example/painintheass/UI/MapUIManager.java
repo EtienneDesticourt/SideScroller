@@ -31,16 +31,14 @@ public class MapUIManager extends UIManager{
 	public void updateLabels(){
 		int index = selectedIndex;
 		Widget[] curState = this.getCurrentState();
-		curState[0].setString(Integer.toString(World[index].getTroups()));
-		curState[1].setString(Integer.toString(World[index].getIncome()));
+		curState[1].setString(Integer.toString(World[index].getTroups()));
 		curState[2].setString(Integer.toString(World[index].getMoney()));
 		
 	}
 	
 	public void updateLabels(int index){
 		Widget[] curState = this.getCurrentState();
-		curState[0].setString(Integer.toString(World[index].getTroups()));
-		curState[1].setString(Integer.toString(World[index].getIncome()));
+		curState[1].setString(Integer.toString(World[index].getTroups()));
 		curState[2].setString(Integer.toString(World[index].getMoney()));
 	}
 	

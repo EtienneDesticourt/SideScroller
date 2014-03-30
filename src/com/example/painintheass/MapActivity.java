@@ -50,6 +50,12 @@ public class MapActivity extends Activity{
 		World[4].setPlayerControlled(false);
 		World[5].setButton(Countries[5]);
 		World[5].setPlayerControlled(false);
+		
+		
+		
+		
+		
+		
 	}
 		
 	public void initMap(int width, int height, MapUIManager myUIM, Country[] World){
@@ -184,12 +190,19 @@ public class MapActivity extends Activity{
 		bheight = (int) (0.1375*height);
 		Button nextTurn = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
+				
 				Country[] World = myUIM.getWorld();
-				for (int i=0;i<5;i++){
-					World[i].nextTurn();
+				int i=0;
+				boolean attack = false;
+				while (!attack && i<6){
+					attack = World[i].nextTurn();
+					i++;
 				}
-
+				if (attack) myUIM.setCurrentStateIndex(3);
+				
 				myUIM.updateLabels();
+				
+				
 			}
 		};
 		nextTurn.setBackgroundImage(19);
@@ -268,11 +281,7 @@ public class MapActivity extends Activity{
 		bheight = (int) (0.0625*height);
 		Button buyTroups = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
-				Country Selected = myUIM.getSelected();
-				if (Selected.getMoney()>=10){
-					Selected.setMoney(Selected.getMoney()-10);
-					Selected.setTroups(Selected.getTroups()+10);
-				}
+				myUIM.getSelected().buyTroups();
 				myUIM.updateLabels();
 			}
 		};
@@ -307,8 +316,34 @@ public class MapActivity extends Activity{
 			}
 		};
 		resolve2.setBackgroundImage(23);
+
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow0 = new Label(left,up,29);
+		attackArrow0.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow1 = new Label(left,up,29);
+		attackArrow1.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow2 = new Label(left,up,29);
+		attackArrow2.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow3 = new Label(left,up,29);
+		attackArrow3.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow4 = new Label(left,up,29);
+		attackArrow4.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.578*height);
+		Label attackArrow5 = new Label(left,up,29);
+		attackArrow5.setVisible(false);
 		
-		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+				
+		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
 		myUIM.addState(mapState4,false,0);
 	}
 	

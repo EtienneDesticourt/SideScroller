@@ -22,7 +22,7 @@ public class Unit {
 	private int x;
 	private int y;
 	private int yMod=0;
-	private int xMod=0;
+	private int[] xMod={0,0};
 	private int width;
 	private int height;
 	private int speed;
@@ -64,11 +64,6 @@ public class Unit {
 			bodyRect.left = x;
 			bodyRect.right = x+128;
 		}
-		else{
-			bodyRect.left = x-128;
-			bodyRect.right = x;
-			
-		}
 		bodyRect.top = y;
 		bodyRect.bottom = y+128;
 		attackRect.top = y;
@@ -79,9 +74,8 @@ public class Unit {
 			attackRect.right = x+attackRange;
 		}
 		else{
-			System.out.println("Init: Right:"+x+" Left:"+(x-attackRange));
-			attackRect.right = x;
-			attackRect.left = x-attackRange;
+			attackRect.right = bodyRect.right;
+			attackRect.left = bodyRect.right-attackRange;
 		}
 		speed = 1;
 		damage = 10;
@@ -104,9 +98,10 @@ public class Unit {
 	}
 	
 	public void step(int side){
+//		if (true) return;
 		this.x += side*this.speed;
 		bodyRect.offsetTo(x, y);
-		attackRect.offsetTo(x, y);
+		setAttackRectFromBRect();
 	}
 	
 	
@@ -131,7 +126,6 @@ public class Unit {
 		}
 		else{
 			this.attackRect.left = this.attackRect.right-range;
-			System.out.println("Right:"+attackRect.right+" Left:"+attackRect.left);
 		}
 	}
 
@@ -193,8 +187,8 @@ public class Unit {
 			attackRect.right = bodyRect.left+attackRange;
 		}
 		else{
-			attackRect.left = bodyRect.right-attackRange;
 			attackRect.right = bodyRect.right;
+			attackRect.left = bodyRect.right-attackRange;
 		}
 	}
 
@@ -207,7 +201,7 @@ public class Unit {
 	}
 	
 	public void setAction(int newAction){
-		System.out.println("Someone is setting my action to "+newAction);
+//		System.out.println("Someone is setting my action to "+newAction);
 		this.action = newAction;
 	}	
 
@@ -314,11 +308,11 @@ public class Unit {
 		this.yMod = yMod;		
 	}
 
-	public int getxMod() {
-		return xMod;
+	public int getxMod(int teamIndex) {
+		return xMod[teamIndex];
 	}
 
-	public void setxMod(int xMod) {
+	public void setxMod(int[] xMod) {
 		this.xMod = xMod;
 	}
 

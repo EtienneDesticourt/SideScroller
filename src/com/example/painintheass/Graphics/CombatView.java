@@ -42,7 +42,7 @@ public class CombatView extends View{
 	public CombatView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		gameEnded = false;
-		MyCamera = new Camera(10);
+		MyCamera = new Camera(10,0,1000);
 		MyRM = new CombatResourceManager(context);
 		MyRM.load();
 		MyTeams = new Team[2];
@@ -213,7 +213,7 @@ public class CombatView extends View{
 		float percent;
 		int length;
 		Bitmap image;
-		int i,x,y;
+		int i,x,y,xmod;
 		Matrix matrix = new Matrix();
 		matrix.preScale(-1.0f, 1.0f);
 		
@@ -246,7 +246,7 @@ public class CombatView extends View{
         			image = MyRM.getImage(i);
         			
         			
-    				c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+    				c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod(),null);
     				//newRect = currUnit.getBodyRect();
     				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         			continue; //Castles don't deal with animations
@@ -258,10 +258,19 @@ public class CombatView extends View{
         		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
         		image = MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame());
         		if (teamIndex==1) image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false); 
-        		c.drawBitmap(image,x-dX+currUnit.getxMod(),currUnit.getY()+currUnit.getyMod(),null);
+        		c.drawBitmap(image,x-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod(),null);
+
+
+
+				newRect = currUnit.getAttackRect();
+				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
 
 				newRect = currUnit.getBodyRect();
 				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+				
+        		MyPaint.setARGB(255,255,0,0);
+        		MyPaint.setStyle(Paint.Style.FILL);
+        		c.drawRect(currUnit.getX()-dX, currUnit.getY(),currUnit.getX()+10-dX,currUnit.getY()+10,MyPaint);
         	}
         }
 	}

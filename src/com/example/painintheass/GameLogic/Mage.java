@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 public class Mage extends Unit{
 
-	private static int xMod = -45/4;
+	private static int[] xMod = {-45/4,-175/4};
 	private static int yMod = -50/4;
 	private static int width = 85/4;
 	private static int height = 230/4;

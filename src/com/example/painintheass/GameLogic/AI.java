@@ -34,9 +34,13 @@ public class AI {
 	        	while (gameIsRunning){
 	        		while (spawningUnits){
 	        			
+	        			
+	        			
 		        		current = new Date().getTime();
 		        		//System.out.println(current-lastSpawn);
 		        		if ((current-lastSpawn)>MyTeams[1].getSpawnSpeed()){
+//		        			MyTeams[1].spawnMage();
+//		        			if (true){ return;}
 		        			r = (int)(Math.random() * ((2) + 1));
 		        			if (r==0){MyTeams[1].spawnKnight();}
 		        			else if (r==1){MyTeams[1].spawnArcher();}

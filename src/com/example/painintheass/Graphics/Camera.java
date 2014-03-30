@@ -7,14 +7,17 @@ public class Camera {
 	private float speed;
 	private int width;
 	private int side;
+	private int minX,maxX;
 	
-	public Camera(int initSpeed){
+	public Camera(int initSpeed,int minX, int maxX){
 		this.x = 0;
 		this.y = 0;
 		this.dx = 0;
 		this.dy = 0;
 		this.ddx = 0;
 		this.ddy = 0;		
+		this.minX = minX;
+		this.maxX = maxX;
 		this.speed = initSpeed;
 		this.isMoving = false;
 	}
@@ -24,10 +27,13 @@ public class Camera {
 	}
 	
 	public void step(int side){
+		double newX,newY;
 		this.dx += ddx+0;
 		this.dy += ddy;
-		this.x += dx*side;
-		this.y += dy*side;
+		newX = x + dx*side;
+		newY = y + dy*side;
+		if (newX>minX && newX<maxX)	this.x = newX;
+		this.y = newY;
 		if (dx < 0){
 			dx = 0;
 			ddx = 0;

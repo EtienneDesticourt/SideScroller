@@ -17,6 +17,7 @@ public abstract class Widget {
 	private int currentImage;
 	private Rect myRect;
 	private String text;
+	private boolean visible;
 	
 
 	public Widget(int x, int y, int width, int height){
@@ -30,6 +31,7 @@ public abstract class Widget {
 		this.x = x;
 		this.y = y;
 		setCurrentImage(backgroundImage);
+		this.visible = true;
 	}
 	
 	public Widget(int x, int y, int width, int height,int backgroundImage, int highlighted, int grayed, int click){
@@ -203,6 +205,14 @@ public abstract class Widget {
 	public Paint getPaint(){
 		//Only for labels
 		return new Paint();
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 	
 }
