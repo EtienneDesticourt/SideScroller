@@ -17,6 +17,7 @@ public class Team {
 	private final static int ARCHERCOST = 10;
 	private final static int KNIGHTCOST = 10;
 	private final static int MAGECOST = 10;
+	private final static int MINERCOST = 10;
 	/////////////////////////////////////
 	
 	private int spawnX;
@@ -26,6 +27,7 @@ public class Team {
 
 	private int spawnSpeed;
 	private int money = 0;
+	private int income = 10;
 	private Unit[] myUnits;
 	private Unit[] delQueue;
 	private int numberToDelete=0;
@@ -68,8 +70,14 @@ public class Team {
 		
 	}
 	
+	public void spawnMiner(){
+		if (money < MINERCOST) return;
+		income += 10;
+		money -= MINERCOST;
+	}
 	
 	public void spawnSoldier(){
+		if (money < SOLDIERCOST) return;
 		Unit temp = new Soldier(this);
 		int id = addUnit(temp);
 		if (id==-2) return;
@@ -79,6 +87,7 @@ public class Team {
 		
 	}
 	public void spawnArcher(){
+		if (money < ARCHERCOST) return;
 		Unit temp = new Archer(this);
 		int id = addUnit(temp);
 		if (id==-2) return;
@@ -88,6 +97,7 @@ public class Team {
 		
 	}
 	public void spawnMage(){
+		if (money < MAGECOST) return;
 		Unit temp = new Mage(this);
 		int id = addUnit(temp);
 		if (id==-2) return;
@@ -96,6 +106,7 @@ public class Team {
 		money -= MAGECOST;
 	}
 	public void spawnKnight(){
+		if (money < KNIGHTCOST) return;
 		Unit temp = new Knight(this);
 		int id = addUnit(temp);
 		if (id==-2) return;

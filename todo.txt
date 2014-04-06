@@ -297,6 +297,7 @@ Combat Activity
 	Stop camera at borders					V
 	Add soldier cost						
 	Add money earning mechanism				
+	Add money display						
 	Add AI									
 
 (note: mage beats knight, knight beats archer, archer beats mage)								
