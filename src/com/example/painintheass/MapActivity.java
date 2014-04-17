@@ -317,33 +317,33 @@ public class MapActivity extends Activity{
 		};
 		resolve2.setBackgroundImage(23);
 
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow0 = new Label(left,up,29);
-		attackArrow0.setVisible(false);
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow1 = new Label(left,up,29);
-		attackArrow1.setVisible(false);
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow2 = new Label(left,up,29);
-		attackArrow2.setVisible(false);
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow3 = new Label(left,up,29);
-		attackArrow3.setVisible(false);
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow4 = new Label(left,up,29);
-		attackArrow4.setVisible(false);
-		left = (int) (0.583*width);
-		up = (int) (0.578*height);
-		Label attackArrow5 = new Label(left,up,29);
-		attackArrow5.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow0 = new Label(left,up,29);
+//		attackArrow0.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow1 = new Label(left,up,29);
+//		attackArrow1.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow2 = new Label(left,up,29);
+//		attackArrow2.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow3 = new Label(left,up,29);
+//		attackArrow3.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow4 = new Label(left,up,29);
+//		attackArrow4.setVisible(false);
+//		left = (int) (0.583*width);
+//		up = (int) (0.578*height);
+//		Label attackArrow5 = new Label(left,up,29);
+//		attackArrow5.setVisible(false);
 		
 				
-		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
+		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};//,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
 		myUIM.addState(mapState4,false,0);
 	}
 	

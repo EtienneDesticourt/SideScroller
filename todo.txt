@@ -320,7 +320,7 @@ Add sound system
 ------------------POLISH---------------------
 ---------------------------------------------
 	
-MapActivity:
+MapActivity:3
 	Add arrow pointing to target
 	Add turns to arrival of troups
 	Add troup depletion from attacks
@@ -343,7 +343,8 @@ Combat Activity:
 	Assets map (castles,units,...)
 	Add button desactivation
 		
-		
+All activities:
+	Add touch feedback
 ---------------------------------------------
 -----------------SFX LIST--------------------
 ---------------------------------------------
