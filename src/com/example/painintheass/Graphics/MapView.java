@@ -74,9 +74,18 @@ public class MapView extends View{
 		Bitmap img;
 		for (int i=0;i<state.length;i++){
 			currWidget = state[i];
+//			int x,y,image;
+//			String type;
+//			if (currWidget instanceof Button){
+//				type = ((Button) currWidget).getType();
+//				x = currWidget.getX();
+//				y = currWidget.getY();
+//				image = currWidget.getCurrentImage();
+//				type = ((Button) currWidget).getType();
+//			}
 			if (!currWidget.isVisible()) continue;
 			if (currWidget.getString().equals("")){
-				img = MyRM.getImage(currWidget.getCurrentImage());
+				img = MyRM.getImage(currWidget.getCurrentImage());				
 				c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);
 			}
 			else{

@@ -51,6 +51,41 @@ public class MapActivity extends Activity{
 		World[5].setButton(Countries[5]);
 		World[5].setPlayerControlled(false);
 		
+		Country[] adj;
+		adj = new Country[1];
+		adj[0] = World[1];
+		World[0].setAdjacentCountries(adj);
+		
+		adj = new Country[3];
+		adj[0] = World[0];
+		adj[1] = World[2];
+		adj[2] = World[3];
+		World[1].setAdjacentCountries(adj);
+		
+		adj = new Country[3];
+		adj[0] = World[1];
+		adj[1] = World[3];
+		adj[2] = World[5];
+		World[2].setAdjacentCountries(adj);
+		
+		adj = new Country[4];
+		adj[0] = World[1];
+		adj[1] = World[2];
+		adj[2] = World[4];
+		adj[3] = World[5];
+		World[3].setAdjacentCountries(adj);
+		
+		adj = new Country[2];
+		adj[0] = World[3];
+		adj[1] = World[5];
+		World[4].setAdjacentCountries(adj);
+		
+		adj = new Country[3];
+		adj[0] = World[3];
+		adj[1] = World[2];
+		adj[2] = World[4];
+		World[5].setAdjacentCountries(adj);
+		
 		
 		
 		
@@ -77,11 +112,26 @@ public class MapActivity extends Activity{
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(0);
+				if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==0){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[0].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);	
 			}
 		};
-
+		left = (int) 167;
+		up = (int) 228;
+		Label attackArrow0 = new Label(left,up,29);
+		attackArrow0.setVisible(false);
+		
 		
 		left = (int) (0.197*width);
 		up = (int) (0.545*height);
@@ -92,11 +142,27 @@ public class MapActivity extends Activity{
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(1);
+				if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==1){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[1].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);				
 			}
 		};
-
+		left = (int) 100;
+		up = (int) 215;
+		Label attackArrow1 = new Label(left,up,29);
+		attackArrow1.setVisible(false);
+		
+		
 		left = (int) (0.291*width);
 		up = (int) (0.3493*height);
 		bwidth = (int) (0.1375*width);
@@ -106,11 +172,27 @@ public class MapActivity extends Activity{
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(2);
+				if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==2){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[2].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);	
 			}
 		};
-
+		left = (int) 132;
+		up = (int) 147;
+		Label attackArrow2 = new Label(left,up,29);
+		attackArrow2.setVisible(false);
+		
+		
 		left = (int) (0.238*width);
 		up = (int) (0.53*height);
 		bwidth = (int) (0.0770833333333*width);
@@ -120,11 +202,27 @@ public class MapActivity extends Activity{
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(3);
+				if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==3){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[3].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);	
 			}
 		};
-
+		left = (int) 100;
+		up = (int) 173;
+		Label attackArrow3 = new Label(left,up,29);
+		attackArrow3.setVisible(false);
+		
+		
 		left = (int) (0.18*width);
 		up = (int) (0.418*height);
 		bwidth = (int) (0.108333333333*width);
@@ -133,12 +231,27 @@ public class MapActivity extends Activity{
 			public void onClick(UIManager myUIM){
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
-				myUIM.setSelected(4);
+				myUIM.setSelected(4);if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==4){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[4].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);				
 			}
 		};	
-
+		left = (int) 80;
+		up = (int) 145;
+		Label attackArrow4 = new Label(left,up,29);
+		attackArrow4.setVisible(false);
+		
+		
 		left = (int) (0.185*width);
 		up = (int) (0.245*height);
 		bwidth = (int) (0.19375*width);
@@ -147,12 +260,27 @@ public class MapActivity extends Activity{
 			public void onClick(UIManager myUIM){
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
-				myUIM.setSelected(5);
+				myUIM.setSelected(5);if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
+					//if under attack
+					if (myUIM.getAttacking().getID()==5){
+						//if clicking on attacking country
+						myUIM.setCurrentStateIndex(3);		//set resolve state
+						return;
+					}					
+					//if clicking on any other country
+					myUIM.setCurrentStateIndex(4);		//set all buttons disabled state
+					return;					
+				}
 				if (myUIM.getWorld()[5].isPlayerControlled())	myUIM.setCurrentStateIndex(2);
 				else myUIM.setCurrentStateIndex(1);					
 			}
 		};	
-
+		left = (int) 110;
+		up = (int) 102;
+		Label attackArrow5 = new Label(left,up,29);
+		attackArrow5.setVisible(false);
+		
+		
 		left = (int) (0.583*width);
 		up = (int) (0.499875*height);
 		bwidth = (int) (0.25*width);
@@ -189,16 +317,38 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.1375*height);
 		Button nextTurn = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager myUIM){
-				
+			public void onClick(UIManager uim){
+				MapUIManager myUIM = ((MapUIManager)uim);
 				Country[] World = myUIM.getWorld();
+				
+				for (int i=0;i<6;i++){
+					World[i].handleMoney();
+				}
+				
 				int i=0;
 				boolean attack = false;
 				while (!attack && i<6){
 					attack = World[i].nextTurn();
 					i++;
 				}
-				if (attack) myUIM.setCurrentStateIndex(3);
+				
+				if (attack) {
+					myUIM.setAttacking(World[i-1]);
+					myUIM.setDefending(World[World[i-1].getTargetID()]);
+					if ( myUIM.getSelected().getID() == (i-1) ){
+						myUIM.setCurrentStateIndex(3);
+					}
+					else{
+						myUIM.setCurrentStateIndex(4);
+					}
+
+					Widget[] state = myUIM.getCurrentState();
+					int index0 = state.length-(6-(i-1));
+					int index1 = state.length-(6-(World[i-1].getTargetID()));
+					state[index0].setVisible(true);
+					state[index1].setVisible(true);
+					
+				}
 				
 				myUIM.updateLabels();
 				
@@ -291,7 +441,7 @@ public class MapActivity extends Activity{
 		myUIM.addState(mapState3,false,0);
 		
 		
-		//4:MAP STATE, COUNTRY BEING ATTACKED
+		//4:MAP STATE, COUNTRY BEING ATTACKED, ATTACKING COUNTRY SELECTED
 		
 		left = (int) (0.583*width);
 		up = (int) (0.578*height);
@@ -299,7 +449,28 @@ public class MapActivity extends Activity{
 		bheight = (int) (0.0625*height);
 		Button attack2 = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
-				myUIM.setCurrentStateIndex(5);
+				
+
+
+				Widget[] state = myUIM.getCurrentState();
+				
+				int index0 = state.length-(6-myUIM.getAttacking().getID());
+				int index1 = state.length-(6-myUIM.getDefending().getID());
+				state[index0].setVisible(false);
+				state[index1].setVisible(false);
+				
+				Country cur = myUIM.getSelected();
+				if (cur==null){return;}
+				if (!cur.isPlayerControlled()){
+					Intent intent = myUIM.getIntent(2);
+					Bundle b = new Bundle();
+					b.putInt("ID", cur.getID()); 
+					intent.putExtras(b); 
+					startActivity(intent);
+					myUIM.setAttacking(cur);
+				}
+				//myUIM.setCurrentStateIndex(5); //Start battle 
+				//myUIM.setCurrentStateIndex(5);
 				//myUIM.setAttackingIndex()
 			}
 		};
@@ -312,39 +483,47 @@ public class MapActivity extends Activity{
 				if (result<0){
 					myUIM.getDefending().setPlayerControlled(false);
 				}
+				
+				
+
+				Widget[] state = myUIM.getCurrentState();
+				
+				int index0 = state.length-(6-myUIM.getAttacking().getID());
+				int index1 = state.length-(6-myUIM.getDefending().getID());
+				state[index0].setVisible(false);
+				state[index1].setVisible(false);
+				
+				
 				myUIM.setCurrentStateIndex(1);
 			}
 		};
 		resolve2.setBackgroundImage(23);
 
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow0 = new Label(left,up,29);
-//		attackArrow0.setVisible(false);
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow1 = new Label(left,up,29);
-//		attackArrow1.setVisible(false);
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow2 = new Label(left,up,29);
-//		attackArrow2.setVisible(false);
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow3 = new Label(left,up,29);
-//		attackArrow3.setVisible(false);
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow4 = new Label(left,up,29);
-//		attackArrow4.setVisible(false);
-//		left = (int) (0.583*width);
-//		up = (int) (0.578*height);
-//		Label attackArrow5 = new Label(left,up,29);
-//		attackArrow5.setVisible(false);
+		left = (int) (0.583*width);
+		up = (int) (0.734*height);
+		bwidth = (int) (0.25*width);
+		bheight = (int) (0.1375*height);
+		Button nextTurn1 = new Button(left,up,bwidth,bheight) {			
+			public void onClick(UIManager myUIM) {
+												
+			}			
+		};
+		nextTurn1.setBackgroundImage(30);
 		
-				
-		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};//,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
+		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
 		myUIM.addState(mapState4,false,0);
+		
+		//5: COUNTRY BEING ATTACKED, ATTACKING COUNTRY NOT SELECTED
+		
+		
+		
+		
+		
+		Widget[] mapState5 = {skills2,troups,money,attack1,resolve1,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
+		myUIM.addState(mapState5,false,0);
+		
+		pays1.onClick(myUIM);
+		
 	}
 	
 	
@@ -381,7 +560,6 @@ public class MapActivity extends Activity{
 		myView.doneInitialiazing();
 		Country[] World = new Country[6];
 		initMap(width,height,myUIM,World);
-
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		globalVariable.setWorld(World);
 		
@@ -480,6 +658,12 @@ public class MapActivity extends Activity{
 	
 	protected void onResume(){
 		super.onResume();
+		
+		myUIM.updateLabels();
+		
+		
+		
+		
 		//Read file in Internal Storage
 		System.out.println(getFilesDir());
 		

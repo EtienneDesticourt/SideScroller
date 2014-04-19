@@ -271,21 +271,23 @@ OptionsActivity
 	Place cancel button	
 	
 
-MapActivity									
+MapActivity									V
 	Place text correctly					V
 	Fix buyTroups button					V
 	Fix troup display						V
 	Implement enemy attack					V
 	Show enemy attack						V
 	Add troup buying ability				V
-	Position attack arrow for each country  
+	Position attack arrow for each country  V
+	Fix next turn button					V
 	
 	
 			
-SkillsActivity								
+SkillsActivity								V
 	Get money from country ID				V
 	Add cost to skills upgrade				V
-	Fix money cost in skill->map			
+	Fix money display reset					V
+	Fix money cost in skill->map			V
 	
 Combat Activity								
 	Fix death for my side					V
@@ -293,10 +295,13 @@ Combat Activity
 	Fix projectile death problem			V
 	Fix out of bounds error					V
 	Fix collision range for enemies			V
-	Move enemy castle						
 	Stop camera at borders					V
-	Add soldier cost						
-	Add money earning mechanism				
+	Add soldier cost						V
+	Add money earning mechanism				V
+	Add money display						V
+	Fix victory
+	Fix defeat
+	Move enemy castle						
 	Add AI									
 
 (note: mage beats knight, knight beats archer, archer beats mage)								
@@ -321,13 +326,13 @@ Add sound system
 ---------------------------------------------
 	
 MapActivity:3
-	Add arrow pointing to target
+	Make arrow move
 	Add turns to arrival of troups
 	Add troup depletion from attacks
 	Add dialogues
 	
 Combat Activity:
-	Add money making system
+	Add number of miners
 	Add red overlay from getting hit
 	Add castle building 
 	Add arrow spell

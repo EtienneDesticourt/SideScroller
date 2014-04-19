@@ -336,7 +336,8 @@ public class CombatView extends View{
 		drawUnits(c);        
         drawProjectiles(c);
 		drawGUI(c);
-		
+		MyUIM.updateMoney();
+		MyUIM.updateLabels();
 		invalidate();
 		
 //		try {

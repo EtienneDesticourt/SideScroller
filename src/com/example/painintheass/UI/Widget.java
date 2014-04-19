@@ -49,6 +49,7 @@ public abstract class Widget {
 		this.greyedImage = grayed;
 		this.clickedImage = click;
 		setCurrentImage(backgroundImage);
+		this.visible = true;
 		
 	}
 	

@@ -27,7 +27,7 @@ public class CombatActivity extends Activity {
 
 		
 		
-		
+		//32..5
 		
 		
 		left = (int) (0.02083*width);
@@ -45,6 +45,21 @@ public class CombatActivity extends Activity {
 				}
 			}
 		};
+		
+		left = (int) (0.16875*width);
+		up = (int) (0.040625*height);
+		bwidth = (int) (0.12708*width);
+		bheight = (int) (0.15625*height);
+		Button miner = new Button(left,up,bwidth,bheight,82,82,82,82) {
+			public void onClick(UIManager myUIM){
+				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
+				myUIM.getMyPlayerTeam().spawnMiner();
+			}
+		};
+		
+		
+		
+		
 		
 		left = (int) (0.30625*width);
 		up = (int) (0.040625*height);
@@ -80,6 +95,16 @@ public class CombatActivity extends Activity {
 			}
 		};
 		
+
+		left = (int) (0.798*width);
+		up = (int) (0.125*height);
+		TextLabel money = new TextLabel(left,up,"0000000");
+		
+		left = (int) (0.805*width);
+		up = (int) (0.075625*height);
+		Label coin = new Label(left,up,81);
+
+		
 		left = (int) (0.875*width);
 		up = (int) (0.040625*height);
 		bwidth = (int) (0.10416*width);
@@ -96,7 +121,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 
-		Widget[] state = {menu,archer,knight,mage,spell};
+		Widget[] state = {money,menu,archer,knight,mage,spell,miner,coin};
 		myUIM.addState(state, true, 0);
 		
 		//MENU SUBMENU
@@ -127,7 +152,7 @@ public class CombatActivity extends Activity {
 		};
 		
 
-		Widget[] state2 = {menu,archer,knight,mage,spell,map,options,quit};
+		Widget[] state2 = {money,menu,archer,knight,mage,spell,map,options,quit,miner,coin};
 		myUIM.addState(state2, true, 0);
 		
 		//SPELLS SUBMENU
@@ -156,7 +181,7 @@ public class CombatActivity extends Activity {
 		};
 		
 
-		Widget[] state3 = {menu,archer,knight,mage,spell,fire,meteor,stars};
+		Widget[] state3 = {money,menu,archer,knight,mage,spell,fire,meteor,stars,miner,coin};
 		myUIM.addState(state3, true, 0);
 		
 		
@@ -184,7 +209,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 		
-		Widget[] state4 = {menu,archer,knight,mage,spell,confirmWindow,ok,cancel};
+		Widget[] state4 = {money,menu,archer,knight,mage,spell,confirmWindow,ok,cancel,miner,coin};
 		myUIM.addState(state4, true, 0);
 		
 		//CONFIRM STATE 2
@@ -200,7 +225,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 		
-		Widget[] state5 = {menu,archer,knight,mage,spell,confirmWindow,ok2,cancel};
+		Widget[] state5 = {money,menu,archer,knight,mage,spell,confirmWindow,ok2,cancel,miner,coin};
 		myUIM.addState(state5, true, 0);
 		
 	}

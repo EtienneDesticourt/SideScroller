@@ -97,6 +97,7 @@ public class SkillsUIManager extends UIManager{
 		for (int i=STRENGTHSTART+strength;i<STRENGTHSTART+11;i++){
 			widgets[i].setCurrentImage(widgets[i].getBackgroundImage());
 		}	
+		getWidget(0,53).setString(String.valueOf(money));
 	}
 	
 	

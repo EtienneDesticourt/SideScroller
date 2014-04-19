@@ -44,6 +44,8 @@ public class CombatResourceManager extends ResourceManager{
 		images[78] = BitmapFactory.decodeResource(res,R.drawable.confirm_window_combat,op);
 		images[79] = BitmapFactory.decodeResource(res,R.drawable.yes_combat,op);
 		images[80] = BitmapFactory.decodeResource(res,R.drawable.no_combat,op);
+		images[81] = BitmapFactory.decodeResource(res,R.drawable.coin_skills,op);
+		images[82] = BitmapFactory.decodeResource(res,R.drawable.combat_miner,op);
 		//Anims
 		
 //		AnimationDrawable anim;

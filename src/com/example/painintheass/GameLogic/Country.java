@@ -30,25 +30,29 @@ public class Country {
 		money = 100;
 	}
 	
+	public void handleMoney(){
+		money += income;
+		if (isPlayerControlled()) return;
+		
+		while (money >= TROUPCOST){
+			buyTroups();
+		}
+	}
+	
 	public boolean nextTurn(){
 		
 		Country cur;
 		int mod;
 		boolean attacking=false;
-
-		money += income;
-		if (isPlayerControlled()) return false;
 		
-		while (money >= TROUPCOST){
-			buyTroups();
-		}
+		
 		
 		for (int i=0;i<adjacentCountries.length;i++){
 			cur = adjacentCountries[i];
 			if (!cur.isPlayerControlled()) continue;			
 			
 			mod = cur.getCost()+cur.getHealth()+cur.getStrength()+cur.getTime();
-			if ( (mod*5+cur.getTroups()) > troups ){
+			if ( (mod*5+cur.getTroups()) < troups ){
 				attacking = true;
 				cur.setUnderAttack(true);
 				targetID = cur.getID();				
@@ -61,6 +65,11 @@ public class Country {
 		
 		
 		
+	}
+	
+	
+	public void setAdjacentCountries(Country[] adj){
+		this.adjacentCountries = adj;
 	}
 	
 	

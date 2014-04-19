@@ -284,6 +284,7 @@ public class SkillsActivity extends Activity{
 			globalVariable.setTime(myUIM.getSpeed(),countryID);
 			globalVariable.setDamage(myUIM.getDamage(),countryID);
 			globalVariable.setCost(myUIM.getCost(),countryID);
+			globalVariable.setMoney(myUIM.getMoney(),countryID);
 		}
 		this.finish();
 	}

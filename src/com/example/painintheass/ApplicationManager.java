@@ -65,6 +65,11 @@ public class ApplicationManager extends Application {
 	public void setWorld(Country[] newWorld){
 		this.World = newWorld;
 	}
+
+	public void setMoney(int money, int countryID) {
+		this.World[countryID].setMoney(money);
+		
+	}
 	
 	
 }

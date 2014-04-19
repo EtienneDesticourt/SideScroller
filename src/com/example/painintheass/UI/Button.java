@@ -12,6 +12,7 @@ public abstract class Button extends Widget{
 
 	
 	public abstract void onClick(UIManager myUIM);
+
 	
 	
 	
