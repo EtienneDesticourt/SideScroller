@@ -28,7 +28,7 @@ public class Team {
 
 	private long lastIncome;
 	private int spawnSpeed;
-	private int money = 0;
+	private int money = 1000;
 	private int income = 10;
 	private Unit[] myUnits;
 	private Unit[] delQueue;

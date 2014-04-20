@@ -228,8 +228,35 @@ public class CombatActivity extends Activity {
 		Widget[] state5 = {money,menu,archer,knight,mage,spell,confirmWindow,ok2,cancel,miner,coin};
 		myUIM.addState(state5, true, 0);
 		
+		
+		//VICTORY STATE
+
+		up = 110;
+		Label victory = new Label(left,up,77);
+		
+		up = 180;
+		left += 75;
+		Button ok3 = new Button(left,up,bwidth,bheight,79,79,79,79) {
+			public void onClick(UIManager myUIM) {
+				myUIM.setExitFlag(2);	
+				myUIM.setEndActivity(true);			
+			}			
+		};
+		Widget[] state6 = {money,menu,archer,knight,mage,spell,miner,coin,victory,ok3};
+		myUIM.addState(state6, true, 0);
+		
+		
+		//DEFEAT STATE
+		
+		up=110;
+		left = (int) (0.2875*width);
+		Label defeat = new Label(left,up,76);
+
+		Widget[] state7 = {money,menu,archer,knight,mage,spell,miner,coin,defeat,ok3};
+		myUIM.addState(state7, true, 0);
+		
+		
 	}
-	
 	public void endAll(){
 		this.finish();
 		Intent intent = new Intent(Intent.ACTION_MAIN);

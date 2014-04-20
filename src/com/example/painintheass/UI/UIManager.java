@@ -30,7 +30,7 @@ public class UIManager {
 	private int speed;
 	private int damage;
 	private int cost;
-	private int exitFlag;
+	private int exitFlag; //0:exit to map, 1: exit app to home,2:exit with victory or defeat
 	
 	public UIManager(){
 		

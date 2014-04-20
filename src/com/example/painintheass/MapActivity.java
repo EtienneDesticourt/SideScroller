@@ -294,7 +294,7 @@ public class MapActivity extends Activity{
 					Bundle b = new Bundle();
 					b.putInt("ID", cur.getID()); 
 					intent.putExtras(b); 
-					startActivity(intent);
+					startActivityForResult(intent,1);
 				}
 			}
 		};
@@ -407,7 +407,7 @@ public class MapActivity extends Activity{
 					Bundle b = new Bundle();
 					b.putInt("ID", cur.getID()); 
 					intent.putExtras(b); 
-					startActivity(intent);
+					startActivityForResult(intent,1);
 					myUIM.setAttacking(cur);
 				}
 				//myUIM.setCurrentStateIndex(5); //Start battle 
@@ -466,7 +466,7 @@ public class MapActivity extends Activity{
 					Bundle b = new Bundle();
 					b.putInt("ID", cur.getID()); 
 					intent.putExtras(b); 
-					startActivity(intent);
+					startActivityForResult(intent,1);
 					myUIM.setAttacking(cur);
 				}
 				//myUIM.setCurrentStateIndex(5); //Start battle 
@@ -538,6 +538,9 @@ public class MapActivity extends Activity{
 				//Write your code if there's no result
 			}
 		}
+		myUIM.setAttacking(null);
+		myUIM.setDefending(null);
+		myUIM.setCurrentStateIndex(0);
 	}
 	
 

@@ -35,6 +35,7 @@ public class CombatView extends View{
 	private boolean lastClicked = false;
 	private Team[] MyTeams;
 	private Paint MyPaint;
+	private boolean victoryState;
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;// Gesture detection
 	private boolean gameEnded;
@@ -92,12 +93,12 @@ public class CombatView extends View{
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result",state);
 		dad.setResult(dad.RESULT_OK,returnIntent);
-		if (state==true){
-			//display win
-		}
-		else{
-			//display loss
-		}
+//		if (state==true){
+//			//display win
+//		}
+//		else{
+//			//display loss
+//		}
         dad.finish(); //I KNOW I KNOW, IT'S WRONG
 	}
 	
@@ -105,6 +106,9 @@ public class CombatView extends View{
 		CombatActivity dad = ((CombatActivity)getContext());
 		if (full==1){
 			dad.endAll();
+		}
+		else if (full==2){
+			endGame(victoryState);
 		}
 		else{
 			dad.finish();
@@ -189,20 +193,21 @@ public class CombatView extends View{
 	}
 		
 	protected void checkVictory(Unit currUnit, Canvas c){
-		boolean state;
 		
-		if (currUnit.getAction() == 3){ //IF DESTROYED
+		if (currUnit.getAction() == 2){ //IF DESTROYED
 			
 			if (currUnit.getMyTeam().getId()==0){ //IF MY TEAM: LOSE
-				state=true;
-				c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
+				victoryState=false;
+				MyUIM.setCurrentStateIndex(6);
+//				c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
 			}
 			else{ //IF NOT MY TEAM: WIN
-				state=false;
-				c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
+				victoryState=true;
+				MyUIM.setCurrentStateIndex(5);
+//				c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
 			}
 			
-			endGame(state);
+//			endGame(state);
 		}
 	}
 		
@@ -262,15 +267,15 @@ public class CombatView extends View{
 
 
 
-				newRect = currUnit.getAttackRect();
-				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
-
-				newRect = currUnit.getBodyRect();
-				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
-				
-        		MyPaint.setARGB(255,255,0,0);
-        		MyPaint.setStyle(Paint.Style.FILL);
-        		c.drawRect(currUnit.getX()-dX, currUnit.getY(),currUnit.getX()+10-dX,currUnit.getY()+10,MyPaint);
+//				newRect = currUnit.getAttackRect();
+//				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+//
+//				newRect = currUnit.getBodyRect();
+//				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
+//				
+//        		MyPaint.setARGB(255,255,0,0);
+//        		MyPaint.setStyle(Paint.Style.FILL);
+//        		c.drawRect(currUnit.getX()-dX, currUnit.getY(),currUnit.getX()+10-dX,currUnit.getY()+10,MyPaint);
         	}
         }
 	}

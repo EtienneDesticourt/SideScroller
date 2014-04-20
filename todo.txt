@@ -271,7 +271,7 @@ OptionsActivity
 	Place cancel button	
 	
 
-MapActivity									V
+MapActivity									
 	Place text correctly					V
 	Fix buyTroups button					V
 	Fix troup display						V
@@ -279,7 +279,8 @@ MapActivity									V
 	Show enemy attack						V
 	Add troup buying ability				V
 	Position attack arrow for each country  V
-	Fix next turn button					V
+	Fix next turn button					
+	Add engame state
 	
 	
 			
@@ -299,8 +300,8 @@ Combat Activity
 	Add soldier cost						V
 	Add money earning mechanism				V
 	Add money display						V
-	Fix victory
-	Fix defeat
+	Fix victory								V
+	Fix defeat								V
 	Move enemy castle						
 	Add AI									
 
