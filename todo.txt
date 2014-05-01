@@ -279,8 +279,9 @@ MapActivity
 	Show enemy attack						V
 	Add troup buying ability				V
 	Position attack arrow for each country  V
-	Fix next turn button					
-	Add engame state
+	Fix next turn button					V
+	Add engame state						V
+	Add adjacent attack						
 	
 	
 			
@@ -331,23 +332,27 @@ MapActivity:3
 	Add turns to arrival of troups
 	Add troup depletion from attacks
 	Add dialogues
-	
+
+idea: stars speed up
+
 Combat Activity:
-	Add number of miners
-	Add red overlay from getting hit
-	Add castle building 
-	Add arrow spell
-	Add fire spell
-	Add healing spell
-	Add particles:
-		dust
-		stars for healing
-		sparks for hitting
-	Add camera shake:
-		at each 10% of castle destruction
-		when using a destructive spell
-	Assets map (castles,units,...)
-	Add button desactivation
+	Add number of miners						V
+	Add price indication						
+	Add income every time it hits				V
+	Add red overlay from getting hit			V
+	Add castle building 						X
+	Add projectile spell						V
+	Add speed spell								X
+	Add healing spell							V
+	Add particles:								V
+		dust									X
+		stars for healing						V
+		sparks for hitting						X
+	Add camera shake:							V
+		at each 10% of castle destruction		V
+		when using a destructive spell			V
+	Assets map (castles,units,...)				
+	Add button desactivation					
 		
 All activities:
 	Add touch feedback

@@ -22,9 +22,10 @@ public class Knight extends Unit {
 		super.init();
 	}
 
-	public void hit(int damage, boolean ranged){
+	public void hit(int damage, boolean ranged, int type){
+		this.setHit(true);
 		if (ranged==false){
-			super.hit(damage, ranged);
+			super.hit(damage, ranged,type);
 		}
 	}
 }

@@ -45,7 +45,7 @@ public class Country {
 		int mod;
 		boolean attacking=false;
 		
-		
+		if (isPlayerControlled()) return false;
 		
 		for (int i=0;i<adjacentCountries.length;i++){
 			cur = adjacentCountries[i];

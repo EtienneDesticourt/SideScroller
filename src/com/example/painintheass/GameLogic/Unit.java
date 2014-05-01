@@ -43,6 +43,8 @@ public class Unit {
 	private long lastAttack;
 	private long lastAnimUpdate;
 	private int id;
+	private boolean hitFlag;
+	private int hitFrames = 0;
 	
 	public Unit(Team unitsTeam){
 		this.unlock();
@@ -68,7 +70,7 @@ public class Unit {
 		bodyRect.bottom = y+128;
 		attackRect.top = y;
 		attackRect.bottom = y+128;
-		System.out.println(teamID);
+		//System.out.println(teamID);
 		if (teamID == 0){
 			attackRect.left = x;
 			attackRect.right = x+attackRange;
@@ -106,13 +108,14 @@ public class Unit {
 	
 	
 	public void attack(){
-		Target.hit(damage,false);
+		Target.hit(damage,false,0);
 		if (Target.getAction()==2){
 			action = 0;
 		}
 	}
 	
-	public void hit(int damage,boolean ranged){
+	public void hit(int damage,boolean ranged, int type){
+		this.setHit(true);
 		this.life -= damage;
 		if (this.life < 0 && action != 2){
 			die();
@@ -316,6 +319,25 @@ public class Unit {
 		this.xMod = xMod;
 	}
 
+	public boolean isHit() {
+		return hitFlag;
+	}
+
+	public void setHit(boolean hit) {
+		this.hitFlag = hit;
+	}
+
+	public int getHitFrames() {
+		return hitFrames;
+	}
+
+	public void setHitFrames(int hitFrames) {
+		this.hitFrames = hitFrames;
+	}
+
+	public void increaseHitFrames(){
+		this.hitFrames += 1;
+	}
 	
 }
 

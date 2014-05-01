@@ -12,8 +12,9 @@ public class CombatUIManager extends UIManager{
 	private Team myEnemyTeam;
 	private Player myPlayer;
 	private AI myAI;
-	private static final long INCOMEDELAY=20000;
-	
+	private static final long INCOMEDELAY=5000;
+	private boolean healOnTouch = false;
+	private boolean spawnProjectile = false;
 	public CombatUIManager(Team playerTeam, Team enemyTeam, Player mainPlayer) {
 		super();
 
@@ -35,15 +36,18 @@ public class CombatUIManager extends UIManager{
 	public void updateLabels(){
 		Widget[] curState = this.getCurrentState();
 		curState[0].setString(Integer.toString(myPlayerTeam.getMoney()));
+		curState[2].setString(Integer.toString(myPlayerTeam.getMiners()));
 	}
 	
-	public void updateMoney(){
+	public boolean updateMoney(){
 		long current = new Date().getTime();
 		if (current-myPlayerTeam.getLastIncome() > INCOMEDELAY){
 			myPlayerTeam.increaseMoney();
 			myPlayerTeam.setLastIncome(current);
 			updateLabels();
+			return true;
 		}
+		return false;
 	}
 	
 	public AI getMyAI() {
@@ -77,6 +81,22 @@ public class CombatUIManager extends UIManager{
 
 	public void setMyEnemyTeam(Team myEnemyTeam) {
 		this.myEnemyTeam = myEnemyTeam;
+	}
+
+	public boolean mustHealOnTouch() {
+		return healOnTouch;
+	}
+
+	public void setHealOnTouch(boolean healOnTouch) {
+		this.healOnTouch = healOnTouch;
+	}
+
+	public boolean mustSpawnProjectile() {
+		return spawnProjectile;
+	}
+
+	public void setSpawnProjectile(boolean spawnProjectile) {
+		this.spawnProjectile = spawnProjectile;
 	}
 	
 }

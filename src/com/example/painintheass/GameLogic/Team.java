@@ -30,6 +30,7 @@ public class Team {
 	private int spawnSpeed;
 	private int money = 1000;
 	private int income = 10;
+	private int miners = 1;
 	private Unit[] myUnits;
 	private Unit[] delQueue;
 	private int numberToDelete=0;
@@ -60,6 +61,9 @@ public class Team {
 	}
 
 	
+	public int getIncome(){
+		return income;
+	}
 	
 	public void increaseMoney(){
 		money += income;
@@ -80,6 +84,7 @@ public class Team {
 	public void spawnMiner(){
 		if (money < MINERCOST) return;
 		income += INCOMEBOOST;
+		setMiners(getMiners() + 1);
 		money -= MINERCOST;
 	}
 	
@@ -187,6 +192,7 @@ public class Team {
 		numberOfProjectiles ++;
 	}
 	
+	
 	public void delProjectile(int index){
 		myProjectiles[index] = myProjectiles[numberOfProjectiles-1];
 		myProjectiles[numberOfProjectiles-1] = null;
@@ -260,6 +266,18 @@ public class Team {
 
 	public void setLastIncome(long lastIncome) {
 		this.lastIncome = lastIncome;
+	}
+
+
+
+	public int getMiners() {
+		return miners;
+	}
+
+
+
+	public void setMiners(int miners) {
+		this.miners = miners;
 	}
 
 //	public void setUnits(Unit[] myUnits) {

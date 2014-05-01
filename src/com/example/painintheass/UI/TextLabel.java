@@ -30,6 +30,8 @@ public class TextLabel extends Label{
 		return myPaint;
 	}
 	
-	
+	public void setPaint(Paint newPaint){
+		myPaint = newPaint;
+	}
 
 }

@@ -3,6 +3,7 @@ package com.example.painintheass.Graphics;
 import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MapActivity;
 import com.example.painintheass.GameLogic.Castle;
+import com.example.painintheass.GameLogic.FallingProjectile;
 import com.example.painintheass.GameLogic.Projectile;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.GameLogic.Unit;
@@ -13,13 +14,24 @@ import com.example.painintheass.UI.Widget;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.AvoidXfermode.Mode;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.Shader.TileMode;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -35,19 +47,40 @@ public class CombatView extends View{
 	private boolean lastClicked = false;
 	private Team[] MyTeams;
 	private Paint MyPaint;
+	private Paint ParticlePaint;
+	private Paint IncomePaint;
+	private Rect HealingRect;
 	private boolean victoryState;
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;// Gesture detection
 	private boolean gameEnded;
+	private ParticleHandler MyParticleHandler;
 
 	public CombatView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		gameEnded = false;
 		MyCamera = new Camera(10,0,1000);
+		MyParticleHandler = new ParticleHandler();
 		MyRM = new CombatResourceManager(context);
 		MyRM.load();
 		MyTeams = new Team[2];
 		MyPaint = new Paint();
+		ParticlePaint = new Paint();
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+//		    setLayerType(LAYER_TYPE_SOFTWARE, IncomePaint);
+//		}
+		
+		IncomePaint = new Paint();
+		IncomePaint.setTextAlign(Align.LEFT);
+		IncomePaint.setAlpha(255);
+		IncomePaint.setTextSize(IncomePaint.getTextSize()*2);
+		Typeface tf = Typeface.create("Helvetica",Typeface.BOLD);
+		IncomePaint.setTypeface(tf);
+		IncomePaint.setFakeBoldText(true);
+        IncomePaint.setStyle(Paint.Style.FILL);
+        IncomePaint.setAntiAlias(true);
+		IncomePaint.setColor(Color.GREEN);
+		HealingRect = new Rect();
 		
 
 	    gestureDetector = new GestureDetector(new MyGestureDetector());
@@ -152,6 +185,67 @@ public class CombatView extends View{
 //			}
 //			lastClicked = !lastClicked;
 			
+//			MyCamera.shake();
+			int dX = (int) MyCamera.getX();	
+			int dY = (int) MyCamera.getY();	
+			
+			if (MyUIM.mustHealOnTouch()){ //HEALING SPELL
+				HealingRect.set((int) e.getX()-100+dX, 0,(int) e.getX()+100+dX, 800);
+				Unit[] Units = MyTeams[0].getUnits();
+				Unit U;
+				if (MyTeams[0].getMoney()<100) {
+					MyUIM.setHealOnTouch(false);
+					return true;
+				}
+				MyTeams[0].setMoney(MyTeams[0].getMoney()-100);
+				for (int i=0;i<100;i++){
+					U = Units[i];
+					if (U == null) break;
+					if (U.getType()==4) continue; //no healing castles
+					if (Rect.intersects(U.getBodyRect(),HealingRect)){
+						U.setLife(U.getMaxLife());
+						MyParticleHandler.spawnStars(50,(int) U.getX()+U.getxMod(0)+20,(int) U.getY()+U.getyMod()+20);
+						//System.out.println((U.getX()-dX+U.getxMod(0))+" "+dX+" "+e.getX());
+					}
+					
+					
+				}
+				MyUIM.setHealOnTouch(false);
+			}
+			
+			if (MyUIM.mustSpawnProjectile()){ //FIRE SPELL
+				FallingProjectile P;
+				int x,y;
+
+				if (MyTeams[0].getMoney()<100) {
+					MyUIM.setSpawnProjectile(false);
+					return true;
+				}
+				MyTeams[0].setMoney(MyTeams[0].getMoney()-100);
+				for (int i=0;i<5;i++){
+					y = 0 -30*i;
+					
+					int mod=0;
+					int jmax = 5;
+					
+					if (i/2 == i/2.0){
+						mod = 15;
+						jmax = 4;
+					}
+					
+					
+					
+					for (int j = 0; j<jmax;j++){					
+						
+						x = (int)  e.getX()+dX -60 +30*j +mod ;
+						P = new FallingProjectile(86,15,1,x,y,8,17,15);
+						MyTeams[0].addProjectile(P);
+					}
+				
+				MyUIM.setSpawnProjectile(false);
+			}
+			
+			
 			Widget[] state = MyUIM.getCurrentState();
 			for (int i=0; i<state.length;i++){
 				if (state[i].isOver((int) e.getX(),(int) e.getY())){
@@ -171,9 +265,17 @@ public class CombatView extends View{
 	}
 	
 	
+	public void spawnStar(int centerX, int centerY){
+		
+	}
+	
+	public void spawnStars(int centerX, int centerY){
+		
+		
+	}
 
 	
-	protected void drawBackground(Canvas c){
+ 	protected void drawBackground(Canvas c){
 		Bitmap sky = MyRM.getImage(0);
 		Bitmap clouds = MyRM.getImage(1);
 		Bitmap backMoun = MyRM.getImage(2);
@@ -182,13 +284,14 @@ public class CombatView extends View{
 		
 
 		int dX = (int) MyCamera.getX();
+		int dY = (int) MyCamera.getY();
 		
 		c.drawBitmap(sky,0,0,null);	
 		for (int i=0; i<6;i++){			
-	        c.drawBitmap(clouds, (int) (0.152*width*(i+1))+(clouds.getWidth()*i)-dX/6, (int) (0.10625*height), null);
-	        c.drawBitmap(backMoun, (backMoun.getWidth()*i)-dX/4, (int) (0.21875*height), null);
-	        c.drawBitmap(frontMoun, (frontMoun.getWidth()*i)-dX/2, (int) (0.33125*height), null);
-	        c.drawBitmap(grass, (grass.getWidth()*i)-dX, (int) (0.6875*height), null);
+	        c.drawBitmap(clouds, (int) (0.152*width*(i+1))+(clouds.getWidth()*i)-dX/6, (int) (0.10625*height)-dY, null);
+	        c.drawBitmap(backMoun, (backMoun.getWidth()*i)-dX/4, (int) (0.21875*height)-dY, null);
+	        c.drawBitmap(frontMoun, (frontMoun.getWidth()*i)-dX/2, (int) (0.33125*height)-dY, null);
+	        c.drawBitmap(grass, (grass.getWidth()*i)-dX, (int) (0.6875*height)-dY, null);
 		}
 	}
 		
@@ -211,6 +314,20 @@ public class CombatView extends View{
 		}
 	}
 		
+	
+	protected Bitmap applyRedOverlay(Bitmap original,Bitmap mask){
+		
+		Bitmap result = Bitmap.createBitmap(original.getWidth(), original.getHeight(), Config.ARGB_8888);
+		Canvas mCanvas = new Canvas(result);
+		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+		mCanvas.drawBitmap(original, 0, 0, null);
+		mCanvas.drawBitmap(mask, 0, 0, paint);
+		
+		return result;
+	}
+	
+	
 	protected void drawUnits(Canvas c){
 		Rect newRect;
 		Unit currUnit;
@@ -222,8 +339,9 @@ public class CombatView extends View{
 		Matrix matrix = new Matrix();
 		matrix.preScale(-1.0f, 1.0f);
 		
-		
-		int dX = (int) MyCamera.getX();		
+
+		int dX = (int) MyCamera.getX();	
+		int dY = (int) MyCamera.getY();		
 		
 		
         for (int teamIndex=0;teamIndex<2;teamIndex++){
@@ -244,14 +362,23 @@ public class CombatView extends View{
         		
         		
         		if (currUnit.getType()==4){// IF CASTLE
+        			
+        			Castle currUnit2 = (Castle) currUnit;
+        			if ((int) (percent*100)/30 != currUnit2.getLastPercent()){ //shake every ten percent
+        				currUnit2.setLastPercent( (int) (percent*100)/30);
+        				MyCamera.shake();
+        			}
         			checkVictory(currUnit,c);
-        			        			
+        			
+        			
+        			
+        			
         			if (percent>0.5) i = 68;
         			else i = 69;        			
         			image = MyRM.getImage(i);
         			
         			
-    				c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod(),null);
+    				c.drawBitmap(image,currUnit.getX()-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod()-dY,null);
     				//newRect = currUnit.getBodyRect();
     				//c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
         			continue; //Castles don't deal with animations
@@ -263,9 +390,17 @@ public class CombatView extends View{
         		currAnim = MyRM.getAnimation(currUnit.getType(),currUnit.getAction());
         		image = MyRM.getImage(currAnim.getStart()+currUnit.getCurrFrame());
         		if (teamIndex==1) image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false); 
-        		c.drawBitmap(image,x-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod(),null);
+        		if (currUnit.isHit()){
+        			image = applyRedOverlay(image, MyRM.getImage(83)); //Red overlay
+        			currUnit.increaseHitFrames();
+        			if (currUnit.getHitFrames() > 8){
+        				currUnit.setHitFrames(0);
+        				currUnit.setHit(false);
+        			}
+        		}
+        		c.drawBitmap(image,x-dX+currUnit.getxMod(teamIndex),currUnit.getY()+currUnit.getyMod()-dY,null);
 
-
+        		
 
 //				newRect = currUnit.getAttackRect();
 //				c.drawRect(newRect.left-dX, newRect.top,newRect.right-dX,newRect.bottom,MyPaint);
@@ -279,6 +414,30 @@ public class CombatView extends View{
         	}
         }
 	}
+	
+	protected void drawParticles(Canvas c){
+		
+		Particle[] Particles = MyParticleHandler.getParticles();
+		Particle P;
+		Bitmap image;
+		int dX = (int) MyCamera.getX();	
+		int dY = (int) MyCamera.getY();	
+		
+		
+		for (int i = 0;i<1000;i++){
+			P = Particles[i];
+			if (P == null) break;
+			if (P.getAlpha() == 0) continue;
+			image = MyRM.getImage(P.getImgIndex());
+			
+			ParticlePaint.setAlpha(P.getAlpha());
+    		c.drawBitmap(image, (int) P.getX()-dX, (int) P.getY()-dY,ParticlePaint);			
+		}
+		
+		
+		
+	}
+	
 	
 	protected void drawGUI(Canvas c){
 		
@@ -305,8 +464,9 @@ public class CombatView extends View{
 
         Projectile currProj;
 		Bitmap image;
-		
+
 		int dX = (int) MyCamera.getX();
+		int dY = (int) MyCamera.getY();
         
         for (int teamIndex=0;teamIndex<2;teamIndex++){
         	
@@ -315,7 +475,7 @@ public class CombatView extends View{
         		if (currProj == null) break;
         		
         		image = MyRM.getImage(currProj.getImage());
-        		c.drawBitmap(image,currProj.getX()-dX,currProj.getY(),null);
+        		c.drawBitmap(image,currProj.getX()-dX,currProj.getY()-dY,null);
         		
         		
         		//Rect newRect = currProj.getMyRect();        		
@@ -325,6 +485,21 @@ public class CombatView extends View{
         }
 	}
 	
+	public Bitmap getIncomeImage(){
+		Bitmap result = Bitmap.createBitmap(100, 100, Config.ARGB_8888);
+		Canvas c = new Canvas(result);
+		Bitmap Coin = MyRM.getImage(81);
+		String incomeStr = "+"+String.valueOf(MyTeams[0].getIncome());
+		System.out.println(incomeStr);
+		c.drawText(incomeStr,0,20,IncomePaint);
+		c.drawBitmap(Coin, 14*incomeStr.length(),0,null);
+		
+		
+		return result;
+		
+		
+		
+	}
 	
 	@Override
 	protected void onDraw(Canvas c){
@@ -336,12 +511,17 @@ public class CombatView extends View{
 			quitGame(MyUIM.getExitFlag());
 		}
 		
-		
+
+		int dX = (int) MyCamera.getX();
 		drawBackground(c);
 		drawUnits(c);        
         drawProjectiles(c);
+        drawParticles(c);
 		drawGUI(c);
-		MyUIM.updateMoney();
+		if (MyUIM.updateMoney()){
+			MyRM.setImage(getIncomeImage(), 85);
+			MyParticleHandler.spawnIncomeParticle(dX);
+		}
 		MyUIM.updateLabels();
 		invalidate();
 		

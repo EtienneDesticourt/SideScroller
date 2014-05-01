@@ -130,7 +130,7 @@ public class UIManager {
 		return null;
 	}
 	public void unclickAll(){		
-		System.out.println("Unclicking nothign");
+		//System.out.println("Unclicking nothign");
 	}
 
 	public void updateLabels(int index){

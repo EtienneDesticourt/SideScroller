@@ -8,6 +8,7 @@ public class Camera {
 	private int width;
 	private int side;
 	private int minX,maxX;
+	private boolean shaking = false;
 	
 	public Camera(int initSpeed,int minX, int maxX){
 		this.x = 0;
@@ -42,6 +43,10 @@ public class Camera {
 	
 	public double getX(){
 		return this.x;
+	}
+	
+	public double getY(){
+		return this.y;
 	}
 	
 	public double getdX(){
@@ -90,6 +95,51 @@ public class Camera {
 	public void setSide(int side) {
 		this.side = side;
 	}
+	
+	
+	public void shakeThread(){
+		int dx,dy;
+		double initX = this.x;
+		double initY = this.y;
+		for (int i = 0;i<120;i++){
+
+			dx = -10 + (int)(Math.random()*20); 
+			dy = -10 + (int)(Math.random()*20); 
+			
+			this.x += dx;
+			this.y += dy;
+			
+			try {
+	            Thread.sleep(5+i/10);
+	        } catch (Exception exc) {}
+			
+
+			this.x = initX;
+			this.y = initY;
+
+		}
+		shaking = false;
+		
+			
+	}
+	
+	public void shake(){
+		
+		if (shaking){
+			return;
+		}
+		shaking = true;
+		
+		new Thread(new Runnable() {
+	        public void run() {
+	        	shakeThread();
+	        }
+		}).start();
+		
+	}
+	
+	
+	
 	
 //	public calcLayerPerspective(){
 //		

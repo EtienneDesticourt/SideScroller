@@ -9,8 +9,8 @@ public class Demoman extends Unit{
 	}
 	
 
-	public void hit(int damage, boolean ranged){
-		super.hit(damage, ranged);
+	public void hit(int damage, boolean ranged, int type){
+		super.hit(damage, ranged,type);
 		super.die();
 	}
 	

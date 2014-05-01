@@ -8,6 +8,9 @@ public class Castle extends Unit{
 	private static int width = 200;
 	private static int height = 235;
 	private static int sizeDif = -60;
+	private int lastPercent = 3;
+	
+	
 	public Castle(Team unitsTeam) {
 		super(unitsTeam);
 		Rect temp = super.getBodyRect();
@@ -20,8 +23,23 @@ public class Castle extends Unit{
 		super.setLife(1000);
 		super.init();
 	}
+
+
+	public int getLastPercent() {
+		return lastPercent;
+	}
+
+
+	public void setLastPercent(int lastPercent) {
+		this.lastPercent = lastPercent;
+	}
 	
-	
+	public void hit(int damage, boolean ranged, int type){
+		if (type == 1){
+			return;
+		}
+		super.hit(damage,ranged,type);
+	}
 	
 	
 

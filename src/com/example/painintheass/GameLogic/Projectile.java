@@ -10,6 +10,7 @@ public class Projectile {
 	private Rect myRect; 
 	private int image;
 	private int damage;
+	private int type;
 	
 	public Projectile(int newImage,int speed, int side, int x, int y, int width, int height, int damage){//int initX, int initY, int initSpeed, int angle){
 		this.speed = speed;
@@ -23,6 +24,7 @@ public class Projectile {
 		myRect.right = x+width;
 		myRect.top = y;
 		myRect.bottom = y+height;
+		setType(0);
 		
 	}
 	
@@ -80,6 +82,14 @@ public class Projectile {
 
 	public void setDamage(int damage) {
 		this.damage = damage;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

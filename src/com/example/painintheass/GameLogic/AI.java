@@ -209,7 +209,7 @@ public class AI {
 		    					if (UnitsTeam1[j]!=null ){
 			    					if (UnitsTeam1[j].getAction()!= 2 && myProjectiles0[i]!=null){
 			    						if (Rect.intersects(UnitsTeam1[j].getBodyRect(), myProjectiles0[i].getMyRect() )){
-			    							UnitsTeam1[j].hit(myProjectiles0[i].getDamage(), true);
+			    							UnitsTeam1[j].hit(myProjectiles0[i].getDamage(), true, myProjectiles0[i].getType());
 			    							MyTeams[0].delProjectile(i);
 			    						}
 			    					}
@@ -217,7 +217,7 @@ public class AI {
 		    					if (UnitsTeam0[j]!=null){
 			    					if (UnitsTeam0[j].getAction()!= 2 && myProjectiles1[i]!=null){
 			    						if(Rect.intersects(UnitsTeam0[j].getBodyRect(), myProjectiles1[i].getMyRect() )){
-			    							UnitsTeam0[j].hit(myProjectiles1[i].getDamage(), true);
+			    							UnitsTeam0[j].hit(myProjectiles1[i].getDamage(), true, myProjectiles1[i].getType());
 			    							MyTeams[1].delProjectile(i);
 			    						}
 			    						

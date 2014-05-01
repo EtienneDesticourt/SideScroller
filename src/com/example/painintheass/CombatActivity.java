@@ -13,6 +13,8 @@ import com.example.painintheass.UI.UIManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
@@ -54,10 +56,17 @@ public class CombatActivity extends Activity {
 			public void onClick(UIManager myUIM){
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyPlayerTeam().spawnMiner();
+				myUIM.updateLabels();
 			}
 		};
 		
-		
+
+		left = (int) (0.16875*width) +50 ;
+		up = (int) (0.040625*height) +47;
+		TextLabel nbrMiner = new TextLabel(left,up,"0");
+//		Paint MinerPaint = new Paint();
+//		MinerPaint.setTextAlign(Align.CENTER);
+//		nbrMiner.setPaint(MinerPaint);
 		
 		
 		
@@ -121,7 +130,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 
-		Widget[] state = {money,menu,archer,knight,mage,spell,miner,coin};
+		Widget[] state = {money,miner,nbrMiner,menu,archer,knight,mage,spell,coin};
 		myUIM.addState(state, true, 0);
 		
 		//MENU SUBMENU
@@ -152,7 +161,7 @@ public class CombatActivity extends Activity {
 		};
 		
 
-		Widget[] state2 = {money,menu,archer,knight,mage,spell,map,options,quit,miner,coin};
+		Widget[] state2 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,map,options,quit,coin};
 		myUIM.addState(state2, true, 0);
 		
 		//SPELLS SUBMENU
@@ -163,6 +172,9 @@ public class CombatActivity extends Activity {
 		Button fire = new Button(left,up,bwidth,bheight,70,70,70,70) {
 			public void onClick(UIManager myUIM){
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
+				CombatUIManager myUIM2 = (CombatUIManager) myUIM;
+				myUIM2.setSpawnProjectile(true);
+				myUIM.setCurrentStateIndex(0);
 			}
 		};
 		left = (int) (0.85625*width);
@@ -170,6 +182,10 @@ public class CombatActivity extends Activity {
 		Button meteor = new Button(left,up,bwidth,bheight,71,71,71,71) {
 			public void onClick(UIManager myUIM){
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
+				CombatUIManager myUIM2 = (CombatUIManager) myUIM;
+				myUIM2.setHealOnTouch(true);
+				myUIM.setCurrentStateIndex(0);
+				
 			}
 		};
 		left = (int) (0.87083*width);
@@ -179,9 +195,10 @@ public class CombatActivity extends Activity {
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 			}
 		};
+		stars.setVisible(false);
 		
 
-		Widget[] state3 = {money,menu,archer,knight,mage,spell,fire,meteor,stars,miner,coin};
+		Widget[] state3 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,fire,meteor,stars,coin};
 		myUIM.addState(state3, true, 0);
 		
 		
@@ -209,7 +226,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 		
-		Widget[] state4 = {money,menu,archer,knight,mage,spell,confirmWindow,ok,cancel,miner,coin};
+		Widget[] state4 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,confirmWindow,ok,cancel,coin};
 		myUIM.addState(state4, true, 0);
 		
 		//CONFIRM STATE 2
@@ -225,7 +242,7 @@ public class CombatActivity extends Activity {
 			}
 		};
 		
-		Widget[] state5 = {money,menu,archer,knight,mage,spell,confirmWindow,ok2,cancel,miner,coin};
+		Widget[] state5 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,confirmWindow,ok2,cancel,coin};
 		myUIM.addState(state5, true, 0);
 		
 		
@@ -242,7 +259,7 @@ public class CombatActivity extends Activity {
 				myUIM.setEndActivity(true);			
 			}			
 		};
-		Widget[] state6 = {money,menu,archer,knight,mage,spell,miner,coin,victory,ok3};
+		Widget[] state6 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,coin,victory,ok3};
 		myUIM.addState(state6, true, 0);
 		
 		
@@ -252,7 +269,7 @@ public class CombatActivity extends Activity {
 		left = (int) (0.2875*width);
 		Label defeat = new Label(left,up,76);
 
-		Widget[] state7 = {money,menu,archer,knight,mage,spell,miner,coin,defeat,ok3};
+		Widget[] state7 = {money,miner,nbrMiner,menu,archer,knight,mage,spell,coin,defeat,ok3};
 		myUIM.addState(state7, true, 0);
 		
 		

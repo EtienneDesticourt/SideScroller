@@ -73,7 +73,7 @@ public class MainMenuActivity extends Activity{
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int width = metrics.widthPixels;
 		int height = metrics.heightPixels;
-		System.out.println(width+" "+height+" "+metrics.densityDpi);
+		//System.out.println(width+" "+height+" "+metrics.densityDpi);
 		
 		
 		

@@ -15,14 +15,19 @@ public class CombatResourceManager extends ResourceManager{
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public void setImage(Bitmap img, int index){
+		Bitmap[] Images = getImages();
+		Images[index] = img;
+	}
 	
 	public void load(){
 		Bitmap[] images = getImages();
 		Resources res = getRes();
 		BitmapFactory.Options op = new BitmapFactory.Options();
 		op.inPreferredConfig = Bitmap.Config.ARGB_4444;
-
+		int h,w;
+		
+		
 		images[0] = BitmapFactory.decodeResource(res, R.drawable.background_sky,op);
 		images[1] = BitmapFactory.decodeResource(res, R.drawable.background_clouds,op);
 		images[2] = BitmapFactory.decodeResource(res, R.drawable.background_backmountains,op);
@@ -46,6 +51,17 @@ public class CombatResourceManager extends ResourceManager{
 		images[80] = BitmapFactory.decodeResource(res,R.drawable.no_combat,op);
 		images[81] = BitmapFactory.decodeResource(res,R.drawable.coin_skills,op);
 		images[82] = BitmapFactory.decodeResource(res,R.drawable.combat_miner,op);
+		images[83] = BitmapFactory.decodeResource(res,R.drawable.red_overlay,op);
+		h = images[83].getHeight();
+		w = images[83].getWidth();
+		images[83] = Bitmap.createScaledBitmap(images[83],w/4,h/4,false);
+		images[84] = BitmapFactory.decodeResource(res,R.drawable.starsmall0,op);
+		images[85] = null;   //dynamically defined, do not use.
+		images[86] = BitmapFactory.decodeResource(res,R.drawable.projectile_magic_falling,op);
+		h = images[86].getHeight();
+		w = images[86].getWidth();
+		images[86] = Bitmap.createScaledBitmap(images[86],w/4,h/4,false);
+		
 		//Anims
 		
 //		AnimationDrawable anim;
@@ -58,7 +74,6 @@ public class CombatResourceManager extends ResourceManager{
 		Animation anim;
 //			//knight
 //				//walk
-		int h,w;
 		images[49] = BitmapFactory.decodeResource(res, R.drawable.knight0,op);
 		h = images[49].getHeight();
 		w = images[49].getWidth();

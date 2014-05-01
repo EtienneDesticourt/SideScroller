@@ -298,7 +298,7 @@ public class MapActivity extends Activity{
 				}
 			}
 		};
-		System.out.println("fuck you android.");
+		//System.out.println("fuck you android.");
 		up = (int) (0.578*height);
 		Button attack1 = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
@@ -383,9 +383,16 @@ public class MapActivity extends Activity{
 			}
 		};
 		
+		left = 400;
+		up = 40;
+		TextLabel victory = new TextLabel(left,up,"Congratulations! You're victorious!");
+		victory.setVisible(false);
+		left = 350;
+		TextLabel defeat = new TextLabel(left,up,"Sadly, you were defeated...");
+		defeat.setVisible(false);
 		
 		
-		Widget[] mapState1 = {skills2,troups,money,nextTurn,attack1,resolve1,coin1,coin2,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState1 = {skills2,troups,money,victory,defeat,nextTurn,attack1,resolve1,coin1,coin2,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState1,false,0);
 		
 		Button[] Countries = {pays1,pays2,pays3,pays4,pays5,pays6};
@@ -419,7 +426,7 @@ public class MapActivity extends Activity{
 		
 		
 		
-		Widget[] mapState2 = {skills2,troups,money,attack,resolve1,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState2 = {skills2,troups,money,victory,defeat,attack,resolve1,coin1,coin2,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState2,false,0);
 		
 		
@@ -437,7 +444,7 @@ public class MapActivity extends Activity{
 		};
 		buyTroups.setBackgroundImage(26);
 		
-		Widget[] mapState3 = {skills,troups,money,attack1,resolve1,coin1,coin2,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
+		Widget[] mapState3 = {skills,troups,money,victory,defeat,attack1,resolve1,coin1,coin2,buyTroups,nextTurn,pays1,pays2,pays3,pays4,pays5,pays6};
 		myUIM.addState(mapState3,false,0);
 		
 		
@@ -495,6 +502,15 @@ public class MapActivity extends Activity{
 				
 				
 				myUIM.setCurrentStateIndex(1);
+				
+				if (playerIsVictorious()){
+					myUIM.getCurrentState()[3].setVisible(true);
+					return;
+				}
+				if (playerIsDefeated()){
+					myUIM.getCurrentState()[4].setVisible(true);
+				}
+				
 			}
 		};
 		resolve2.setBackgroundImage(23);
@@ -510,7 +526,7 @@ public class MapActivity extends Activity{
 		};
 		nextTurn1.setBackgroundImage(30);
 		
-		Widget[] mapState4 = {skills2,troups,money,resolve2,attack2,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
+		Widget[] mapState4 = {skills2,troups,money,victory,defeat,resolve2,attack2,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
 		myUIM.addState(mapState4,false,0);
 		
 		//5: COUNTRY BEING ATTACKED, ATTACKING COUNTRY NOT SELECTED
@@ -519,14 +535,31 @@ public class MapActivity extends Activity{
 		
 		
 		
-		Widget[] mapState5 = {skills2,troups,money,attack1,resolve1,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
+		Widget[] mapState5 = {skills2,troups,money,victory,defeat,attack1,resolve1,coin1,coin2,nextTurn1,pays1,pays2,pays3,pays4,pays5,pays6,attackArrow0,attackArrow1,attackArrow2,attackArrow3,attackArrow4,attackArrow5};
 		myUIM.addState(mapState5,false,0);
 		
 		pays1.onClick(myUIM);
 		
 	}
 	
+	public boolean playerIsVictorious(){
+		Country[] World = myUIM.getWorld();
+				
+		for (int i=0;i<6;i++){
+			if (!World[i].isPlayerControlled()) return false;
+		}
+		return true;
+	}
 	
+	public boolean playerIsDefeated(){
+		Country[] World = myUIM.getWorld();
+		
+
+		for (int i=0;i<6;i++){
+			if (World[i].isPlayerControlled()) return false;
+		}
+		return true;
+	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == 1) {
@@ -541,6 +574,15 @@ public class MapActivity extends Activity{
 		myUIM.setAttacking(null);
 		myUIM.setDefending(null);
 		myUIM.setCurrentStateIndex(0);
+		
+		if (playerIsVictorious()){
+			myUIM.getCurrentState()[3].setVisible(true);
+			return;
+		}
+		if (playerIsDefeated()){
+			myUIM.getCurrentState()[4].setVisible(true);
+		}
+		
 	}
 	
 
@@ -668,7 +710,7 @@ public class MapActivity extends Activity{
 		
 		
 		//Read file in Internal Storage
-		System.out.println(getFilesDir());
+		//System.out.println(getFilesDir());
 		
 		
 		File file = new File(getFilesDir()+saveFileName);

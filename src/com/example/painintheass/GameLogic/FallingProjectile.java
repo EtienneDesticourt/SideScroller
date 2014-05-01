@@ -7,6 +7,7 @@ public class FallingProjectile extends Projectile{
 
 	public FallingProjectile(int newImage, int speed, int side, int x, int y, int width, int height, int damage) {
 		super(newImage, speed, side, x, y, width, height, damage);
+		setType(1);
 		// TODO Auto-generated constructor stub
 	}
 	
