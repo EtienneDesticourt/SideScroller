@@ -4,14 +4,18 @@ import com.example.painintheass.GameLogic.Country;
 
 import android.app.Application;
 
+
+
+/**
+ * Stores application wide data.
+ */
 public class ApplicationManager extends Application {
 	private int musicVolume;
 	private int soundVolume;
 	private boolean updated;
 	private Country[] World;
 	
-	public ApplicationManager(){
-		
+	public ApplicationManager(){		
 	}
 	
 	public int getMusicVolume() {

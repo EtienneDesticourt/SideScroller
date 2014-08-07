@@ -21,6 +21,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+/**
+ * This <code>Activity</code> is responsible for handling the initialization of the classes related to the map as well as the save/load processes and the different return or pause states of the activity.
+ * Classes initialized include the UI manager and its extensive list of widgets, the World and its countries, the view, and the victory states.
+ */
 public class MapActivity extends Activity{
 
 	private int type = 1;
@@ -29,6 +33,13 @@ public class MapActivity extends Activity{
 	private final String saveFileName = "/SAVE";
 	//MUSIC IDEA: SOUND OF ANVIL BEING HIT AS DRUMS
 	
+	/**
+	 * Creates the UIManager's <code>World</code> and its countries.
+	 * Associates each country to his respective button.
+	 * @param myUIM The {@link MapUIManager MapUIManager}
+	 * @param World An empty {@link Country Country} array to be filled.
+	 * @param Countries An array of {@link Button Buttons} filled with each <code>Country</code>'s button
+	 */
  	public void initWorld(MapUIManager myUIM, Country[] World,Button[] Countries){
 		World[0] = new Country(0);
 		World[1] = new Country(1);
@@ -85,14 +96,16 @@ public class MapActivity extends Activity{
 		adj[1] = World[2];
 		adj[2] = World[4];
 		World[5].setAdjacentCountries(adj);
-		
-		
-		
-		
-		
-		
 	}
 		
+ 	/**
+ 	 * Creates the country buttons as well as the rest of the UI.
+ 	 * TODO: Make widget creation dynamic
+ 	 * @param width Width of the screen
+ 	 * @param height Height of the screen
+ 	 * @param myUIM The Map's UIManager
+ 	 * @param World A {@link Country Country} array
+ 	 */
 	public void initMap(int width, int height, MapUIManager myUIM, Country[] World){
 		//1:MAP STATE
 		int left,up;
@@ -542,6 +555,9 @@ public class MapActivity extends Activity{
 		
 	}
 	
+	/**
+	 * Checks if player controls every country.
+	 */
 	public boolean playerIsVictorious(){
 		Country[] World = myUIM.getWorld();
 				
@@ -551,6 +567,9 @@ public class MapActivity extends Activity{
 		return true;
 	}
 	
+	/**
+	 * Checks if player controls no country.
+	 */
 	public boolean playerIsDefeated(){
 		Country[] World = myUIM.getWorld();
 		
@@ -561,7 +580,11 @@ public class MapActivity extends Activity{
 		return true;
 	}
 	
+	/**
+	 * TODO: Find out what this does.
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//TODO: find out what this does because I don't remember
 		if (requestCode == 1) {
 			if(resultCode == RESULT_OK){
 				boolean result=data.getBooleanExtra("result",false);
@@ -571,10 +594,13 @@ public class MapActivity extends Activity{
 				//Write your code if there's no result
 			}
 		}
+		
+		//Reset teams
 		myUIM.setAttacking(null);
 		myUIM.setDefending(null);
 		myUIM.setCurrentStateIndex(0);
 		
+		//Check victory conditions and display associated message
 		if (playerIsVictorious()){
 			myUIM.getCurrentState()[3].setVisible(true);
 			return;
@@ -586,34 +612,38 @@ public class MapActivity extends Activity{
 	}
 	
 
-	
+	/**
+	 * Creates UI, View and World.
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//Find screen metrics to scale UI
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int width = metrics.widthPixels;
 		int height = metrics.heightPixels;
 		
-		
+		//Create UI
 		myUIM = new MapUIManager(this);
 		
-		
+		//Create view and fill
 		setContentView(R.layout.activity_map);
 		MapView myView = (MapView) findViewById(R.id.vMap);
 		myView.setUIManager(myUIM);
 		myView.doneInitialiazing();
+		
+		//Create World and set at application level
 		Country[] World = new Country[6];
 		initMap(width,height,myUIM,World);
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		globalVariable.setWorld(World);
-		
-//		System.out.println(3);
-		
-		
-		
 	}
 
+	/**
+	 * Formats World data into a savable string.
+	 * @return The string to be saved
+	 */
 	private String getSaveData(){
 		Country[] World = myUIM.getWorld();
 		String result = "";
@@ -637,6 +667,9 @@ public class MapActivity extends Activity{
 		return result;
 	}
 	
+	/**
+	 * Save data on pause.
+	 */
 	protected void onPause(){
 		super.onPause();
 		File saveFile = new File(getFilesDir()+saveFileName);
@@ -654,6 +687,11 @@ public class MapActivity extends Activity{
 		
 	}
 	
+	/**
+	 * Parses saved data and loads it into World.
+	 * TODO: Check what commented code does and delete/uncomment.
+	 * @param data The saved string containing World info
+	 */
 	public void loadData(String data){
 //		if (data == null){
 //			System.out.println("No save file.");
@@ -701,6 +739,9 @@ public class MapActivity extends Activity{
 		
 	}
 	
+	/**
+	 * Load map data on activity resume.
+	 */
 	protected void onResume(){
 		super.onResume();
 		

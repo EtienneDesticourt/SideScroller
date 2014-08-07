@@ -1,3 +1,11 @@
+/*
+ * 
+
+*/
+
+
+
+
 package com.example.painintheass.menus;
 
 import com.example.painintheass.R;
@@ -16,9 +24,8 @@ import android.util.DisplayMetrics;
 public class MainMenuActivity extends Activity{
 
 	private int type = 0;
+	
 	public void initMenu(int width, int height, UIManager myUIM){
-		
-
 		int left = (int) (0.58*width);
 		int up;
 		int buttonWidth = (int) (0.4*width);  
@@ -66,24 +73,22 @@ public class MainMenuActivity extends Activity{
 		Widget[] state = {playButton,optionsButton,quitButton,titleLabel};
 		myUIM.addState(state,false,0);
 	}
-	
-	
+
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		
+		//Get size to scale UI
 		int width = metrics.widthPixels;
-		int height = metrics.heightPixels;
-		//System.out.println(width+" "+height+" "+metrics.densityDpi);
-		
-		
-		
+		int height = metrics.heightPixels;		
+		//Init UI handle and all buttons
 		UIManager myUIM = new UIManager(this);
-		
 		initMenu(width,height,myUIM);
 		
+		//Init view
 		setContentView(R.layout.activity_main);		
 		MenuView myView = (MenuView) findViewById(R.id.vMenuMain);
 		myView.setUIManager(myUIM);

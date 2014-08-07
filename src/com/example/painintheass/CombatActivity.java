@@ -13,22 +13,29 @@ import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Paint.Align;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+
+
+/**
+ * This <code>Activity</code> is responsible for handling the creation of everything related to the combat scene.
+ * Including the UI manager, the view, the victory states, the skills, the AI, and the teams.
+ */
 public class CombatActivity extends Activity {
 	private int type = 2;
 	private boolean victoryState;
 	CombatUIManager myUIM;
 	
+	/**
+	 * Creates all the necessary widgets and UI states.
+	 * @param width screen's width
+	 * @param height screen's height
+	 * @param myUIM the <code>Activity</code>'s <code>UIManager</code>
+	 */
 	private void initGUI(int width, int height, CombatUIManager myUIM){
 		int left,up;
 		int bwidth,bheight;
-
-		
-		
 		//32..5
 		
 		
@@ -274,6 +281,10 @@ public class CombatActivity extends Activity {
 		
 		
 	}
+	
+	/**
+	 * Finishes the activity and returns HOME.
+	 */
 	public void endAll(){
 		this.finish();
 		Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -287,36 +298,53 @@ public class CombatActivity extends Activity {
 	public void onWindowFocusChanged (boolean hasFocus)
 	{
 	}
+	
+	/**
+	 * Returns the victory state at the end of the activity.
+	 */
 	public boolean onActivityResult(){
 		return victoryState;		
 	}
 	
+	/**
+	 * Reactivates unit movement.
+	 */
 	protected void onResume(){
 		super.onResume();
 		myUIM.getMyAI().startMovingUnits();
 		//System.out.println(myUIM.getMyAI().);
 	}
 	
+	/**
+	 * Stops unit movement.
+	 */
 	protected void onPause(){
 		super.onPause();
 		myUIM.getMyAI().stopMovingUnits();
 	}
 	
+	/**
+	 * Creates <code>Teams</code>, <code>CombatView</code>, and <code>AI</code> and the classes necessary for their work.
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		//Get screen metrics to scale UI
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int width = metrics.widthPixels;
 		int height = metrics.heightPixels;
 		
+		
+		//Initializes teams
 		Team friendlyTeam = new Team();
 		Team enemyTeam = new Team();
 		Player p = new Player(friendlyTeam);
 		Team[] myTeams = {friendlyTeam,enemyTeam};
 		
+		
+		//Get skills associated with current country
 		int skill1,skill2,skill3,skill4;
-
 		Bundle b = getIntent().getExtras();
 		int countryID = b.getInt("ID");
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
@@ -325,11 +353,12 @@ public class CombatActivity extends Activity {
 		skill3 = globalVariable.getStrength(countryID);
 		skill4 = globalVariable.getCost(countryID);
 		
+		//Initializes UI and set team skills.
 		myUIM = new CombatUIManager(friendlyTeam,enemyTeam,p);
-
 		friendlyTeam.setSkills(skill1, skill2, skill3, skill4);
 		enemyTeam.setSkills(skill1, skill2, skill3, skill4);
 		
+		//Creates and fills view
 		setContentView(R.layout.activity_combat);
 		CombatView myView = (CombatView) findViewById(R.id.vCombat);
 		myView.setUIManager(myUIM);
@@ -338,14 +367,16 @@ public class CombatActivity extends Activity {
 		myView.doneInitialiazing();
 		initGUI(width,height, myUIM);
 
-		//init ai
+		//Creates AI
 		AI myAI = new AI(myTeams,myView.getMyRM()); //resets unit. Spawn after this line
 		myUIM.setMyAI(myAI);	
 		//myAI.startMovingUnits();
 
+		
 		friendlyTeam.spawnCastle();
 		enemyTeam.spawnCastle();
 	}
+	
 	public int getType() {
 		return type;
 	}
