@@ -1,4 +1,4 @@
-package com.example.painintheass.UI;
+package com.example.painintheass.UI.widgets;
 
 import android.graphics.Paint;
 

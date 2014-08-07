@@ -23,6 +23,7 @@ public class MenuResourceManager extends ResourceManager{
 		images[2] = BitmapFactory.decodeResource(res, R.drawable.options);
 		images[3] = BitmapFactory.decodeResource(res, R.drawable.quit);
 		images[4] = BitmapFactory.decodeResource(res, R.drawable.gametitle);
+		images[5] = BitmapFactory.decodeResource(res, R.drawable.grey_overlay);
 		
 		
 		

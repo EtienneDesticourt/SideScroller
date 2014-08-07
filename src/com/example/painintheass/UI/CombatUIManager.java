@@ -5,6 +5,7 @@ import java.util.Date;
 import com.example.painintheass.GameLogic.AI;
 import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
+import com.example.painintheass.UI.widgets.Widget;
 
 public class CombatUIManager extends UIManager{
 

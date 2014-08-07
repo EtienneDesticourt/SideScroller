@@ -1,4 +1,6 @@
-package com.example.painintheass.UI;
+package com.example.painintheass.UI.widgets;
+
+import com.example.painintheass.UI.UIManager;
 
 
 public class Label extends Widget{

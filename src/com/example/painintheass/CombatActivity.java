@@ -4,12 +4,12 @@ import com.example.painintheass.GameLogic.AI;
 import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.Graphics.CombatView;
-import com.example.painintheass.UI.Label;
-import com.example.painintheass.UI.TextLabel;
-import com.example.painintheass.UI.Widget;
-import com.example.painintheass.UI.Button;
 import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.UIManager;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Label;
+import com.example.painintheass.UI.widgets.TextLabel;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.content.Intent;

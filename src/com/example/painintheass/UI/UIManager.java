@@ -5,12 +5,13 @@ import android.content.Intent;
 
 import com.example.painintheass.MapActivity;
 import com.example.painintheass.CombatActivity;
-import com.example.painintheass.MainMenuActivity;
-import com.example.painintheass.OptionsActivity;
-import com.example.painintheass.SkillsActivity;
 import com.example.painintheass.GameLogic.AI;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.GameLogic.Team;
+import com.example.painintheass.UI.widgets.Widget;
+import com.example.painintheass.menus.MainMenuActivity;
+import com.example.painintheass.menus.OptionsActivity;
+import com.example.painintheass.menus.SkillsActivity;
 
 
 public class UIManager {

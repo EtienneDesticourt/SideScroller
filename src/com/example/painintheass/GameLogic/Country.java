@@ -1,6 +1,6 @@
 package com.example.painintheass.GameLogic;
 
-import com.example.painintheass.UI.Button;
+import com.example.painintheass.UI.widgets.Button;
 
 public class Country {
 	private boolean playerControlled;

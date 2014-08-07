@@ -1,5 +1,7 @@
 package com.example.painintheass.UI;
 
+import com.example.painintheass.UI.widgets.Widget;
+
 public class SkillsUIManager extends UIManager{
 
 	private int health,firstHealth;

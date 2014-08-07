@@ -11,6 +11,7 @@ public class Projectile {
 	private int image;
 	private int damage;
 	private int type;
+	private boolean hit;
 	
 	public Projectile(int newImage,int speed, int side, int x, int y, int width, int height, int damage){//int initX, int initY, int initSpeed, int angle){
 		this.speed = speed;
@@ -24,6 +25,7 @@ public class Projectile {
 		myRect.right = x+width;
 		myRect.top = y;
 		myRect.bottom = y+height;
+		hit = false;
 		setType(0);
 		
 	}
@@ -90,6 +92,14 @@ public class Projectile {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public boolean hasHit() {
+		return hit;
+	}
+
+	public void setHit(boolean hit) {
+		this.hit = hit;
 	}
 	
 }

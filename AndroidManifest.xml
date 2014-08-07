@@ -18,7 +18,7 @@
         android:label="@string/app_name" >
 <!--         android:theme="@style/AppTheme" > -->
         <activity
-            android:name="com.example.painintheass.MainMenuActivity"
+            android:name="com.example.painintheass.menus.MainMenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +28,8 @@
         </activity>
         <activity android:name="com.example.painintheass.MapActivity"></activity>
         <activity android:name="com.example.painintheass.CombatActivity"></activity>
-        <activity android:name="com.example.painintheass.OptionsActivity"></activity>
-        <activity android:name="com.example.painintheass.SkillsActivity"></activity>
+        <activity android:name="com.example.painintheass.menus.OptionsActivity"></activity>
+        <activity android:name="com.example.painintheass.menus.SkillsActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
-package com.example.painintheass.UI;
+package com.example.painintheass.UI.widgets;
 
+
+import com.example.painintheass.UI.UIManager;
 
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -55,6 +57,9 @@ public abstract class Widget {
 	
 	
 
+	public void onClickWrap(UIManager myUIM){
+		
+	}
 	
 	public abstract void onClick(UIManager myUIM);
 	

@@ -1,9 +1,12 @@
-package com.example.painintheass;
+package com.example.painintheass.menus;
 
+import com.example.painintheass.R;
 import com.example.painintheass.Graphics.MenuView;
-import com.example.painintheass.UI.Button;
+import com.example.painintheass.R.id;
+import com.example.painintheass.R.layout;
 import com.example.painintheass.UI.UIManager;
-import com.example.painintheass.UI.Widget;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.content.Intent;

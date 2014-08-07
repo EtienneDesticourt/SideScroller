@@ -25,6 +25,17 @@ public class AI {
 		checkCollision();
 	}
 	
+	
+	public int[] makeSpawnDecision(){
+		int[] result= new int[10];
+		
+		
+		
+		return result;
+	}
+	
+	
+	
 	public void spawnUnits(){
 		new Thread(new Runnable() {
 	        public void run() {
@@ -32,8 +43,9 @@ public class AI {
 	        	long current;
 	        	int r;
 	        	while (gameIsRunning){
+//	        		System.out.println("spawnUnits 1 running");
 	        		while (spawningUnits){
-	        			
+//		        		System.out.println("spawnUnits 2 running");
 	        			
 	        			
 		        		current = new Date().getTime();
@@ -71,9 +83,12 @@ public class AI {
 		new Thread(new Runnable() {
 	        public void run() {	        	
 	        	while (gameIsRunning){
+//	        		System.out.println("updateUnits 1 running");
 	        		long lastTime;
 	        		long current;
 		        	while (calcMoves){	
+
+//		        		System.out.println("updateUnits 2 running");
 		        		for (int teamIndex = 0; teamIndex<NUMBER_OF_TEAM; teamIndex++){		        			
 		        			Unit[] myUnits = MyTeams[teamIndex].getUnits();
 		        			int side = MyTeams[teamIndex].getMovementSide();		        			
@@ -157,7 +172,9 @@ public class AI {
 	        	Projectile[] myProjectiles0 = MyTeams[0].getMyProjectiles();
 	        	Projectile[] myProjectiles1 = MyTeams[1].getMyProjectiles();
 	        	while (gameIsRunning){
+//	        		System.out.println("checkCollision 1 running");
 		        	while (calcCollisions){
+//		        		System.out.println("checkCollision 2 running");
 		        		Unit currUnit;
 		    			for (int i =0; i<100;i++){//MyTeams[0].getUnitsNumber();i++){
 		    				currUnit = UnitsTeam0[i];
@@ -253,7 +270,7 @@ public class AI {
 		new Thread(new Runnable() {
 	        public void run() {
 	        	while (gameIsRunning){
-	        		
+//	        		System.out.println("delete units running");
 	        		for (int i=0;i<2;i++){
 	        			Unit[] delQueue = MyTeams[i].getDelQueue();
 	        			Unit[] UnitsTeam = MyTeams[i].getUnits();
@@ -348,6 +365,7 @@ public class AI {
 		gameIsRunning = false;
 		calcMoves = false;
 		calcCollisions = false;
+		spawningUnits = false;
 	}
 	
 	

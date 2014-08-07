@@ -1,5 +1,7 @@
 package com.example.painintheass.Graphics;
 
+import java.util.Date;
+
 import com.example.painintheass.CombatActivity;
 import com.example.painintheass.MapActivity;
 import com.example.painintheass.GameLogic.Castle;
@@ -9,7 +11,8 @@ import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.GameLogic.Unit;
 import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.UIManager;
-import com.example.painintheass.UI.Widget;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -126,6 +129,7 @@ public class CombatView extends View{
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result",state);
 		dad.setResult(dad.RESULT_OK,returnIntent);
+		Team.resetNumberOfTeams();
 //		if (state==true){
 //			//display win
 //		}
@@ -232,6 +236,7 @@ public class CombatView extends View{
 						mod = 15;
 						jmax = 4;
 					}
+				
 					
 					
 					
@@ -243,6 +248,7 @@ public class CombatView extends View{
 					}
 				
 				MyUIM.setSpawnProjectile(false);
+				}
 			}
 			
 			
@@ -250,7 +256,7 @@ public class CombatView extends View{
 			for (int i=0; i<state.length;i++){
 				if (state[i].isOver((int) e.getX(),(int) e.getY())){
 					if (state[i].isOver((int) e.getX(),(int) e.getY())){
-						state[i].onClick(MyUIM);
+						state[i].onClickWrap(MyUIM);
 					}
 				}
 			}
@@ -450,7 +456,25 @@ public class CombatView extends View{
 			
 			if (currWidget.getString().equals("")){ //IF WIDGET NOT TEXT
 				image = MyRM.getImage(currWidget.getCurrentImage());
+				
+				if (currWidget instanceof Button){ //TOUCH FEEDBACK
+					Button B = (Button) currWidget;
+					if (B.isClicked()){
+						image = applyRedOverlay(image, MyRM.getImage(87)); //Red overlay
+						
+						long cur = new Date().getTime(); 
+						if (cur-B.getFirstClicked() > 500){//FEEDBACK LENGTH
+							B.setClicked(false);
+						}
+						
+					}
+        			
+				}
+				
+
 				c.drawBitmap(image,currWidget.getX(),currWidget.getY(),null);
+				
+				
 			}
 			
 			else{ //IF WIDGET TEXT
@@ -485,12 +509,20 @@ public class CombatView extends View{
         }
 	}
 	
-	public Bitmap getIncomeImage(){
+	public Bitmap getIncomeImage(int amount){
 		Bitmap result = Bitmap.createBitmap(100, 100, Config.ARGB_8888);
 		Canvas c = new Canvas(result);
 		Bitmap Coin = MyRM.getImage(81);
-		String incomeStr = "+"+String.valueOf(MyTeams[0].getIncome());
-		System.out.println(incomeStr);
+		String incomeStr;
+		if (amount < 0) {
+			IncomePaint.setColor(Color.RED);
+			incomeStr = ""+String.valueOf(MyTeams[0].getLastMoneyMod());
+		}
+		else {		
+			IncomePaint.setColor(Color.GREEN);
+			incomeStr = "+"+String.valueOf(MyTeams[0].getLastMoneyMod());
+		}
+//		System.out.println(incomeStr);
 		c.drawText(incomeStr,0,20,IncomePaint);
 		c.drawBitmap(Coin, 14*incomeStr.length(),0,null);
 		
@@ -518,9 +550,11 @@ public class CombatView extends View{
         drawProjectiles(c);
         drawParticles(c);
 		drawGUI(c);
-		if (MyUIM.updateMoney()){
-			MyRM.setImage(getIncomeImage(), 85);
+		MyUIM.updateMoney();
+		if (MyTeams[0].getLastMoneyMod() != 0){
+			MyRM.setImage(getIncomeImage(MyTeams[0].getLastMoneyMod()), 85);
 			MyParticleHandler.spawnIncomeParticle(dX);
+			MyTeams[0].setLastMoneyMod(0);
 		}
 		MyUIM.updateLabels();
 		invalidate();

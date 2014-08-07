@@ -7,10 +7,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.painintheass.OptionsActivity;
-import com.example.painintheass.SkillsActivity;
 import com.example.painintheass.UI.UIManager;
-import com.example.painintheass.UI.Widget;
+import com.example.painintheass.UI.widgets.Widget;
+import com.example.painintheass.menus.OptionsActivity;
+import com.example.painintheass.menus.SkillsActivity;
 
 public class SkillsView extends View{
 	
@@ -41,7 +41,7 @@ public class SkillsView extends View{
 			Widget[] state = MyUIM.getCurrentState();
 			for (int i=0; i<state.length;i++){
 				if (state[i].isOver((int) e.getX(),(int) e.getY())){
-					state[i].onClick(MyUIM);
+					state[i].onClickWrap(MyUIM);
 				}
 			}
 			

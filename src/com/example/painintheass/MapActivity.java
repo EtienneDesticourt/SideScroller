@@ -8,12 +8,12 @@ import java.io.IOException;
 
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.Graphics.MapView;
-import com.example.painintheass.UI.Label;
-import com.example.painintheass.UI.TextLabel;
-import com.example.painintheass.UI.Widget;
-import com.example.painintheass.UI.Button;
 import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Label;
+import com.example.painintheass.UI.widgets.TextLabel;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.content.Context;

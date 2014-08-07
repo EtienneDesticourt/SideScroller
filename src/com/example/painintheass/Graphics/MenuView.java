@@ -1,11 +1,18 @@
 package com.example.painintheass.Graphics;
 
+import java.util.Date;
+
 import com.example.painintheass.UI.UIManager;
-import com.example.painintheass.UI.Widget;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Bitmap.Config;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,7 +44,7 @@ public class MenuView extends View{
 			Widget[] state = MyUIM.getCurrentState();
 			for (int i=0; i<state.length;i++){
 				if (state[i].isOver((int) e.getX(),(int) e.getY())){
-					state[i].onClick(MyUIM);
+					state[i].onClickWrap(MyUIM);
 				}
 			}
 			
@@ -45,6 +52,17 @@ public class MenuView extends View{
 		return true;
 	}
 	
+	protected Bitmap applyRedOverlay(Bitmap original,Bitmap mask){
+		
+		Bitmap result = Bitmap.createBitmap(original.getWidth(), original.getHeight(), Config.ARGB_8888);
+		Canvas mCanvas = new Canvas(result);
+		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+		mCanvas.drawBitmap(original, 0, 0, null);
+		mCanvas.drawBitmap(mask, 0, 0, paint);
+		
+		return result;
+	}
 	
 	@Override
 	protected void onDraw(Canvas c){		
@@ -61,6 +79,22 @@ public class MenuView extends View{
 		for (int i=0;i<state.length;i++){
 			currWidget = state[i];
 			img = MyRM.getImage(currWidget.getCurrentImage());
+			
+			if (currWidget instanceof Button){ //TOUCH FEEDBACK
+				Button B = (Button) currWidget;
+				if (B.isClicked()){
+					img = applyRedOverlay(img, MyRM.getImage(5)); //Red overlay
+					
+					long cur = new Date().getTime(); 
+					if (cur-B.getFirstClicked() > 500){//FEEDBACK LENGTH
+						B.setClicked(false);
+					}
+					
+				}
+    			
+			}
+			
+			
 			c.drawBitmap(img,currWidget.getX(),currWidget.getY(),null);
 		}
 		invalidate();

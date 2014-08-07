@@ -261,14 +261,14 @@ Combat Activity 		V
 ---------------------------------------------
 
 
-OptionsActivity			
-	Place Title			
-	Place music bar		
-	Place sound bar		
-	Place music knobs	
-	Place sound knobs	
-	Place ok button		
-	Place cancel button	
+OptionsActivity								X
+	Place Title								X
+	Place music bar							X
+	Place sound bar							X
+	Place music knobs						X
+	Place sound knobs						X
+	Place ok button							X
+	Place cancel button						X
 	
 
 MapActivity									
@@ -327,17 +327,17 @@ Add sound system
 ------------------POLISH---------------------
 ---------------------------------------------
 	
-MapActivity:3
-	Make arrow move
-	Add turns to arrival of troups
-	Add troup depletion from attacks
-	Add dialogues
+MapActivity:3									X
+	Make arrow move								X
+	Add turns to arrival of troups				X
+	Add troup depletion from attacks			X
+	Add dialogues								X
 
-idea: stars speed up
+idea: stars speed up							X
 
-Combat Activity:
+Combat Activity:								V
 	Add number of miners						V
-	Add price indication						
+	Add price indication						V
 	Add income every time it hits				V
 	Add red overlay from getting hit			V
 	Add castle building 						X
@@ -351,11 +351,28 @@ Combat Activity:
 	Add camera shake:							V
 		at each 10% of castle destruction		V
 		when using a destructive spell			V
-	Assets map (castles,units,...)				
-	Add button desactivation					
+	Assets map (castles,units,...)				X
+	Add button desactivation					X
 		
-All activities:
-	Add touch feedback
+All activities:									V
+	Add touch feedback							V
+	
+	
+
+---------------------------------------------
+--------------POLISH: ROUND 2----------------
+---------------------------------------------
+
+money particles when income  hit
+ghost trails and spawn particles as they fly
+over-the-top fx on unit hit
+money counter gradual change
+greater touch feedback
+clouds moving
+day/night cycle
+add smoke particle when spawning units
+assets map
+	
 ---------------------------------------------
 -----------------SFX LIST--------------------
 ---------------------------------------------

@@ -28,6 +28,7 @@ public class Team {
 
 	private long lastIncome;
 	private int spawnSpeed;
+	private int lastMoneyMod = 0;
 	private int money = 1000;
 	private int income = 10;
 	private int miners = 1;
@@ -60,14 +61,19 @@ public class Team {
 
 	}
 
+	public static void resetNumberOfTeams(){
+		NumberOfTeams = 0;
+	}
 	
-	public int getIncome(){
+ 	public int getIncome(){
 		return income;
 	}
 	
 	public void increaseMoney(){
-		money += income;
+		setMoney(money + income);
 	}
+	
+	
 	
 	public void reset(){
 		myUnits = new Unit[100];
@@ -85,7 +91,7 @@ public class Team {
 		if (money < MINERCOST) return;
 		income += INCOMEBOOST;
 		setMiners(getMiners() + 1);
-		money -= MINERCOST;
+		setMoney(money - MINERCOST);
 	}
 	
 	public void spawnSoldier(){
@@ -95,7 +101,7 @@ public class Team {
 		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
-		money -= SOLDIERCOST;
+		setMoney(money - SOLDIERCOST);
 		
 	}
 	public void spawnArcher(){
@@ -105,7 +111,7 @@ public class Team {
 		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
-		money -= ARCHERCOST;
+		setMoney(money - ARCHERCOST);
 		
 	}
 	public void spawnMage(){
@@ -115,7 +121,7 @@ public class Team {
 		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
-		money -= MAGECOST;
+		setMoney(money - MAGECOST);
 	}
 	public void spawnKnight(){
 		if (money < KNIGHTCOST) return;
@@ -124,7 +130,7 @@ public class Team {
 		if (id==-2) return;
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
-		money -= KNIGHTCOST;
+		setMoney(money - KNIGHTCOST);
 	}
 	public void spawnDemoman(){
 		Unit temp = new Demoman(this);
@@ -188,10 +194,18 @@ public class Team {
 	}
 	
 	public void addProjectile(Projectile newProjectile){
+		if (numberOfProjectiles >= 1000){
+			numberOfProjectiles = 0; // Fuck me if this happens
+		}
+//		System.out.println(numberOfProjectiles);
 		myProjectiles[numberOfProjectiles] = newProjectile;
 		numberOfProjectiles ++;
 	}
 	
+	
+	public void resetProjectiles(){
+		
+	}
 	
 	public void delProjectile(int index){
 		myProjectiles[index] = myProjectiles[numberOfProjectiles-1];
@@ -252,8 +266,9 @@ public class Team {
 	}
 
 
-	public void setMoney(int money) {
-		this.money = money;
+	public void setMoney(int newMoney) {
+		this.setLastMoneyMod(newMoney - money); 
+		this.money = newMoney;
 	}
 
 
@@ -278,6 +293,16 @@ public class Team {
 
 	public void setMiners(int miners) {
 		this.miners = miners;
+	}
+
+
+	public int getLastMoneyMod() {
+		return lastMoneyMod;
+	}
+
+
+	public void setLastMoneyMod(int lastMoneyMod) {
+		this.lastMoneyMod = lastMoneyMod;
 	}
 
 //	public void setUnits(Unit[] myUnits) {

@@ -1,14 +1,18 @@
-package com.example.painintheass;
+package com.example.painintheass.menus;
 
+import com.example.painintheass.ApplicationManager;
+import com.example.painintheass.R;
 import com.example.painintheass.Graphics.OptionsView;
 import com.example.painintheass.Graphics.SkillsView;
-import com.example.painintheass.UI.Button;
-import com.example.painintheass.UI.Label;
+import com.example.painintheass.R.id;
+import com.example.painintheass.R.layout;
 import com.example.painintheass.UI.OptionsUIManager;
 import com.example.painintheass.UI.SkillsUIManager;
-import com.example.painintheass.UI.TextLabel;
 import com.example.painintheass.UI.UIManager;
-import com.example.painintheass.UI.Widget;
+import com.example.painintheass.UI.widgets.Button;
+import com.example.painintheass.UI.widgets.Label;
+import com.example.painintheass.UI.widgets.TextLabel;
+import com.example.painintheass.UI.widgets.Widget;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -61,6 +61,7 @@ public class CombatResourceManager extends ResourceManager{
 		h = images[86].getHeight();
 		w = images[86].getWidth();
 		images[86] = Bitmap.createScaledBitmap(images[86],w/4,h/4,false);
+		images[87] = BitmapFactory.decodeResource(res,R.drawable.grey_overlay,op);
 		
 		//Anims
 		

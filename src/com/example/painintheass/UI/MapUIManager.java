@@ -3,6 +3,7 @@ package com.example.painintheass.UI;
 import android.app.Activity;
 
 import com.example.painintheass.GameLogic.Country;
+import com.example.painintheass.UI.widgets.Widget;
 
 public class MapUIManager extends UIManager{
 
