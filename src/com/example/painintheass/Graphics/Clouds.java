@@ -1,5 +1,10 @@
 package com.example.painintheass.Graphics;
 
+
+/**
+ * Represents the cloud layer.
+ * Not implemented.
+ */
 public class Clouds {
 	private int x;
 	private int speed;

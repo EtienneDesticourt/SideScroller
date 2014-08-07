@@ -14,38 +14,51 @@ mage 45 50, 85, 230
 castle 30 0 200 235
 */
 
+/**
+ * Represents a basic Unit.
+ * Extended by Archer, Mage and Knight.
+ */
 public class Unit {
+	//team
 	private Team myTeam;
-	private int teamID;
-	boolean isMoving;
-	private boolean inUse;
+	private int teamID;	
+	//Positioning
 	private int x;
 	private int y;
 	private int yMod=0;
 	private int[] xMod={0,0};
 	private int width;
-	private int height;
+	private int height;	
+	//Unit characteristics
+	private int id;
 	private int speed;
 	private int life;
 	private int maxLife;
 	private int type;
 	private int damage;
 	private int attackRange;
-	private long attackSpeed;
+	private long attackSpeed;	
+	//AI
 	private int action; //0:move 1:attack 2:die
 	private int lastAction;
+	private boolean inUse;
+	boolean isMoving;
+	private Unit Target;
+	private long delTime;
+	private long lastAttack;
+	private boolean hitFlag;	
+	//Rendering
 	private int currFrame;
 	private int maxFrame;
 	private Rect bodyRect;
 	private Rect attackRect;
-	private Unit Target;
-	private long delTime;
-	private long lastAttack;
 	private long lastAnimUpdate;
-	private int id;
-	private boolean hitFlag;
 	private int hitFrames = 0;
 	
+	/**
+	 * Creates and spawns a unit.
+	 * @param unitsTeam The Unit's Team.
+	 */
 	public Unit(Team unitsTeam){
 		this.unlock();
 		//System.out.println("I'm a new unit.");
@@ -89,12 +102,22 @@ public class Unit {
 		
 	}
 	
+	
+	/**
+	 * Multiply attributes by modifier.
+	 * @param health Health modifier.
+	 * @param speed Speed modifier.
+	 * @param damage Damage modifier.
+	 */
 	public void applySkillModifier(float health,float speed, float damage){
 		this.life += this.life*health;
 		this.speed += this.life*speed;
 		this.damage += this.life*damage;
 	}
 	
+	/**
+	 * Adds the Unit to its Team.
+	 */
 	public void init(){ //only adds to ai processing after subclass has finished init
 		myTeam.addUnit(this); //to avoid ai crash for anim type 0 action 0
 	}
@@ -114,6 +137,9 @@ public class Unit {
 		}
 	}
 	
+	/**
+	 * The Unit gets hit.
+	 */
 	public void hit(int damage,boolean ranged, int type){
 		this.setHit(true);
 		this.life -= damage;
@@ -179,7 +205,6 @@ public class Unit {
 		}
 		x = left;
 		setAttackRectFromBRect();
-		
 	}
 	
 	public void setAttackRectFromBRect(){

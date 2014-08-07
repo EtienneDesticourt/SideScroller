@@ -2,6 +2,10 @@ package com.example.painintheass.GameLogic;
 
 import com.example.painintheass.UI.widgets.Button;
 
+/**
+ * Represents a Country.
+ * 
+ */
 public class Country {
 	private boolean playerControlled;
 	private Country[] adjacentCountries;
@@ -19,6 +23,10 @@ public class Country {
 	private Button myButton;
 	private final int TROUPCOST = 10;
 	
+	/**
+	 * Creates a Country.
+	 * @param ID The country's ID
+	 */
 	public Country(int ID){
 		this.setID(ID);
 		cost = 0;
@@ -30,6 +38,9 @@ public class Country {
 		money = 100;
 	}
 	
+	/**
+	 * Increases money by the income and deals with AI troups buying.
+	 */
 	public void handleMoney(){
 		money += income;
 		if (isPlayerControlled()) return;
@@ -39,8 +50,11 @@ public class Country {
 		}
 	}
 	
-	public boolean nextTurn(){
-		
+	/**
+	 * Handles turn logic and AI attacks.
+	 * @return Whether the country is going to attack another.
+	 */
+	public boolean nextTurn(){		
 		Country cur;
 		int mod;
 		boolean attacking=false;
@@ -57,22 +71,15 @@ public class Country {
 				cur.setUnderAttack(true);
 				targetID = cur.getID();				
 			}
-		}
-		
-		
-		
+		}		
 		return attacking;
-		
-		
-		
 	}
 	
 	
 	public void setAdjacentCountries(Country[] adj){
 		this.adjacentCountries = adj;
 	}
-	
-	
+		
 	public void buyTroups(){
 		if (money>= TROUPCOST){
 			money -= TROUPCOST;
@@ -124,7 +131,6 @@ public class Country {
 		myButton = newButton;
 	}
 	
-	
 	public void setPlayerControlled(boolean playerControlled) {
 		if (playerControlled){
 			this.myButton.setCurrentImage(myButton.getHilightedImage()); //in this case: friendly image
@@ -135,7 +141,6 @@ public class Country {
 		
 		this.playerControlled = playerControlled;
 	}
-	
 	
 	public void unclickButton(){
 		if (playerControlled){

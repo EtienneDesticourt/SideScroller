@@ -6,7 +6,10 @@ package com.example.painintheass.GameLogic;
 
 
 
-
+/**
+ * Represents a Team.
+ * Either enemy, or player's team. 
+ */
 public class Team {
 	private static int NumberOfTeams = 0;
 	private static int Team1SpawnX = 0;
@@ -40,6 +43,9 @@ public class Team {
 	private Projectile[] myProjectiles;
 	private int[] skills; //health,speed,damages
 	
+	/**
+	 * Creates a Team. 
+	 */
 	public Team(){
 		setSpawnSpeed(5000);
 		id = NumberOfTeams;
@@ -74,7 +80,9 @@ public class Team {
 	}
 	
 	
-	
+	/**
+	 * Resets units and missiles arrays as well as the counters associated with them.
+	 */
 	public void reset(){
 		myUnits = new Unit[100];
 		delQueue = new Unit[100];
@@ -87,6 +95,9 @@ public class Team {
 		
 	}
 	
+	/**
+	 * Increases the income and removes some money.
+	 */
 	public void spawnMiner(){
 		if (money < MINERCOST) return;
 		income += INCOMEBOOST;
@@ -94,6 +105,10 @@ public class Team {
 		setMoney(money - MINERCOST);
 	}
 	
+
+	/**
+	 * Deprecated.
+	 */
 	public void spawnSoldier(){
 		if (money < SOLDIERCOST) return;
 		Unit temp = new Soldier(this);
@@ -104,6 +119,10 @@ public class Team {
 		setMoney(money - SOLDIERCOST);
 		
 	}
+	
+	/**
+	 * Spawns an Archer.
+	 */
 	public void spawnArcher(){
 		if (money < ARCHERCOST) return;
 		Unit temp = new Archer(this);
@@ -114,6 +133,10 @@ public class Team {
 		setMoney(money - ARCHERCOST);
 		
 	}
+	
+	/**
+	 * Spawns a Mage.
+	 */
 	public void spawnMage(){
 		if (money < MAGECOST) return;
 		Unit temp = new Mage(this);
@@ -123,6 +146,10 @@ public class Team {
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 		setMoney(money - MAGECOST);
 	}
+	
+	/**
+	 * Spawns a Knight.
+	 */
 	public void spawnKnight(){
 		if (money < KNIGHTCOST) return;
 		Unit temp = new Knight(this);
@@ -132,6 +159,10 @@ public class Team {
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
 		setMoney(money - KNIGHTCOST);
 	}
+	
+	/**
+	 * Deprecated.
+	 */
 	public void spawnDemoman(){
 		Unit temp = new Demoman(this);
 		int id = addUnit(temp);
@@ -140,6 +171,9 @@ public class Team {
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	
+	/**
+	 * Spawns a Castle.
+	 */
 	public void spawnCastle(){
 		Unit temp = new Castle(this);
 		int id = addUnit(temp);

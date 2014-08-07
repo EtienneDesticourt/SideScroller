@@ -1,5 +1,9 @@
 package com.example.painintheass.GameLogic;
 
+
+/**
+ * Represents fog on the ground. Not implemented.
+ */
 public class Smoke {
 	private int x;
 	private int speed;

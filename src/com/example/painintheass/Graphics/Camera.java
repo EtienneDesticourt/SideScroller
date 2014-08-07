@@ -1,15 +1,24 @@
 package com.example.painintheass.Graphics;
 
+/**
+ * Represents the Camera.
+ */
 public class Camera {
 	private double x,dx,ddx;
 	private double y,dy,ddy;
+	private int minX,maxX;
 	private boolean isMoving;
 	private float speed;
 	private int width;
 	private int side;
-	private int minX,maxX;
 	private boolean shaking = false;
 	
+	/**
+	 * Creates a Camera.
+	 * @param initSpeed Initial speed
+	 * @param minX Start of the map on the X axis
+	 * @param maxX End of the map on the X axis
+	 */
 	public Camera(int initSpeed,int minX, int maxX){
 		this.x = 0;
 		this.y = 0;
@@ -27,6 +36,10 @@ public class Camera {
 		return isMoving;
 	}
 	
+	/**
+	 * Moves the camera one step.
+	 * @param side Side to which the camera moves.
+	 */
 	public void step(int side){
 		double newX,newY;
 		this.dx += ddx+0;
@@ -57,6 +70,13 @@ public class Camera {
 		this.x = newX;
 	}
 	
+	/**
+	 * Moves the camera.
+	 * Start a thread to repeatedly call {@link Camera#step(int) step()} 
+	 * @param speed Speed of movement
+	 * @param width Deprecated
+	 * @param side Side to which the Camera moves
+	 */
 	public void pan(float speed, int width, int side){
 		float lastSpeed = this.speed;
 		this.speed = speed;
@@ -96,7 +116,10 @@ public class Camera {
 		this.side = side;
 	}
 	
-	
+	/**
+	 * Thread used to shake the Camera.
+	 * It does so by randomly and repeatedly changing the speed of the camera
+	 */
 	public void shakeThread(){
 		int dx,dy;
 		double initX = this.x;
@@ -123,6 +146,9 @@ public class Camera {
 			
 	}
 	
+	/**
+	 * Runs the shaking thread.
+	 */
 	public void shake(){
 		
 		if (shaking){

@@ -19,7 +19,10 @@ public class ResourceManager {
 	private Animation[][] myAnimations;
 	private boolean runAnimation;
 	private int numberOfAnims;
+	
+	//Res loading
 	private Resources res;
+	private String packName;
 	
 	public ResourceManager(Context myContext){
 		Field[] drawables = android.R.drawable.class.getFields();
@@ -27,7 +30,9 @@ public class ResourceManager {
 		numberOfAnims = 0;
 		myAnimations = new Animation[5][3];
 		runAnimation = true;
-		res  = myContext.getResources();	
+		//Res loading
+		res  = myContext.getResources();
+		packName = myContext.getPackageName();
 	}
 	
 	public void load(){

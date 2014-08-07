@@ -1,6 +1,8 @@
 package com.example.painintheass.GameLogic;
 
-
+/**
+ * Represents the Player.
+ */
 public class Player {
 	private int money;
 	private int score;

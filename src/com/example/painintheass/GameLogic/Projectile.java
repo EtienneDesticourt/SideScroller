@@ -2,6 +2,10 @@ package com.example.painintheass.GameLogic;
 
 import android.graphics.Rect;
 
+/**
+ * Represents a  missile.
+ * Arrows, magic missile, falling missiles...
+ */
 public class Projectile {
 	private int speed;
 	private int side;
@@ -13,6 +17,9 @@ public class Projectile {
 	private int type;
 	private boolean hit;
 	
+	/**
+	 * Creates a missile.
+	 */
 	public Projectile(int newImage,int speed, int side, int x, int y, int width, int height, int damage){//int initX, int initY, int initSpeed, int angle){
 		this.speed = speed;
 		this.x = x;
@@ -61,7 +68,9 @@ public class Projectile {
 	}
 	
 	
-	
+	/**
+	 * Moves the missile one step.
+	 */
 	public void step(){
 //		System.out.println("x"+x);
 //		System.out.println("Side"+side);

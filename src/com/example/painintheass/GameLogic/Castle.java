@@ -2,6 +2,9 @@ package com.example.painintheass.GameLogic;
 
 import android.graphics.Rect;
 
+/**
+ * Represents a Castle.
+ */
 public class Castle extends Unit{
 	private static int[] xMod = {-30,-30};
 	private static int yMod = 0;
@@ -10,7 +13,10 @@ public class Castle extends Unit{
 	private static int sizeDif = -60;
 	private int lastPercent = 3;
 	
-	
+	/**
+	 * Creates a castle for a team.
+	 * @param unitsTeam Team for which the castle is created.
+	 */
 	public Castle(Team unitsTeam) {
 		super(unitsTeam);
 		Rect temp = super.getBodyRect();
@@ -24,7 +30,7 @@ public class Castle extends Unit{
 		super.init();
 	}
 
-
+	
 	public int getLastPercent() {
 		return lastPercent;
 	}

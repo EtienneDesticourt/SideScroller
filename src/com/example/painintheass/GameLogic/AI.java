@@ -7,6 +7,10 @@ import com.example.painintheass.Graphics.ResourceManager;
 
 import android.graphics.Rect;
 
+/**
+ * Handles all Units and Projectiles creation, movement, animation, collision and destruction.
+ * This class is a collection of threads.
+ */
 public class AI {
 	private int NUMBER_OF_TEAM=2;
 	private boolean calcMoves;
@@ -17,6 +21,11 @@ public class AI {
 	private static int moveCalcDelay =  (int) (1000/30.0);
 	private ResourceManager myRM;
 	
+	/**
+	 * Creates an AI.
+	 * @param MyTeams - The friendly and enemy teams.
+	 * @param newRM	- The Combat Scene's resource manager to handle animations
+	 */
 	public AI(Team[] MyTeams, ResourceManager newRM){
 		this.MyTeams = MyTeams;
 		myRM = newRM;
@@ -25,17 +34,20 @@ public class AI {
 		checkCollision();
 	}
 	
-	
+	/**
+	 * Skeleton of the future AI spawning decision making.
+	 * @return Array of unit types
+	 */
 	public int[] makeSpawnDecision(){
 		int[] result= new int[10];
-		
-		
-		
 		return result;
 	}
 	
 	
-	
+	/**
+	 * Spawns random units.
+	 * Will cease if {@link AI#spawningUnits spawningUnits} and {@link AI#gameIsRunning gameIsRunning} are set to false.
+	 */
 	public void spawnUnits(){
 		new Thread(new Runnable() {
 	        public void run() {
@@ -79,6 +91,10 @@ public class AI {
 		//System.out.println("Done starting");
 	}
 	
+	/**
+	 * Handles move, attack and animation updates.
+	 * Will cease if {@link AI#calcMoves calcMoves} and {@link AI#gameIsRunning gameIsRunning} are set to false.
+	 */
 	public void updateUnits(){
 		new Thread(new Runnable() {
 	        public void run() {	        	
@@ -164,6 +180,10 @@ public class AI {
 		//System.out.println("Done starting");
 	}
 	
+	/**
+	 * Handles collision detection of both units and projectiles.
+	 * Will cease if {@link AI#calcCollisions calcCollisions} and {@link AI#gameIsRunning gameIsRunning} are set to false. 
+	 */
 	public void checkCollision(){
 		new Thread(new Runnable() {
 	        public void run() {
@@ -266,6 +286,10 @@ public class AI {
 	    }).start();			
 	}
 	
+	/**
+	 * Deletes dead units.
+	 * Will cease if {@link AI#gameIsRunning gameIsRunning} is set to false.
+	 */
 	public void deleteUnits(){
 		new Thread(new Runnable() {
 	        public void run() {
@@ -361,6 +385,9 @@ public class AI {
 //		numberToDelete++;
 //	}
 	
+	/**
+	 * Stops all the running threads.
+	 */
 	public void quit(){
 		gameIsRunning = false;
 		calcMoves = false;
@@ -368,16 +395,24 @@ public class AI {
 		spawningUnits = false;
 	}
 	
-	
+	/**
+	 * Calls {@link AI#stopMovingUnits()}. 
+	 */
 	public void pause(){
 		stopMovingUnits();
 	}
 	
+	/**
+	 * Pauses the update and collision threads.
+	 */
 	public void stopMovingUnits(){
 		calcMoves = false;
 		calcCollisions = false;
 	}
 	
+	/**
+	 * Resumes the update and collision threads.
+	 */
 	public void startMovingUnits(){
 		calcMoves = true;
 		calcCollisions = true;

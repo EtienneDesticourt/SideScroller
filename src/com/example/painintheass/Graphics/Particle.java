@@ -2,6 +2,10 @@ package com.example.painintheass.Graphics;
 
 import java.util.Date;
 
+/**
+ * Represents a Particle.
+ * A particle's only function is to move a certain way and fade away.
+ */
 public class Particle {
 	private double x,y;
 	private double vx,vy;
@@ -10,6 +14,13 @@ public class Particle {
 	private int alpha = 255;
 	private long lastFade = new Date().getTime();
 	
+	/**
+	 * Creates a particle.
+	 * @param x Position on x axis
+	 * @param y Position on y axis
+	 * @param imgIndex Index of particle's image
+	 * @param fadeSpeed Speed at which the particle fades
+	 */
 	public Particle(int x, int y, int imgIndex, double fadeSpeed){
 		this.x = x;
 		this.y = y;
@@ -17,6 +28,9 @@ public class Particle {
 		this.fadeSpeed = fadeSpeed;
 	}
 	
+	/**
+	 * Determines how the particle moves.
+	 */
 	public void step(){
 		//move
 		this.setX(this.getX() + this.vx);

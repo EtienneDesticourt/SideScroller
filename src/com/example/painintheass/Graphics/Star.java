@@ -1,10 +1,17 @@
 package com.example.painintheass.Graphics;
 
+/**
+ * Represents a Star Particle.
+ */
 public class Star extends Particle{
 	private static final double fadeSpeed = 0.1;
 	private static final int imgIndex = 84;
 	
-	
+	/**
+	 * Creates a Star.
+	 * @param x Position on x axis
+	 * @param y Position on y axis
+	 */
 	public Star(int x, int y) {
 		super(x, y, imgIndex, fadeSpeed);
 		

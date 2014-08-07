@@ -1,5 +1,10 @@
 package com.example.painintheass.Graphics;
 
+
+/**
+ * Represents an animation.
+ * Holds the frame and speed logic
+ */
 public class Animation {
 	private int start;
 	private int end;
@@ -7,6 +12,12 @@ public class Animation {
 	private long speed;
 	private boolean loop;
 	
+	/**
+	 * Creates a looping animation.
+	 * @param startIndex Index of the first frame
+	 * @param endIndex Index of the last frame
+	 * @param animSpeed Speed of the animation
+	 */
 	public Animation(int startIndex, int endIndex, int animSpeed){
 		frameNumber = (endIndex - startIndex)+1;
 		start = startIndex;
@@ -15,6 +26,13 @@ public class Animation {
 		setLoop(true);
 	}
 	
+	/**
+	 * Creates an animation.
+	 * @param startIndex Index of the first frame
+	 * @param endIndex Index of the last frame
+	 * @param animSpeed Speed of the animation
+	 * @param isLoop Indicates whether the animation loops
+	 */
 	public Animation(int startIndex, int endIndex, int animSpeed, boolean isLoop){
 		frameNumber = (endIndex - startIndex)+1;
 		start = startIndex;

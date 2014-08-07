@@ -2,7 +2,9 @@ package com.example.painintheass.GameLogic;
 
 import android.graphics.Rect;
 
-
+/**
+ * Represents a Mage unit.
+ */
 public class Mage extends Unit{
 
 	private static int[] xMod = {-45/4,-175/4};
@@ -10,6 +12,11 @@ public class Mage extends Unit{
 	private static int width = 85/4;
 	private static int height = 230/4;
 	private static int sizeDif = 95;//85
+	
+	/**
+	 * Creates a Mage.
+	 * @param unitsTeam The Mage's team.
+	 */
 	public Mage(Team unitsTeam) {
 		super(unitsTeam);
 		super.setType(3);
@@ -22,7 +29,9 @@ public class Mage extends Unit{
 		super.init();
 	}
 
-
+	/**
+	 * Creates magic missiles.
+	 */
 	public void attack(){
 		int side = super.getMyTeam().getMovementSide();
 		super.getMyTeam().addProjectile(new Projectile(67,15,side,getX()+50,getY()+40+yMod,17,8, super.getDamage()));

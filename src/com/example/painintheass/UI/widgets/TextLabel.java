@@ -2,11 +2,21 @@ package com.example.painintheass.UI.widgets;
 
 import android.graphics.Paint;
 
+/**
+ * Represents a Text Label
+ * A Label on which text is displayed.
+ */
 public class TextLabel extends Label{
 	private String text;
 	private int initX;
 	private Paint myPaint;
 	
+	/**
+	 * Creates a Text Label.
+	 * @param x Position on the x axis
+	 * @param y Position on the y axis
+	 * @param myText Text to display
+	 */
 	public TextLabel(int x, int y, String myText) {
 		super(x, y, 0);
 		initX = x;
@@ -15,6 +25,9 @@ public class TextLabel extends Label{
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Changes the text and adjust the position according to its length
+	 */
 	public void setString(String newText){
 		text = newText;
 		int sizeOfText = newText.length()*7;

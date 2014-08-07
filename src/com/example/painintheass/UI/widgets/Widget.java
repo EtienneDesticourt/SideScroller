@@ -6,7 +6,10 @@ import com.example.painintheass.UI.UIManager;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-
+/**
+ * Represents a Widget.
+ * A Widget is the basic element of the UI.
+ */
 public abstract class Widget {
 	private int x;
 	private int y;
@@ -21,7 +24,13 @@ public abstract class Widget {
 	private String text;
 	private boolean visible;
 	
-
+	/**
+	 * Creates a Widget.
+	 * @param x Position on the x axis
+	 * @param y Position on the y axis
+	 * @param width Width of the widget
+	 * @param height height of the widget
+	 */
 	public Widget(int x, int y, int width, int height){
 		myRect = new Rect();
 		myRect.left = x;
@@ -36,6 +45,17 @@ public abstract class Widget {
 		this.visible = true;
 	}
 	
+	/**
+	 * Creates a Widget.
+	 * @param x Position on the x axis
+	 * @param y Position on the y axis
+	 * @param width Width of the Widget
+	 * @param height Height of the Widget
+	 * @param backgroundImage Index of the background bitmap
+	 * @param highlighted Index of the highlighted bitmap
+	 * @param grayed Index of the grayed bitmap
+	 * @param click Index of the clicked bitmap
+	 */
 	public Widget(int x, int y, int width, int height,int backgroundImage, int highlighted, int grayed, int click){
 		myRect = new Rect();
 		myRect.left = x;

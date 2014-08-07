@@ -1,6 +1,8 @@
 package com.example.painintheass.GameLogic;
 
-
+/**
+ * Represents a Demoman unit. Not implemented.
+ */
 public class Demoman extends Unit{
 
 	public Demoman(Team unitsTeam) {

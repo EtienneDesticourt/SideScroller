@@ -2,7 +2,9 @@ package com.example.painintheass.GameLogic;
 
 import android.graphics.Rect;
 
-
+/**
+ * Represents an Archer unit.
+ */
 public class Archer extends Unit{
 
 	private static int[] xMod = {-140/4,-100/4};
@@ -12,6 +14,10 @@ public class Archer extends Unit{
 	private static int sizeDif = 98;
 	private static int teamIndex; 
 	
+	/**
+	 * Create an Archer.
+	 * @param unitsTeam Team to which the Archer was added
+	 */
 	public Archer(Team unitsTeam) {
 		super(unitsTeam);
 		teamIndex = unitsTeam.getId();
