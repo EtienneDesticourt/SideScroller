@@ -27,17 +27,21 @@ mage15 4
 mage16 4
 mage17 4
 mage18 4
-archer0 1
-archer1 1
-archer2 1
+spells_spells 1 This is a filler
+spells_spells 1 This is a filler
+spells_spells 1 This is a filler
+archer0 4
+archer1 4
+archer2 4
 archer3 4
 archer4 4
 archer5 4
 archer6 4
+spells_spells 1 This is a filler
 archer8 4
 archer9 4
 archer10 4
-archer11 1
+archer11 4
 archer12 4
 archer13 4
 archer14 4
@@ -62,10 +66,10 @@ knight15 4
 knight16 4
 projectile_arrow 4
 projectile_magic 4
-castle 4
-castle_broken 4
-spells_fire 4
-spells_light 4
+castle 1
+castle_broken 1
+spells_fire 1
+spells_light 1
 spells_stars 1
 menu_map 1
 menu_options 1
@@ -77,7 +81,8 @@ yes_combat 1
 no_combat 1
 coin_skills 1
 combat_miner 1
-red_overlay 1
+red_overlay 4
 starsmall0 1
-projectile_magic_falling 1
+spells_spells 1
+projectile_magic_falling 4
 grey_overlay 1

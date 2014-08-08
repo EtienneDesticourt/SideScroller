@@ -20,6 +20,9 @@ import android.graphics.BitmapFactory;
  */
 public class ResourceManager {
 	private Bitmap[] myImages;
+	/**
+	 * Stores animations for each unit type and each action.
+	 */
 	private Animation[][] myAnimations;
 	private boolean runAnimation;
 	private int numberOfAnims;
@@ -62,12 +65,13 @@ public class ResourceManager {
 	
 	
 	/**
-	 * Reads the resource file.
-	 * @return An array containing the name of the resources.
+	 * Reads any file stored in the asset folder.
+	 * @param fileName Name of the file to read.
+	 * @return An array containing the lines inside that file.
 	 * @throws IOException If the file doesn't exist.
 	 */
-	private String[] readResFile() throws IOException{
-		InputStream inputStream = AM.open(resFile);
+	private String[] readResFile(String fileName) throws IOException{
+		InputStream inputStream = AM.open(fileName);
 		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);        
         //Read lines
@@ -95,7 +99,7 @@ public class ResourceManager {
 		int resID;
 		Bitmap img;
 
-		String[] imgInfos = readResFile();
+		String[] imgInfos = readResFile(resFile);
 		String[] imgInfo;
 		String imgName;
 		int imgScale;
@@ -116,6 +120,35 @@ public class ResourceManager {
 			//Append
 			myImages[i] = img;
 		}		
+	}
+	
+	/**
+	 * Loads animations into memory
+	 */
+	public void loadAnim() throws IOException{
+		String[] animInfos = readResFile(resFile+"Anim");
+		String[] animInfo;
+		Animation anim;
+
+		int start, end, speed;
+		boolean isLoop;
+		int unitType, action;
+		
+		for (int i=0; i<animInfos.length; i++){
+			//Parse info
+			animInfo = animInfos[i].split(" ");			
+			start = Integer.parseInt(animInfo[0]);
+			end = Integer.parseInt(animInfo[1]);
+			speed = Integer.parseInt(animInfo[2]);
+			if (animInfo[3].equals("true")){ isLoop = true;}
+			else{ isLoop = false;}			
+			unitType = Integer.parseInt(animInfo[4]);
+			action = Integer.parseInt(animInfo[5]);
+			
+			//Create anim
+			anim = new Animation(start, end, speed, isLoop);
+			this.addAnimation(unitType, action, anim);
+		}	
 	}
 	
 	public Resources getRes(){

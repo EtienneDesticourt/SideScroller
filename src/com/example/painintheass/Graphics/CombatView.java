@@ -70,6 +70,7 @@ public class CombatView extends View{
 		MyRM = new ResourceManager(context,"combat");
 		try {
 			MyRM.load();
+			MyRM.loadAnim();
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
