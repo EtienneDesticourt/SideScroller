@@ -9,7 +9,6 @@ import com.example.painintheass.UI.widgets.Button;
 public class Country {
 	private boolean playerControlled;
 	private Country[] adjacentCountries;
-	private Building[] myBuildings = {};
 	private boolean underAttack;
 	private int troups;
 	private int income;
@@ -109,14 +108,6 @@ public class Country {
 
 	public void setTroups(int troups) {
 		this.troups = troups;
-	}
-
-	public Building[] getMyBuildings() {
-		return myBuildings;
-	}
-
-	public void setMyBuildings(Building[] myBuildings) {
-		this.myBuildings = myBuildings;
 	}
 
 	public boolean isPlayerControlled() {

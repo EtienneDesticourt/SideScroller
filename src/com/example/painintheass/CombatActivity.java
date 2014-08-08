@@ -3,7 +3,7 @@ package com.example.painintheass;
 import com.example.painintheass.GameLogic.AI;
 import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
-import com.example.painintheass.Graphics.CombatView;
+import com.example.painintheass.Graphics.Views.CombatView;
 import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.widgets.Button;

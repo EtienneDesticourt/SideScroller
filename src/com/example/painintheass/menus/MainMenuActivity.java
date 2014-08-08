@@ -9,7 +9,7 @@
 package com.example.painintheass.menus;
 
 import com.example.painintheass.R;
-import com.example.painintheass.Graphics.MenuView;
+import com.example.painintheass.Graphics.Views.MenuView;
 import com.example.painintheass.R.id;
 import com.example.painintheass.R.layout;
 import com.example.painintheass.UI.UIManager;

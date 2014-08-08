@@ -2,8 +2,8 @@ package com.example.painintheass.menus;
 
 import com.example.painintheass.ApplicationManager;
 import com.example.painintheass.R;
-import com.example.painintheass.Graphics.OptionsView;
-import com.example.painintheass.Graphics.SkillsView;
+import com.example.painintheass.Graphics.Views.OptionsView;
+import com.example.painintheass.Graphics.Views.SkillsView;
 import com.example.painintheass.R.id;
 import com.example.painintheass.R.layout;
 import com.example.painintheass.UI.OptionsUIManager;

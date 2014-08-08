@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.example.painintheass.GameLogic.Country;
-import com.example.painintheass.Graphics.MapView;
+import com.example.painintheass.Graphics.Views.MapView;
 import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.widgets.Button;

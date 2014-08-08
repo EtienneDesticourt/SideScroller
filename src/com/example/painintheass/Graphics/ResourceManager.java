@@ -80,6 +80,7 @@ public class ResourceManager {
         while ((line = bufferedReader.readLine()) != null) {
             lines.add(line);
         }
+        //
         bufferedReader.close();
         return lines.toArray(new String[lines.size()]);
 	}

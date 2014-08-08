@@ -1,5 +1,12 @@
 package com.example.painintheass.GameLogic;
 
+import com.example.painintheass.GameLogic.Missiles.Projectile;
+import com.example.painintheass.GameLogic.Units.Archer;
+import com.example.painintheass.GameLogic.Units.Castle;
+import com.example.painintheass.GameLogic.Units.Knight;
+import com.example.painintheass.GameLogic.Units.Mage;
+import com.example.painintheass.GameLogic.Units.Unit;
+
 
 
 
@@ -16,7 +23,6 @@ public class Team {
 	private static int Team1SpawnY = 100;
 	private static int Team2SpawnX = 600;
 	private static int Team2SpawnY = 100;
-	private final static int SOLDIERCOST = 10;
 	private final static int ARCHERCOST = 10;
 	private final static int KNIGHTCOST = 10;
 	private final static int MAGECOST = 10;
@@ -105,20 +111,6 @@ public class Team {
 		setMoney(money - MINERCOST);
 	}
 	
-
-	/**
-	 * Deprecated.
-	 */
-	public void spawnSoldier(){
-		if (money < SOLDIERCOST) return;
-		Unit temp = new Soldier(this);
-		int id = addUnit(temp);
-		if (id==-2) return;
-		temp.setId(id);
-		temp.applySkillModifier(skills[0],skills[1],skills[2]);
-		setMoney(money - SOLDIERCOST);
-		
-	}
 	
 	/**
 	 * Spawns an Archer.
@@ -158,17 +150,6 @@ public class Team {
 		temp.setId(id);
 		temp.applySkillModifier(skills[0],skills[1],skills[2]);		
 		setMoney(money - KNIGHTCOST);
-	}
-	
-	/**
-	 * Deprecated.
-	 */
-	public void spawnDemoman(){
-		Unit temp = new Demoman(this);
-		int id = addUnit(temp);
-		if (id==-2) return;
-		temp.setId(id);	
-		temp.applySkillModifier(skills[0],skills[1],skills[2]);
 	}
 	
 	/**
