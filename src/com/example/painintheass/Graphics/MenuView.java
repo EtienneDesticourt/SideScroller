@@ -1,5 +1,6 @@
 package com.example.painintheass.Graphics;
 
+import java.io.IOException;
 import java.util.Date;
 
 import com.example.painintheass.UI.UIManager;
@@ -26,7 +27,7 @@ import android.view.View;
  */
 
 public class MenuView extends View{
-	private MenuResourceManager MyRM;
+	private ResourceManager MyRM;
 	private UIManager MyUIM;
 	private boolean fullyInitialized = false;
 	
@@ -37,8 +38,13 @@ public class MenuView extends View{
 		super(context, attrs);
 		
 		//Create resource handle and load all required assets
-		MyRM = new MenuResourceManager(context);
-		MyRM.load();
+		MyRM = new ResourceManager(context, "menu");
+		try {
+			MyRM.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**

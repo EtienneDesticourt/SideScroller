@@ -1,5 +1,7 @@
 package com.example.painintheass.Graphics;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,15 +17,20 @@ import com.example.painintheass.menus.OptionsActivity;
 
 public class OptionsView extends View{
 	
-	private OptionsResourceManager MyRM;
+	private ResourceManager MyRM;
 	private UIManager MyUIM;
 	private boolean fullyInitialized;
 
 
 	public OptionsView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		MyRM = new OptionsResourceManager(context);
-		MyRM.load();
+		MyRM = new ResourceManager(context,"options");
+		try {
+			MyRM.load();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setUIManager(UIManager UIM){

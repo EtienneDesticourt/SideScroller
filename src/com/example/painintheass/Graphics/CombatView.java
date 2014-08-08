@@ -1,5 +1,6 @@
 package com.example.painintheass.Graphics;
 
+import java.io.IOException;
 import java.util.Date;
 
 import com.example.painintheass.CombatActivity;
@@ -42,7 +43,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class CombatView extends View{
-	private CombatResourceManager MyRM;
+	private ResourceManager MyRM;
 	private CombatUIManager MyUIM;
 	private boolean fullyInitialized = false;
 	private int width,height;
@@ -64,8 +65,17 @@ public class CombatView extends View{
 		gameEnded = false;
 		MyCamera = new Camera(10,0,1000);
 		MyParticleHandler = new ParticleHandler();
-		MyRM = new CombatResourceManager(context);
-		MyRM.load();
+		
+		
+		MyRM = new ResourceManager(context,"combat");
+		try {
+			MyRM.load();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		MyTeams = new Team[2];
 		MyPaint = new Paint();
 		ParticlePaint = new Paint();
@@ -118,7 +128,7 @@ public class CombatView extends View{
 		fullyInitialized = true;
 	}
 	
-	public CombatResourceManager getMyRM(){
+	public ResourceManager getMyRM(){
 		return MyRM;
 	}
 	

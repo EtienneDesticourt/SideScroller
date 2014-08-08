@@ -1,5 +1,7 @@
 package com.example.painintheass.Graphics;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,15 +16,20 @@ import com.example.painintheass.menus.SkillsActivity;
 
 public class SkillsView extends View{
 	
-	private SkillsResourceManager MyRM;
+	private ResourceManager MyRM;
 	private UIManager MyUIM;
 	private boolean fullyInitialized;
 
 
 	public SkillsView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		MyRM = new SkillsResourceManager(context);
-		MyRM.load();
+		MyRM = new ResourceManager(context,"skills");
+		try {
+			MyRM.load();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setUIManager(UIManager UIM){

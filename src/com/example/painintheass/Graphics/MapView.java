@@ -1,5 +1,6 @@
 package com.example.painintheass.Graphics;
 
+import java.io.IOException;
 import java.util.Date;
 
 import com.example.painintheass.UI.MapUIManager;
@@ -20,14 +21,19 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class MapView extends View{
-	private MapResourceManager MyRM;
+	private ResourceManager MyRM;
 	private MapUIManager MyUIM;
 	private boolean fullyInitialized = false;
 	
 	public MapView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		MyRM = new MapResourceManager(context);
-		MyRM.load();
+		MyRM = new ResourceManager(context,"map");
+		try {
+			MyRM.load();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setUIManager(MapUIManager UIM){
