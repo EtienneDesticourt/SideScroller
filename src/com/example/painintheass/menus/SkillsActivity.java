@@ -18,12 +18,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
-public class SkillsActivity extends Activity{
-	
+
+/**
+ * This <code>Activity</code> is responsible for handling the creation of everything related to the skills menu.
+ * Including the UI manager, the view, the victory states, the skills, the AI, and the teams.
+ */
+public class SkillsActivity extends Activity{	
 	SkillsUIManager myUIM;
+	/**
+	 * ID of the country which skills we are modifying.
+	 */
 	private int countryID;
 	
-	
+	/**
+	 * Creates the widgets to render the cost skill.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The activity's UI manager
+	 * @return The array of widget representing the cost skill
+	 */
  	public Widget[] initCostGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
@@ -56,7 +69,8 @@ public class SkillsActivity extends Activity{
 		bwidth = (int) (0.05208*width);
 		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
 				int currentCost = myUIM.getCost();
 				if (currentCost<10){
 					myUIM.increaseCost();
@@ -69,7 +83,14 @@ public class SkillsActivity extends Activity{
 		state[i+1] = current;		
 		return state;		
 	}
-	
+ 	
+ 	/**
+	 * Creates the widgets to render the health skill.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The activity's UI manager
+	 * @return The array of widget representing the health skill
+	 */
 	public Widget[] initHealthGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
@@ -102,7 +123,8 @@ public class SkillsActivity extends Activity{
 		bwidth = (int) (0.05208*width);
 		bheight = (int) ((0.078125)*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
 				int currentHealth = myUIM.getHealth();
 				if (currentHealth<10){
 					myUIM.increaseHealth();
@@ -116,6 +138,13 @@ public class SkillsActivity extends Activity{
 		return state;	
 	}
 	
+	/**
+	 * Creates the widgets to render the strength skill.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The activity's UI manager
+	 * @return The array of widget representing the strength skill
+	 */
 	public Widget[] initStrengthGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
@@ -148,8 +177,9 @@ public class SkillsActivity extends Activity{
 		bwidth = (int) (0.05208*width);
 		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
-			public void onClick(UIManager myUIM){
-				int currentDamage = myUIM.getDamage();
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
+				int currentDamage = myUIM.getStrength();
 				if (currentDamage<10){
 					myUIM.increaseStrength();
 				}
@@ -162,6 +192,13 @@ public class SkillsActivity extends Activity{
 		return state;
 	}
 	
+	/**
+	 * Creates the widgets to render the speed skill.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The activity's UI manager
+	 * @return The array of widget representing the speed skill
+	 */
 	public Widget[] initTimeGUI(int width, int height, SkillsUIManager myUIM){
 		int left,up,bwidth,bheight;
 		
@@ -194,8 +231,9 @@ public class SkillsActivity extends Activity{
 		bwidth = (int) (0.05208*width);
 		bheight = (int) (0.078125*height);
 		current = new Button(left,up,bwidth,bheight,12,12,12,12){
-			public void onClick(UIManager myUIM){
-				int currentSpeed = myUIM.getSpeed();
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
+				int currentSpeed = myUIM.getTime();
 				if (currentSpeed<10){
 					myUIM.increaseTime();
 				}
@@ -208,11 +246,14 @@ public class SkillsActivity extends Activity{
 		return state;
 	}
 	
-	public void initGUI(int width, int height, SkillsUIManager myUIM){
-		
-		
-		int left,up,bwidth,bheight;
-		
+	/**
+	 * Creates the control widgets for the skill menu.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The activity's UI manager
+	 */
+	public void initGUI(int width, int height, SkillsUIManager myUIM){		
+		int left,up,bwidth,bheight;		
 
 		left = (int) (0.0291666666*width);
 		up = (int) (0.021875*height);
@@ -223,21 +264,24 @@ public class SkillsActivity extends Activity{
 		bwidth = (int) (0.125*width);
 		bheight = (int) (0.078125*height);
 		Button ok = new Button(left,up,bwidth,bheight,13,13,13,13){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
 				myUIM.setUpdate(true);
 				myUIM.setEndActivity(true);
 			}
 		};
 		left = (int) (0.689584*width);
 		Button cancel = new Button(left,up,bwidth,bheight,14,14,14,14){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
 				myUIM.setUpdate(false);
 				myUIM.setEndActivity(true);
 			}
 		};
 		left = (int) (0.83333333334*width);
 		Button reset = new Button(left,up,bwidth,bheight,15,15,15,15){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				SkillsUIManager myUIM = (SkillsUIManager) UIM;
 				myUIM.resetMods();
 			}
 		};
@@ -255,10 +299,6 @@ public class SkillsActivity extends Activity{
 		temp4 = initTimeGUI(width,height,myUIM);
 		int i;
 		for (i=0;i<12;i++){
-//			System.out.println(i);
-//			System.out.println(i+12);
-//			System.out.println(i+24);
-//			System.out.println(i+36);
 			state[i] = temp1[i];
 			state[i+12] = temp2[i];
 			state[i+24] = temp3[i];
@@ -266,37 +306,37 @@ public class SkillsActivity extends Activity{
 		}
 		
 		state[i+36] = title;
-//		System.out.println(i+36);
 		state[i+36+1] = reset;
-//		System.out.println(i+36+1);
 		state[i+36+2] = cancel;
-//		System.out.println(i+36+2);
 		state[i+36+3] = ok;
-//		System.out.println(i+36+3);
 		state[i+36+4] = coin;
 		state[i+36+5] = money;
 		myUIM.addState(state, false,0);
-		
-		
-		
 	}
 	
+	/**
+	 * Finishes the activity.
+	 * @param state Indicates whether the changes must be applied.
+	 */
 	public void end(boolean state){
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		if (state){
 			globalVariable.setHealth(myUIM.getHealth(),countryID);
-			globalVariable.setTime(myUIM.getSpeed(),countryID);
-			globalVariable.setDamage(myUIM.getDamage(),countryID);
+			globalVariable.setTime(myUIM.getTime(),countryID);
+			globalVariable.setDamage(myUIM.getStrength(),countryID);
 			globalVariable.setCost(myUIM.getCost(),countryID);
 			globalVariable.setMoney(myUIM.getMoney(),countryID);
 		}
 		this.finish();
 	}
 	
+	/**
+	 * Creates a skill activity.
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
+		//LOAD THE CURRENT SKILLS OF THE COUNTRY
 		Bundle b = getIntent().getExtras();
 		int cost,health,strength,time,money;
 		if (b!=null){
@@ -324,12 +364,13 @@ public class SkillsActivity extends Activity{
 		}
 		
 		
+		//GET SCREEN METRICS
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int width = metrics.widthPixels;
 		int height = metrics.heightPixels;
 		
-		
+		//UPDATE THE SKILL WIDGETS
 		myUIM = new SkillsUIManager();
 		myUIM.setCost(cost);
 		myUIM.setHealth(health);
@@ -339,6 +380,7 @@ public class SkillsActivity extends Activity{
 		myUIM.setMoney(money);
 		myUIM.update();
 		
+		//CREATE AND START VIEW
 		setContentView(R.layout.activity_skills);
 		SkillsView myView = (SkillsView) findViewById(R.id.vSkills);
 		myView.setUIManager(myUIM);

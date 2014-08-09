@@ -23,18 +23,11 @@ public class UIManager {
 	private int lastState;
 	private Activity MyActivity;
 	private boolean on;
-	private int musicVolume;
-	private int soundVolume;
 	private boolean update;
 	private boolean endActivity;
-	private int health;
-	private int speed;
-	private int damage;
-	private int cost;
 	private int exitFlag; //0:exit to map, 1: exit app to home,2:exit with victory or defeat
 	
-	public UIManager(){
-		
+	public UIManager(){		
 		states = new Widget[20][];
 		statesBackground = new int[20];
 		statesGameValue = new boolean[20];
@@ -105,43 +98,12 @@ public class UIManager {
 	
 	public void leave(){		
 	}
-	
-		
+			
 	public void setCurrentStateIndex(int currentState) {
 		this.lastState = this.currentState;
 		this.currentState = currentState;
 	}
 	
-	public Team getMyPlayerTeam() {
-		return null;
-	}
-
-	public Country[] getWorld() {
-		return null;
-	}
-	public void setSelected(int i) {
-	}
-	public Country getSelected() {
-		return null;
-	}
-	public Country getDefending() {
-		return null;
-	}
-	public Country getAttacking() {
-		return null;
-	}
-	public void unclickAll(){		
-		//System.out.println("Unclicking nothign");
-	}
-
-	public void updateLabels(int index){
-		
-	}
-	
-	public void updateLabels(){
-		
-	}
-
 	public Activity getMyActivity() {
 		return MyActivity;
 	}
@@ -169,31 +131,7 @@ public class UIManager {
 	public void setMyActivity(Activity myActivity) {
 		MyActivity = myActivity;
 	}
-
-	public void setAttacking(Country enemyCountry) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public void setVolume(int volume, int bar){
-		
-	}
-	public int getMusicVolume() {
-		return musicVolume;
-	}
-
-	public void setMusicVolume(int musicVolume) {
-		this.musicVolume = musicVolume;
-	}
-
-	public int getSoundVolume() {
-		return soundVolume;
-	}
-
-	public void setSoundVolume(int soundVolume) {
-		this.soundVolume = soundVolume;
-	}
-
 	public boolean mustUpdate() {
 		return update;
 	}
@@ -210,45 +148,6 @@ public class UIManager {
 		this.endActivity = endActivity;
 	}
 	
-	public int getHealth() {
-		return health;
-	}
-	public void setHealth(int health) {
-		this.health = health;
-	}
-	public int getSpeed() {
-		return speed;
-	}
-	public void setSpeed(int speed) {
-		this.speed = speed;
-	}
-	public int getDamage() {
-		return damage;
-	}
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-	public int getCost() {
-		return cost;
-	}
-	public void setCost(int cost) {
-		this.cost = cost;
-	}
-	public void increaseHealth(){
-	}
-	
-	public void increaseCost(){	
-	}
-	
-	public void increaseTime(){		
-	}
-	
-	public void increaseStrength(){		
-	}
-	public void resetMods(){
-		
-	}
-
 	public int getExitFlag() {
 		return exitFlag;
 	}

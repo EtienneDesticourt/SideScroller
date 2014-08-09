@@ -1,12 +1,16 @@
 package com.example.painintheass.UI;
 
+/**
+ * Manages the UI of the options activity.
+ */
 public class OptionsUIManager extends UIManager{
-
 	private int musicVolume;
 	private int soundVolume;
-	private boolean update;
 	private boolean endActivity;
 	
+	/**
+	 * Creates a manager for UI of the options activity.
+	 */
 	public OptionsUIManager(){
 		super();
 	}
@@ -33,13 +37,6 @@ public class OptionsUIManager extends UIManager{
 		this.soundVolume = soundVolume;
 	}
 	
-	public boolean mustUpdate() {
-		return update;
-	}
-
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
 
 	public boolean isEndActivity() {
 		return endActivity;
@@ -48,7 +45,4 @@ public class OptionsUIManager extends UIManager{
 	public void setEndActivity(boolean endActivity) {
 		this.endActivity = endActivity;
 	}
-	
-	
-	
 }

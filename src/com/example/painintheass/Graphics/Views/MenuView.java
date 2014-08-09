@@ -23,10 +23,7 @@ import android.view.View;
 
 /**
  * The view responsible for displaying the main menu and relaying events to the UI.
- * 
- *
  */
-
 public class MenuView extends View{
 	private ResourceManager MyRM;
 	private UIManager MyUIM;
@@ -61,7 +58,6 @@ public class MenuView extends View{
 	public void doneInitialiazing() {
 		fullyInitialized = true;		
 	}
-	
 	
 	/**
 	 * Handles touch events and relays them to the individual touched widgets.

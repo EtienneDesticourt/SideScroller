@@ -21,10 +21,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+/**
+ * This <code>Activity</code> is responsible for handling the creation of everything related to the menu scene.
+ * Including the UI manager and the view. 
+ */
 public class MainMenuActivity extends Activity{
-
 	private int type = 0;
 	
+	/**
+	 * Creates the widgets necessary for the menu.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM The menu's UI manager
+	 */
 	public void initMenu(int width, int height, UIManager myUIM){
 		int left = (int) (0.58*width);
 		int up;
@@ -74,7 +83,9 @@ public class MainMenuActivity extends Activity{
 		myUIM.addState(state,false,0);
 	}
 
-	
+	/**
+	 * Creates the menu Activity.
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -98,13 +109,9 @@ public class MainMenuActivity extends Activity{
 		
 	}
 
-
-
 	public int getType() {
 		return type;
 	}
-
-
 
 	public void setType(int type) {
 		this.type = type;

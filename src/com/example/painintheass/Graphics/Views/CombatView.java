@@ -51,6 +51,8 @@ public class CombatView extends View{
 	private ResourceManager MyRM;
 	private CombatUIManager MyUIM;
 	private boolean fullyInitialized = false;
+	private boolean victoryState;
+	
 	private int width,height;
 	private Camera MyCamera;
 	private boolean lastClicked = false;
@@ -59,7 +61,6 @@ public class CombatView extends View{
 	private Paint ParticlePaint;
 	private Paint IncomePaint;
 	private Rect HealingRect;
-	private boolean victoryState;
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;// Gesture detection
 	private boolean gameEnded;
@@ -168,7 +169,6 @@ public class CombatView extends View{
 		}
 	}
 	
-	
 	protected class MyGestureDetector extends SimpleOnGestureListener {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -186,7 +186,6 @@ public class CombatView extends View{
 			return true;
 		}
 	}
-	  
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent e){
@@ -285,18 +284,7 @@ public class CombatView extends View{
 //		}		
 		return true;
 	}
-	
-	
-	public void spawnStar(int centerX, int centerY){
 		
-	}
-	
-	public void spawnStars(int centerX, int centerY){
-		
-		
-	}
-
-	
  	protected void drawBackground(Canvas c){
 		Bitmap sky = MyRM.getImage(0);
 		Bitmap clouds = MyRM.getImage(1);
@@ -317,25 +305,18 @@ public class CombatView extends View{
 		}
 	}
 		
-	protected void checkVictory(Unit currUnit, Canvas c){
-		
-		if (currUnit.getAction() == 2){ //IF DESTROYED
-			
+	protected void checkVictory(Unit currUnit, Canvas c){		
+		if (currUnit.getAction() == 2){ //IF DESTROYED			
 			if (currUnit.getMyTeam().getId()==0){ //IF MY TEAM: LOSE
 				victoryState=false;
 				MyUIM.setCurrentStateIndex(6);
-//				c.drawBitmap(MyRM.getImage(77),c.getWidth()/2,c.getHeight()/2,null);
 			}
 			else{ //IF NOT MY TEAM: WIN
 				victoryState=true;
 				MyUIM.setCurrentStateIndex(5);
-//				c.drawBitmap(MyRM.getImage(76),c.getWidth()/2,c.getHeight()/2,null);
 			}
-			
-//			endGame(state);
 		}
 	}
-		
 	
 	protected Bitmap applyRedOverlay(Bitmap original,Bitmap mask){
 		
@@ -348,7 +329,6 @@ public class CombatView extends View{
 		
 		return result;
 	}
-	
 	
 	protected void drawUnits(Canvas c){
 		Rect newRect;
@@ -459,7 +439,6 @@ public class CombatView extends View{
 		
 		
 	}
-	
 	
 	protected void drawGUI(Canvas c){
 		

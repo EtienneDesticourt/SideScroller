@@ -7,6 +7,7 @@ import com.example.painintheass.Graphics.Views.MapView;
 import com.example.painintheass.Graphics.Views.OptionsView;
 import com.example.painintheass.R.id;
 import com.example.painintheass.R.layout;
+import com.example.painintheass.UI.CombatUIManager;
 import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.OptionsUIManager;
 import com.example.painintheass.UI.UIManager;
@@ -18,13 +19,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+
+/**
+ * This <code>Activity</code> is responsible for handling the creation of everything related to the options scene.
+ * Edits application wide variables
+ * Each button changes a variable in the UI Manager corresponding to the application wide variable
+ * When the activity is paused with the "ok" or "cancel" button the global variables are updated or not using the UIManager
+ */
 public class OptionsActivity extends Activity{
-	//Edits application wide variables
-	//Each button changes a variable in the UI Manager corresponding to the application wide variable
-	//When the activity is paused with the "ok" or "cancel" button the global variables are updated or not using the UIManager
-	
 	private OptionsUIManager myUIM;
 
+	/**
+	 * Finishes the activity.
+	 * @param state Indicates whether to apply the changes
+	 */
 	public void end(boolean state){
 		ApplicationManager globalVariable = (ApplicationManager) getApplicationContext();
 		if (state){
@@ -34,6 +42,12 @@ public class OptionsActivity extends Activity{
 		this.finish();
 	}
 	
+	/**
+	 * Creates the necessary buttons.
+	 * @param width Screen's width
+	 * @param height Screen's height
+	 * @param myUIM UI Manager of the options activity
+	 */
  	public void initUI(int width, int height, OptionsUIManager myUIM){
 		
 		int left,up;
@@ -56,61 +70,71 @@ public class OptionsActivity extends Activity{
 		bwidth = (int) (0.0*width);
 		bheight = (int) (0.0*height);
 		musicKnobs[0] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(0,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[1] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(1,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[2] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(2,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[3] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(3,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[4] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(4,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[5] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(5,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[6] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(6,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[7] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(7,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[8] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(8,0);
 			}
 		};
 		left = (int) (0.0*width);
 		musicKnobs[9] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(9,0);
 			}
 		};
@@ -125,61 +149,71 @@ public class OptionsActivity extends Activity{
 		up = (int) (0.0*height);
 		left = (int) (0.0*width);
 		soundKnobs[0] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(0,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[1] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(1,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[2] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(2,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[3] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(3,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[4] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(4,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[5] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(5,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[6] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(6,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[7] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(7,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[8] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(8,1);
 			}
 		};
 		left = (int) (0.0*width);
 		soundKnobs[9] = new Button(left,up,bwidth,bheight,2,1,2,2) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setVolume(9,1);
 			}
 		};
@@ -187,14 +221,16 @@ public class OptionsActivity extends Activity{
 		
 		
 		Button Cancel = new Button(left,up,bwidth,bheight,4,4,4,4){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setUpdate(false);
 				myUIM.setEndActivity(true);
 			}
 		};
 		
 		Button Ok = new Button(left,up,bwidth,bheight,4,4,4,4){
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				OptionsUIManager myUIM = (OptionsUIManager) UIM;
 				myUIM.setUpdate(true);
 				myUIM.setEndActivity(true);
 			}
@@ -202,6 +238,9 @@ public class OptionsActivity extends Activity{
 		
 	}
 	
+ 	/**
+ 	 * Creates an option activity.
+ 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 				

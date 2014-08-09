@@ -16,13 +16,17 @@ import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.widgets.Widget;
 import com.example.painintheass.menus.OptionsActivity;
 
-public class OptionsView extends View{
-	
+/**
+ * The view responsible for displaying the options menu and relaying events to the UI.
+ */
+public class OptionsView extends View{	
 	private ResourceManager MyRM;
 	private UIManager MyUIM;
 	private boolean fullyInitialized;
 
-
+	/**
+	 * Creates a new <code>OptionsView</code> and loads all necessary assets.
+	 */
 	public OptionsView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		MyRM = new ResourceManager(context,"options");
@@ -34,15 +38,24 @@ public class OptionsView extends View{
 		}
 	}
 	
+	/**
+	 * Sets the <code>UIManager</code> for this view. 
+	 */
 	public void setUIManager(UIManager UIM){
 		MyUIM = UIM;
 	}
 
+	/**
+	 * Indicates the <code>UIManager</code> has been set and allows view to start drawing.
+	 */
 	public void doneInitialiazing() {
 		fullyInitialized = true;
 		
 	}
 	
+	/**
+	 * Handles touch events and relays them to the individual touched widgets.
+	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent e){
 		int action = e.getAction();
@@ -63,7 +76,10 @@ public class OptionsView extends View{
         dad.end(state); //I KNOW I KNOW, IT'S WRONG
 	}
 	
-	
+	/**
+	 * Draws the UI's <code>Widgets</code> on screen. 
+	 * It will not draw anything until the view's UI manager has been set and the  {@link OptionsView#doneInitialiazing() doneInitializing} function has been called.
+	 */
 	@Override
 	protected void onDraw(Canvas c){		
 		if (!fullyInitialized){

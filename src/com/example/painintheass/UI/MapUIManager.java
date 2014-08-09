@@ -5,38 +5,53 @@ import android.app.Activity;
 import com.example.painintheass.GameLogic.Country;
 import com.example.painintheass.UI.widgets.Widget;
 
+/**
+ * Manages the UI of the map activity.
+ */
 public class MapUIManager extends UIManager{
-
-
 	private Country[] World;
-	private Country Selected;
 	private int selectedIndex;
+	private Country Selected;
 	private Country Attacking;
 	private Country Defending;
 	
-	
+	/**
+	 * Creates a manager of the map's UI.
+	 */
 	public MapUIManager() {
 		super();
 	}
-
+	
+	/**
+	 * Creates a manager of the map's UI.
+	 */
 	public MapUIManager(Activity A){
 		super(A);
 	}
 	
+	/**
+	 * Changes currently selected country.
+	 */
 	public void setSelected(int index){
 		this.Selected = World[index];
 		this.selectedIndex = index;
 		updateLabels(index);
 	}
 	
+	/**
+	 * Updates currently selected country's money and troups.
+	 */
 	public void updateLabels(){
 		int index = selectedIndex;
 		Widget[] curState = this.getCurrentState();
 		curState[1].setString(Integer.toString(World[index].getTroups()));
 		curState[2].setString(Integer.toString(World[index].getMoney()));
-		
 	}
 	
+	/**
+	 * Updates country's money and troups.
+	 * @param index Index of the country of which the money and troups will appear. 
+	 */
 	public void updateLabels(int index){
 		Widget[] curState = this.getCurrentState();
 		curState[1].setString(Integer.toString(World[index].getTroups()));

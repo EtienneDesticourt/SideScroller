@@ -15,6 +15,9 @@ public class ApplicationManager extends Application {
 	private boolean updated;
 	private Country[] World;
 	
+	/**
+	 * Creates an application manager.
+	 */
 	public ApplicationManager(){		
 	}
 	

@@ -2,8 +2,10 @@ package com.example.painintheass.UI;
 
 import com.example.painintheass.UI.widgets.Widget;
 
+/**
+ * Manages the UI for the skills activity.
+ */
 public class SkillsUIManager extends UIManager{
-
 	private int health,firstHealth;
 	private int time,firstTime;
 	private int strength,firstStrength;
@@ -18,12 +20,17 @@ public class SkillsUIManager extends UIManager{
 	private final int COSTSTART = 0;
 	private final int TIMESTART = 36;
 	private boolean endActivity;
-	private boolean update;
 	
+	/**
+	 * Creates manager for the UI of the skill's UI 
+	 */
 	public SkillsUIManager(){
 		super();
 	}
 	
+	/**
+	 * Changes the skills to their original values.
+	 */
 	public void resetMods(){
 		health = firstHealth;
 		cost = firstCost;
@@ -32,6 +39,7 @@ public class SkillsUIManager extends UIManager{
 		money = firstMoney;
 		update();
 	}
+	
 	public void increaseHealth(){
 		if (money>=HEALTHCOST){ money -= HEALTHCOST; getWidget(0,53).setString(String.valueOf(money));}
 		else return;
@@ -72,8 +80,10 @@ public class SkillsUIManager extends UIManager{
 		}		
 	}
 	
+	/**
+	 * Highlights the skills that have been bought. 
+	 */
 	public void update(){
-
 		Widget[] widgets = super.getCurrentState();
 		for (int i=HEALTHSTART;i<HEALTHSTART+health;i++){
 			widgets[i].setCurrentImage(widgets[i].getHilightedImage());
@@ -102,7 +112,6 @@ public class SkillsUIManager extends UIManager{
 		getWidget(0,53).setString(String.valueOf(money));
 	}
 	
-	
 	public int getHealth() {
 		return health;
 	}
@@ -110,6 +119,7 @@ public class SkillsUIManager extends UIManager{
 		this.firstHealth = health;
 		this.health = health;
 	}
+	
 	public int getTime() {
 		return time;
 	}
@@ -117,6 +127,7 @@ public class SkillsUIManager extends UIManager{
 		this.firstTime = time;
 		this.time = time;
 	}
+	
 	public int getStrength() {
 		return strength;
 	}
@@ -124,6 +135,7 @@ public class SkillsUIManager extends UIManager{
 		this.firstStrength = strength;
 		this.strength = strength;
 	}
+	
 	public int getCost() {
 		return cost;
 	}
@@ -132,14 +144,6 @@ public class SkillsUIManager extends UIManager{
 		this.cost = cost;
 	}
 	
-	public boolean mustUpdate() {
-		return update;
-	}
-
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
 	public boolean isEndActivity() {
 		return endActivity;
 	}

@@ -121,7 +121,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.08125*width);
 		bheight = (int) (0.08125*height);
 		Button pays1 = new Button(left,up,bwidth,bheight,1,2,3,1) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(0);
@@ -151,7 +152,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.260416666667*width);
 		bheight = (int) (0.25625*height);
 		Button pays2 = new Button(left,up,bwidth,bheight,4,5,6,4) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(1);
@@ -181,7 +183,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.1375*width);
 		bheight = (int) (0.253125*height);
 		Button pays3 = new Button(left,up,bwidth,bheight,7,8,9,7) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(2);
@@ -211,7 +214,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.0770833333333*width);
 		bheight = (int) (0.096875*height);
 		Button pays4 = new Button(left,up,bwidth,bheight,10,11,12,10) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(3);
@@ -241,7 +245,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.108333333333*width);
 		bheight = (int) (0.13125*height);
 		Button pays5 = new Button(left,up,bwidth,bheight,13,14,15,13) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(4);if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
@@ -270,7 +275,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.19375*width);
 		bheight = (int) (0.29375*height);
 		Button pays6 = new Button(left,up,bwidth,bheight,16,17,18,16) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.unclickAll();
 				this.setBackgroundImage(this.getClickedImage());
 				myUIM.setSelected(5);if (myUIM.getCurrentStateIndex()==3 || myUIM.getCurrentStateIndex()==4){
@@ -299,7 +305,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.0625*height);
 		Button skills = new Button(left,up,bwidth,bheight,27,27,27,27) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				Country cur = myUIM.getSelected();
 				if (cur==null){return;}
 				if (cur.isPlayerControlled()){
@@ -311,7 +318,7 @@ public class MapActivity extends Activity{
 				}
 			}
 		};
-		//System.out.println("fuck you android.");
+
 		up = (int) (0.578*height);
 		Button attack1 = new Button(left,up,bwidth,bheight) {
 			public void onClick(UIManager myUIM){
@@ -330,8 +337,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.1375*height);
 		Button nextTurn = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager uim){
-				MapUIManager myUIM = ((MapUIManager)uim);
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				Country[] World = myUIM.getWorld();
 				
 				for (int i=0;i<6;i++){
@@ -419,7 +426,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.0625*height);
 		Button attack = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				Country cur = myUIM.getSelected();
 				if (cur==null){return;}
 				if (!cur.isPlayerControlled()){
@@ -450,7 +458,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.0416666666667*width);
 		bheight = (int) (0.0625*height);
 		Button buyTroups = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				myUIM.getSelected().buyTroups();
 				myUIM.updateLabels();
 			}
@@ -468,7 +477,8 @@ public class MapActivity extends Activity{
 		bwidth = (int) (0.25*width);
 		bheight = (int) (0.0625*height);
 		Button attack2 = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				
 
 
@@ -498,7 +508,8 @@ public class MapActivity extends Activity{
 		
 		up = (int) (0.656*height);
 		Button resolve2 = new Button(left,up,bwidth,bheight) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				MapUIManager myUIM = (MapUIManager) UIM;
 				int result = myUIM.getDefending().getTroups()-myUIM.getAttacking().getTroups();//add skill modifier
 				if (result<0){
 					myUIM.getDefending().setPlayerControlled(false);

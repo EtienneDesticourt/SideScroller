@@ -2,6 +2,8 @@ package com.example.painintheass.UI.widgets;
 
 import java.util.Date;
 
+import com.example.painintheass.UI.CombatUIManager;
+import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
 
 /**
@@ -45,8 +47,8 @@ public abstract class Button extends Widget{
 		setClicked(true);
 		onClick(myUIM);
 	}
-	
-	public abstract void onClick(UIManager myUIM);
+
+	public abstract void onClick(UIManager myUIM);	
 
 	public boolean isClicked() {
 		return clicked;

@@ -5,6 +5,7 @@ import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.Graphics.Views.CombatView;
 import com.example.painintheass.UI.CombatUIManager;
+import com.example.painintheass.UI.MapUIManager;
 import com.example.painintheass.UI.UIManager;
 import com.example.painintheass.UI.widgets.Button;
 import com.example.painintheass.UI.widgets.Label;
@@ -36,15 +37,14 @@ public class CombatActivity extends Activity {
 	private void initGUI(int width, int height, CombatUIManager myUIM){
 		int left,up;
 		int bwidth,bheight;
-		//32..5
-		
 		
 		left = (int) (0.02083*width);
 		up = (int) (0.040625*height);
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button menu = new Button(left,up,bwidth,bheight,8,8,8,8) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				if (myUIM.getCurrentStateIndex()!=1){
 					myUIM.setCurrentStateIndex(1);
@@ -60,7 +60,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.12708*width);
 		bheight = (int) (0.15625*height);
 		Button miner = new Button(left,up,bwidth,bheight,82,82,82,82) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyPlayerTeam().spawnMiner();
 				myUIM.updateLabels();
@@ -82,7 +83,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.12708*width);
 		bheight = (int) (0.15625*height);
 		Button archer = new Button(left,up,bwidth,bheight,5,5,5,5) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyPlayerTeam().spawnArcher();
 			}
@@ -93,7 +95,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.11041*width);
 		bheight = (int) (0.18124*height);
 		Button knight = new Button(left,up,bwidth,bheight,6,6,6,6) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyPlayerTeam().spawnKnight();
 				//System.out.println("Spawned knight hopefully.");
@@ -105,7 +108,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10833*width);
 		bheight = (int) (0.1875*height);
 		Button mage = new Button(left,up,bwidth,bheight,7,7,7,7) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyPlayerTeam().spawnMage();
 			}
@@ -126,7 +130,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button spell = new Button(left,up,bwidth,bheight,9,9,9,9) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				if (myUIM.getCurrentStateIndex()!=2){
 					myUIM.setCurrentStateIndex(2);
@@ -146,14 +151,16 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button map = new Button(left,up,bwidth,bheight,73,73,73,73) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.setCurrentStateIndex(3);
 			}
 		};
 		up = (int) (0.390625*height);
 		Button options = new Button(left,up,bwidth,bheight,74,74,74,74) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.getMyAI().stopMovingUnits();
 				startActivity(myUIM.getIntent(3));	
@@ -161,7 +168,8 @@ public class CombatActivity extends Activity {
 		};
 		up = (int) (0.56875*height);
 		Button quit = new Button(left,up,bwidth,bheight,75,75,75,75) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				myUIM.setCurrentStateIndex(4);
 			}
@@ -177,7 +185,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button fire = new Button(left,up,bwidth,bheight,70,70,70,70) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				CombatUIManager myUIM2 = (CombatUIManager) myUIM;
 				myUIM2.setSpawnProjectile(true);
@@ -187,7 +196,8 @@ public class CombatActivity extends Activity {
 		left = (int) (0.85625*width);
 		up = (int) (0.390625*height);
 		Button meteor = new Button(left,up,bwidth,bheight,71,71,71,71) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 				CombatUIManager myUIM2 = (CombatUIManager) myUIM;
 				myUIM2.setHealOnTouch(true);
@@ -198,7 +208,8 @@ public class CombatActivity extends Activity {
 		left = (int) (0.87083*width);
 		up = (int) (0.56875*height);
 		Button stars = new Button(left,up,bwidth,bheight,72,72,72,72) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
 			}
 		};
@@ -218,7 +229,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button ok = new Button(left,up,bwidth,bheight,79,79,79,79) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				myUIM.setExitFlag(0);
 				myUIM.setEndActivity(true);
 			}
@@ -228,7 +240,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button cancel = new Button(left,up,bwidth,bheight,80,80,80,80) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				myUIM.setCurrentStateIndex(0);
 			}
 		};
@@ -243,7 +256,8 @@ public class CombatActivity extends Activity {
 		bwidth = (int) (0.10416*width);
 		bheight = (int) (0.15625*height);
 		Button ok2 = new Button(left,up,bwidth,bheight,79,79,79,79) {
-			public void onClick(UIManager myUIM){
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				myUIM.setExitFlag(1);
 				myUIM.setEndActivity(true);
 			}
@@ -261,7 +275,8 @@ public class CombatActivity extends Activity {
 		up = 180;
 		left += 75;
 		Button ok3 = new Button(left,up,bwidth,bheight,79,79,79,79) {
-			public void onClick(UIManager myUIM) {
+			public void onClick(UIManager UIM){
+				CombatUIManager myUIM = (CombatUIManager) UIM;
 				myUIM.setExitFlag(2);	
 				myUIM.setEndActivity(true);			
 			}			
@@ -291,12 +306,6 @@ public class CombatActivity extends Activity {
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);		
-	}
-	
-	
-	@Override
-	public void onWindowFocusChanged (boolean hasFocus)
-	{
 	}
 	
 	/**
@@ -380,12 +389,15 @@ public class CombatActivity extends Activity {
 	public int getType() {
 		return type;
 	}
+	
 	public void setType(int type) {
 		this.type = type;
 	}
+	
 	public boolean isVictoryState() {
 		return victoryState;
 	}
+	
 	public void setVictoryState(boolean victoryState) {
 		this.victoryState = victoryState;
 	}
