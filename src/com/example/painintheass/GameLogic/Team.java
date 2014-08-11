@@ -21,7 +21,7 @@ public class Team {
 	private static int NumberOfTeams = 0;
 	private static int Team1SpawnX = 0;
 	private static int Team1SpawnY = 100;
-	private static int Team2SpawnX = 600;
+	private static int Team2SpawnX = 1600;
 	private static int Team2SpawnY = 100;
 	private final static int ARCHERCOST = 10;
 	private final static int KNIGHTCOST = 10;

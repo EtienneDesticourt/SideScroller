@@ -13,20 +13,38 @@ import com.example.painintheass.menus.MainMenuActivity;
 import com.example.painintheass.menus.OptionsActivity;
 import com.example.painintheass.menus.SkillsActivity;
 
-
+/**
+ * Relays information from widgets to the rest of the app.
+ */
 public class UIManager {
+	/**
+	 * Holds the widgets to be rendered in current activity.
+	 * Only current state is rendered.
+	 */
 	private Widget[][] states;
+	/**
+	 * Index of the background image for each state.
+	 */
 	private int[] statesBackground;
 	private boolean[] statesGameValue;
 	private int stateNumber;
+	/**
+	 * Index of the only UI state to be rendered
+	 */
 	private int currentState;
 	private int lastState;
 	private Activity MyActivity;
+	/**
+	 * Whether to render the current state.
+	 */
 	private boolean on;
 	private boolean update;
 	private boolean endActivity;
 	private int exitFlag; //0:exit to map, 1: exit app to home,2:exit with victory or defeat
 	
+	/**
+	 * Creates a UI Manager with empty states.
+	 */
 	public UIManager(){		
 		states = new Widget[20][];
 		statesBackground = new int[20];
@@ -155,7 +173,5 @@ public class UIManager {
 	public void setExitFlag(int exitFlag) {
 		this.exitFlag = exitFlag;
 	}
-	public AI getMyAI(){
-		return null;
-	}
+	
 }

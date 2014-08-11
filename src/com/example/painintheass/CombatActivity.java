@@ -1,7 +1,6 @@
 package com.example.painintheass;
 
 import com.example.painintheass.GameLogic.AI;
-import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.Graphics.Views.CombatView;
 import com.example.painintheass.UI.CombatUIManager;
@@ -162,7 +161,7 @@ public class CombatActivity extends Activity {
 			public void onClick(UIManager UIM){
 				CombatUIManager myUIM = (CombatUIManager) UIM;
 				if (myUIM.getCurrentStateIndex()==3  || myUIM.getCurrentStateIndex()==4){return;}
-				myUIM.getMyAI().stopMovingUnits();
+				myUIM.stopMovingUnits();
 				startActivity(myUIM.getIntent(3));	
 			}
 		};
@@ -320,7 +319,7 @@ public class CombatActivity extends Activity {
 	 */
 	protected void onResume(){
 		super.onResume();
-		myUIM.getMyAI().startMovingUnits();
+		myUIM.startMovingUnits();
 		//System.out.println(myUIM.getMyAI().);
 	}
 	
@@ -329,7 +328,7 @@ public class CombatActivity extends Activity {
 	 */
 	protected void onPause(){
 		super.onPause();
-		myUIM.getMyAI().stopMovingUnits();
+		myUIM.stopMovingUnits();
 	}
 	
 	/**
@@ -348,7 +347,7 @@ public class CombatActivity extends Activity {
 		//Initializes teams
 		Team friendlyTeam = new Team();
 		Team enemyTeam = new Team();
-		Player p = new Player(friendlyTeam);
+//		Player p = new Player(friendlyTeam);
 		Team[] myTeams = {friendlyTeam,enemyTeam};
 		
 		
@@ -363,7 +362,7 @@ public class CombatActivity extends Activity {
 		skill4 = globalVariable.getCost(countryID);
 		
 		//Initializes UI and set team skills.
-		myUIM = new CombatUIManager(friendlyTeam,enemyTeam,p);
+		myUIM = new CombatUIManager(friendlyTeam,enemyTeam);
 		friendlyTeam.setSkills(skill1, skill2, skill3, skill4);
 		enemyTeam.setSkills(skill1, skill2, skill3, skill4);
 		

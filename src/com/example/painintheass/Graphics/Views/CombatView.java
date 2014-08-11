@@ -142,7 +142,7 @@ public class CombatView extends View{
 	public void endGame(boolean state){
 		gameEnded = true;
 		CombatActivity dad = ((CombatActivity)getContext());
-		MyUIM.getMyAI().quit();
+		MyUIM.quit();
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("result",state);
 		dad.setResult(dad.RESULT_OK,returnIntent);
@@ -193,18 +193,6 @@ public class CombatView extends View{
 		
 		//System.out.println(e.getX());
 		if (action == MotionEvent.ACTION_DOWN){
-			
-//			if (lastClicked){
-//				MyCamera.pan(2, width,1);
-//				System.out.println("Camera: pan right.");
-//			}
-//			else{
-//				MyCamera.pan(2, width,-1);
-//				System.out.println("Camera: pan left.");
-//			}
-//			lastClicked = !lastClicked;
-			
-//			MyCamera.shake();
 			int dX = (int) MyCamera.getX();	
 			int dY = (int) MyCamera.getY();	
 			
@@ -460,22 +448,15 @@ public class CombatView extends View{
 						long cur = new Date().getTime(); 
 						if (cur-B.getFirstClicked() > 500){//FEEDBACK LENGTH
 							B.setClicked(false);
-						}
-						
-					}
-        			
-				}
-				
+						}						
+					}        			
+				}				
 
-				c.drawBitmap(image,currWidget.getX(),currWidget.getY(),null);
-				
-				
-			}
-			
+				c.drawBitmap(image,currWidget.getX(),currWidget.getY(),null);				
+			}			
 			else{ //IF WIDGET TEXT
 				c.drawText(currWidget.getString(), currWidget.getX(), currWidget.getY(), currWidget.getPaint());
-			}
-			
+			}			
 		}
 	}
 	

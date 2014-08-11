@@ -43,9 +43,9 @@ public class Castle extends Unit{
 	}
 	
 	public void hit(int damage, boolean ranged, int type){
-		if (type == 1){
-			return;
-		}
+//		if (type == 1){
+//			return;
+//		}
 		super.hit(damage,ranged,type);
 	}
 	

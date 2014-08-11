@@ -37,8 +37,6 @@ public class Knight extends Unit {
 	 */
 	public void hit(int damage, boolean ranged, int type){
 		this.setHit(true);
-		if (ranged==false){
-			super.hit(damage, ranged,type);
-		}
+		super.hit(damage, ranged,type);
 	}
 }

@@ -3,18 +3,16 @@ package com.example.painintheass.UI;
 import java.util.Date;
 
 import com.example.painintheass.GameLogic.AI;
-import com.example.painintheass.GameLogic.Player;
 import com.example.painintheass.GameLogic.Team;
 import com.example.painintheass.UI.widgets.Widget;
 
 /**
- * Manages the UI of the combat activity.
+ * Link the UI of the combat activity to the game engine.
  */
 public class CombatUIManager extends UIManager{
 	private AI myAI;
 	private Team myPlayerTeam;
 	private Team myEnemyTeam;
-	private Player myPlayer;
 	/**
 	 * Delay between money increase by income.
 	 */
@@ -34,11 +32,10 @@ public class CombatUIManager extends UIManager{
 	 * @param enemyTeam The enemy's team
 	 * @param mainPlayer The player
 	 */
-	public CombatUIManager(Team playerTeam, Team enemyTeam, Player mainPlayer) {
+	public CombatUIManager(Team playerTeam, Team enemyTeam) {
 		super();
 
 		setMyEnemyTeam(enemyTeam);
-		setMyPlayer(mainPlayer);
 		setMyPlayerTeam(playerTeam);
 		myPlayerTeam.reset();
 		myEnemyTeam.reset();
@@ -50,7 +47,7 @@ public class CombatUIManager extends UIManager{
 	 * Pauses AI and reset teams.
 	 */
 	public void leave(){
-		getMyAI().stopMovingUnits();
+		myAI.stopMovingUnits();
 		myPlayerTeam.reset();
 		myEnemyTeam.reset();
 	}
@@ -78,10 +75,19 @@ public class CombatUIManager extends UIManager{
 		return false;
 	}
 	
-	public AI getMyAI() {
-		return myAI;
+	
+	public void quit(){
+		myAI.quit();
 	}
-
+	
+	public void startMovingUnits(){
+		myAI.startMovingUnits();
+	}
+	
+	public void stopMovingUnits(){
+		myAI.stopMovingUnits();
+	}
+	
 	public void setMyAI(AI myAI) {
 		this.myAI = myAI;
 	}
@@ -95,13 +101,7 @@ public class CombatUIManager extends UIManager{
 		this.myPlayerTeam = myPlayerTeam;
 	}
 
-	public Player getMyPlayer() {
-		return myPlayer;
-	}
-
-	public void setMyPlayer(Player myPlayer) {
-		this.myPlayer = myPlayer;
-	}
+	
 
 	public Team getMyEnemyTeam() {
 		return myEnemyTeam;

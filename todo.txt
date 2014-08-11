@@ -325,6 +325,8 @@ Dynamic GUI loading							X
 Button subclass casting						V
 Add package info 							V
 Add view,ui,menu docs						X
+Divide AI class into more meaningful classesX
+Add MissileHandler logic 					X
 
 
 
